@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "853196773303",
+    "project_id": "vehicanich",
+    "storage_bucket": "vehicanich.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:853196773303:android:f3fe04ac2d858ee19eba32",
+        "android_client_info": {
+          "package_name": "in.user.vehicanich"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDm8CTJorEzSWcUK-cejzRcDwvorza8JtQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
