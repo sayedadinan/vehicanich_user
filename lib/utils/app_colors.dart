@@ -9,6 +9,7 @@ class AppColor {
   final Color appbarbackgroundcolor;
   final Color emergencybuttoncolor;
   final Color bottomnavigationforcolor;
+  final Color listcontainer;
   AppColor(
       {required this.appbackgroundcolor,
       required this.bottomnavigationforcolor,
@@ -17,7 +18,8 @@ class AppColor {
       required this.colorwhite,
       required this.colorblack,
       required this.appbarbackgroundcolor,
-      required this.emergencybuttoncolor});
+      required this.emergencybuttoncolor,
+      required this.listcontainer});
 }
 
 final class Myappallcolor extends AppColor {
@@ -30,5 +32,6 @@ final class Myappallcolor extends AppColor {
             colorwhite: Colors.white,
             appbackgroundcolor: const Color.fromARGB(255, 4, 59, 73),
             textcolor: const Color.fromARGB(255, 167, 199, 198),
-            buttonforgroundcolor: const Color.fromARGB(255, 17, 187, 180));
+            buttonforgroundcolor: const Color.fromARGB(255, 17, 187, 180),
+            listcontainer: Color.fromARGB(255, 71, 100, 108));
 }

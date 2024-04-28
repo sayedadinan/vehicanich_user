@@ -15,7 +15,7 @@ class ListtileText extends StatelessWidget {
           height: Mymediaquery().mediaqueryheight(0.03, context),
         ),
         Text(
-          'Apollo Works',
+          '',
           style: TextStyle(
               color: Myappallcolor().colorblack,
               fontSize: Mymediaquery().mediaquerywidth(0.02, context)),
