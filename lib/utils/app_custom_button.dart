@@ -7,6 +7,7 @@ class CustomButton extends StatelessWidget {
   final String text;
   final double fontSize;
   final Color buttontextcolor;
+  final Color bordercolor;
   const CustomButton({
     super.key,
     required this.color,
@@ -14,6 +15,7 @@ class CustomButton extends StatelessWidget {
     required this.text,
     required this.fontSize,
     required this.buttontextcolor,
+    required this.bordercolor,
   });
 
   @override
@@ -22,6 +24,7 @@ class CustomButton extends StatelessWidget {
       width: Mymediaquery().mediaquerywidth(0.41, context),
       height: Mymediaquery().mediaqueryheight(0.07, context),
       decoration: BoxDecoration(
+        border: Border.all(color: bordercolor),
         color: color,
         borderRadius: BorderRadius.circular(10.0),
       ),

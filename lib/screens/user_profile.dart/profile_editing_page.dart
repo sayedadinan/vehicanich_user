@@ -105,6 +105,7 @@ class _ProfileEditingPageState extends State<ProfileEditingPage> {
                     SizedBox(
                         height: Mymediaquery().mediaqueryheight(0.03, context)),
                     CustomButton(
+                        bordercolor: Colors.transparent,
                         color: Myappallcolor().buttonforgroundcolor,
                         function: () async {
                           final usermodel = UserModel(

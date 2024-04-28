@@ -26,7 +26,7 @@ final class Myappallcolor extends AppColor {
   Myappallcolor()
       : super(
             bottomnavigationforcolor: const Color.fromARGB(0, 0, 0, 0),
-            emergencybuttoncolor: const Color.fromARGB(255, 177, 37, 42),
+            emergencybuttoncolor: Color.fromARGB(255, 127, 28, 31),
             appbarbackgroundcolor: const Color.fromARGB(255, 46, 96, 89),
             colorblack: Colors.black,
             colorwhite: Colors.white,

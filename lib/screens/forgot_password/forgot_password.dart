@@ -62,6 +62,7 @@ class Forgotpasswordscreen extends StatelessWidget {
                 SizedBox(
                     height: Mymediaquery().mediaqueryheight(0.04, context)),
                 CustomButton(
+                  bordercolor: Colors.transparent,
                   color: Myappallcolor().buttonforgroundcolor,
                   buttontextcolor: Myappallcolor().colorwhite,
                   fontSize: Mymediaquery().mediaqueryheight(0.02, context),

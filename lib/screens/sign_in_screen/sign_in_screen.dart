@@ -89,6 +89,7 @@ class SigninScreen extends StatelessWidget {
                     SizedBox(
                         height: Mymediaquery().mediaqueryheight(0.02, context)),
                     CustomButton(
+                      bordercolor: Colors.transparent,
                       buttontextcolor: Myappallcolor().colorwhite,
                       text: 'Register',
                       function: () async {

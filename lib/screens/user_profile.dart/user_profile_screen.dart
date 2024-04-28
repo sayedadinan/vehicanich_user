@@ -69,6 +69,7 @@ class UserProfileScreen extends StatelessWidget {
                   SizedBox(
                       height: Mymediaquery().mediaqueryheight(0.03, context)),
                   CustomButton(
+                      bordercolor: Colors.transparent,
                       color: Myappallcolor().buttonforgroundcolor,
                       function: () {
                         Navigator.of(context).push(MaterialPageRoute(

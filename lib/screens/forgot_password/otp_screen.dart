@@ -46,6 +46,7 @@ class Otpverificationpage extends StatelessWidget {
               //     }),
               SizedBox(height: Mymediaquery().mediaqueryheight(0.03, context)),
               CustomButton(
+                  bordercolor: Colors.transparent,
                   color: Myappallcolor().buttonforgroundcolor,
                   function: () =>
                       context.read<LoginBloc>().add(VerifyButtonPressed()),

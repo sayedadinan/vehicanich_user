@@ -68,6 +68,7 @@ class Loginscreen extends StatelessWidget {
                 ),
                 SizedBox(height: Mymediaquery().mediaqueryheight(0.1, context)),
                 CustomButton(
+                  bordercolor: Colors.transparent,
                   buttontextcolor: Myappallcolor().colorwhite,
                   text: 'Login',
                   function: () => context.read<LoginBloc>().add(

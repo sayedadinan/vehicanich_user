@@ -56,6 +56,7 @@ class Loginorsign extends StatelessWidget {
                 height: Mymediaquery().mediaqueryheight(0.1, context),
               ),
               CustomButton(
+                bordercolor: Colors.transparent,
                 buttontextcolor: Myappallcolor().colorwhite,
                 text: 'Login',
                 function: () =>
@@ -67,6 +68,7 @@ class Loginorsign extends StatelessWidget {
                 height: Mymediaquery().mediaqueryheight(0.02, context),
               ),
               CustomButton(
+                bordercolor: Colors.transparent,
                 buttontextcolor: Myappallcolor().colorwhite,
                 text: 'Register',
                 function: () =>
