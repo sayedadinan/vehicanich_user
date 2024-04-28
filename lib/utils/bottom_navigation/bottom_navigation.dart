@@ -8,11 +8,11 @@ import 'package:vehicanich/utils/bottom_navigation/app_bottomnavigation_bar.dart
 import 'package:vehicanich/utils/app_colors.dart';
 
 class BottomBar extends StatelessWidget {
-  BottomBar({Key? key}) : super(key: key);
+  BottomBar({super.key});
   final List<Widget> tabs = [
-    HomeScreen(),
-    SearchScreen(),
-    UserProfileScreen(),
+    const HomeScreen(),
+    const SearchScreen(),
+    const UserProfileScreen(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class BottomBar extends StatelessWidget {
       body: tabs[BlocProvider.of<BottomNavigationBloc>(context, listen: true)
           .state
           .page],
-      bottomNavigationBar: CustomBottomNavigationbar(),
+      bottomNavigationBar: const CustomBottomNavigationbar(),
     );
   }
 }

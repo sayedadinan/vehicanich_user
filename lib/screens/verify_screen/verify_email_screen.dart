@@ -222,7 +222,7 @@ class _VerifyEmailState extends State<VerifyEmail> {
                     onPressed: () {
                       sendVerificationEmail();
                     },
-                    child: Text(
+                    child: const Text(
                       'Resent Email',
                     ),
                   ),

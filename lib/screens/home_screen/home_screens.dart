@@ -7,7 +7,7 @@ import 'package:vehicanich/utils/mediaquery.dart';
 import 'package:vehicanich/widgets/home_screen_widgets/home_image_widget.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key}) : super();
+  const HomeScreen({super.key, Key});
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +72,7 @@ class HomeScreen extends StatelessWidget {
                               children: [
                                 Text(
                                   shopDetails[Shopkeys().name],
-                                  style: TextStyle(),
+                                  style: const TextStyle(),
                                 ),
                                 Text(shopDetails[Shopkeys().startingtime]),
                                 Text(shopDetails[Shopkeys().whatsapp])

@@ -11,7 +11,7 @@ import 'package:vehicanich/utils/mediaquery.dart';
 import 'package:vehicanich/widgets/forgot_screen_widgets/forgot_text.dart';
 
 class Forgotpasswordscreen extends StatelessWidget {
-  Forgotpasswordscreen({super.key});
+  const Forgotpasswordscreen({super.key});
 
   @override
   Widget build(BuildContext context) {

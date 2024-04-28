@@ -5,10 +5,10 @@ class CustomSnackBar extends StatelessWidget {
   final Color backgroundColor;
 
   const CustomSnackBar({
-    Key? key,
+    super.key,
     required this.message,
     required this.backgroundColor,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class CustomSnackBar extends StatelessWidget {
       SnackBar(
         content: Text(
           message,
-          style: TextStyle(color: Colors.white),
+          style: const TextStyle(color: Colors.white),
         ),
         backgroundColor: backgroundColor,
       ),

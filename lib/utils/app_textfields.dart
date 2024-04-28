@@ -11,13 +11,13 @@ class Inputfield extends StatelessWidget {
   final Icon? icon;
   const Inputfield({
     this.controller,
-    Key? key,
+    super.key,
     this.label,
     required this.hinttext,
     this.keyboardType,
     this.validator,
     this.icon, // Use the constructor parameter directly
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

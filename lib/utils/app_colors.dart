@@ -33,5 +33,5 @@ final class Myappallcolor extends AppColor {
             appbackgroundcolor: const Color.fromARGB(255, 4, 59, 73),
             textcolor: const Color.fromARGB(255, 167, 199, 198),
             buttonforgroundcolor: const Color.fromARGB(255, 17, 187, 180),
-            listcontainer: Color.fromARGB(255, 71, 100, 108));
+            listcontainer: const Color.fromARGB(255, 71, 100, 108));
 }

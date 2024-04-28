@@ -22,7 +22,7 @@ class UserRepositery {
       return userData;
     } catch (e) {
       print("Error fetching user details: $e");
-      throw e; // Rethrow the error for the caller to handle
+      rethrow; // Rethrow the error for the caller to handle
     }
   }
 

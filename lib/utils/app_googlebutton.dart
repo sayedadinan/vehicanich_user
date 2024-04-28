@@ -8,15 +8,15 @@ class CustomGoogleButton extends StatelessWidget {
   final String text;
   final double fontSize;
   final Color buttontextcolor;
-  CustomGoogleButton({
-    Key? key,
+  const CustomGoogleButton({
+    super.key,
     required this.color,
     required this.function,
     required this.text,
     required this.fontSize,
     required this.buttontextcolor,
     required this.bordercolor,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

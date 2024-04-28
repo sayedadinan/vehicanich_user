@@ -30,7 +30,7 @@ class CustomShowdialogue {
                 iconData,
                 color: iconColor,
               ),
-              SizedBox(width: 5),
+              const SizedBox(width: 5),
               Text(title),
             ],
           ),
@@ -40,7 +40,7 @@ class CustomShowdialogue {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('Close'),
+              child: const Text('Close'),
             ),
           ],
         );

@@ -16,7 +16,7 @@ class ForgotBloc extends Bloc<ForgotButtonEvent, ForgotButtonState> {
       emit(EmailVerified());
     } catch (e) {
       emit(Emailtakingerror(error: e.toString()));
-      throw e;
+      rethrow;
     }
   }
 }

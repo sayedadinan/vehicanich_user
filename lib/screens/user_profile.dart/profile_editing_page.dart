@@ -10,7 +10,7 @@ import 'package:vehicanich/utils/mediaquery.dart';
 import 'package:vehicanich/widgets/user_profile_widgets/user_appbar.dart';
 
 class ProfileEditingPage extends StatefulWidget {
-  ProfileEditingPage({Key? key}) : super(key: key);
+  const ProfileEditingPage({super.key});
 
   @override
   _ProfileEditingPageState createState() => _ProfileEditingPageState();
@@ -43,7 +43,7 @@ class _ProfileEditingPageState extends State<ProfileEditingPage> {
         if (state is UserDetailsLoading) {
           return Scaffold(
             backgroundColor: Myappallcolor().appbackgroundcolor,
-            body: Center(
+            body: const Center(
               child: CircularProgressIndicator(),
             ),
           );
@@ -57,7 +57,7 @@ class _ProfileEditingPageState extends State<ProfileEditingPage> {
             appBar: PreferredSize(
               preferredSize: Size.fromHeight(
                   Mymediaquery().mediaqueryheight(0.08, context)),
-              child: CustomAppbarForProfile(
+              child: const CustomAppbarForProfile(
                 text: 'Edit Profile',
               ),
             ),
@@ -126,7 +126,7 @@ class _ProfileEditingPageState extends State<ProfileEditingPage> {
         } else {
           return Scaffold(
             backgroundColor: Myappallcolor().appbackgroundcolor,
-            body: Center(
+            body: const Center(
               child: Text('Error fetching user details'),
             ),
           );

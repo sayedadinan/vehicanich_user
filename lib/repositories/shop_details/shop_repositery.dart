@@ -13,7 +13,7 @@ class ShopRepository {
       return shopDetailsList;
     } catch (e) {
       print('Error fetching data: $e');
-      throw e;
+      rethrow;
     }
   }
 }

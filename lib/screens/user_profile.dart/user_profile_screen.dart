@@ -10,7 +10,7 @@ import 'package:vehicanich/widgets/user_profile_widgets/text_containers.dart';
 import 'package:vehicanich/widgets/user_profile_widgets/user_appbar.dart';
 
 class UserProfileScreen extends StatelessWidget {
-  const UserProfileScreen({Key? key});
+  const UserProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +72,7 @@ class UserProfileScreen extends StatelessWidget {
                       color: Myappallcolor().buttonforgroundcolor,
                       function: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => ProfileEditingPage()));
+                            builder: (context) => const ProfileEditingPage()));
                       },
                       text: 'Edit',
                       fontSize: Mymediaquery().mediaquerywidth(0.02, context),
