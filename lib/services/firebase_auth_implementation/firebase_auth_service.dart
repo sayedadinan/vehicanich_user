@@ -45,26 +45,18 @@ Future<void> sendEmailVerification() async {
 }
 
 Future<void> signInWithGoogle(BuildContext context) async {
-  // Trigger the authentication flow
   final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-
-  // Obtain the auth details from the request
   final GoogleSignInAuthentication? googleAuth =
       await googleUser?.authentication;
-
-  // Create a new credential
   final credential = GoogleAuthProvider.credential(
     accessToken: googleAuth?.accessToken,
     idToken: googleAuth?.idToken,
   );
 
   try {
-    // Once signed in, return the UserCredential
     UserCredential userCredential =
         await FirebaseAuth.instance.signInWithCredential(credential);
     print(userCredential.user?.displayName);
-
-    // Navigate to the home page after successful sign-in
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(builder: (context) => BottomBar()),
     );

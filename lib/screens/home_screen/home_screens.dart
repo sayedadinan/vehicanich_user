@@ -19,7 +19,10 @@ class HomeScreen extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {},
-            icon: const Icon(Icons.settings),
+            icon: Icon(
+              Icons.settings,
+              color: Myappallcolor().colorwhite,
+            ),
           )
         ],
       ),
@@ -75,7 +78,7 @@ class HomeScreen extends StatelessWidget {
                                         Shopkeys().bannerimagepath])),
                             SizedBox(
                                 width: Mymediaquery()
-                                    .mediaquerywidth(0.07, context)),
+                                    .mediaquerywidth(0.04, context)),
                             Padding(
                               padding: EdgeInsets.only(
                                   top: Mymediaquery()

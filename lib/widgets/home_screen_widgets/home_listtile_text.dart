@@ -27,13 +27,6 @@ class ListtileText extends StatelessWidget {
               fontWeight: FontWeight.w300,
               fontSize: Mymediaquery().mediaquerywidth(0.03, context)),
         ),
-        Text(
-          phone,
-          style: TextStyle(
-              color: Myappallcolor().colorwhite,
-              fontWeight: FontWeight.w400,
-              fontSize: Mymediaquery().mediaquerywidth(0.01, context)),
-        ),
         SizedBox(height: Mymediaquery().mediaquerywidth(0.01, context)),
         Row(
           children: [

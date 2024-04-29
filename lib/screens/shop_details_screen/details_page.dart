@@ -43,7 +43,7 @@ class ShopDetailsPage extends StatelessWidget {
             ),
             Container(
               width: double.infinity,
-              height: Mymediaquery().mediaqueryheight(0.95, context),
+              height: Mymediaquery().mediaqueryheight(1, context),
               decoration: BoxDecoration(
                 color: Myappallcolor().appbarbackgroundcolor,
                 borderRadius: const BorderRadius.only(

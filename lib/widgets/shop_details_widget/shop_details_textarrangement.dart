@@ -63,7 +63,7 @@ class ShopTimeText extends StatelessWidget {
         child: Row(
           children: [
             SizedBox(
-              width: Mymediaquery().mediaquerywidth(0.06, context),
+              width: Mymediaquery().mediaquerywidth(0.02, context),
             ),
             Text(
               'working time',
