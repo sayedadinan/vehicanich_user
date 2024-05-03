@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vehicanich/blocs/sign_up_blocs/sign_up_bloc.dart';
-import 'package:vehicanich/models/user_model.dart';
+import 'package:vehicanich/data/models/user_model.dart';
 import 'package:vehicanich/screens/verify_screen/verify_email_screen.dart';
 import 'package:vehicanich/utils/app_colors.dart';
 import 'package:vehicanich/utils/app_custom_loader.dart';

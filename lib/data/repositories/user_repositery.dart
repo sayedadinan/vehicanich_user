@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:vehicanich/models/user_model.dart';
+import 'package:vehicanich/data/models/user_model.dart';
 
 class UserRepositery {
   final FirebaseFirestore db = FirebaseFirestore.instance;

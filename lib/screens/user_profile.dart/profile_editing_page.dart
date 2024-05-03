@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:vehicanich/blocs/user_updation_blocs/user_updation_bloc.dart';
-import 'package:vehicanich/models/user_model.dart';
+import 'package:vehicanich/data/models/user_model.dart';
 import 'package:vehicanich/utils/app_colors.dart';
 import 'package:vehicanich/utils/app_custom_button.dart';
 import 'package:vehicanich/utils/app_textfields.dart';
