@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vehicanich/models/user_model.dart';
-import 'package:vehicanich/repositories/user_repositery.dart';
+import 'package:vehicanich/data/repositories/user_repositery.dart';
 part 'user_updation_event.dart';
 part 'user_updation_state.dart';
 

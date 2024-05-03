@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:vehicanich/repositories/shop_details/shop_details_keys.dart';
-import 'package:vehicanich/repositories/shop_details/shop_repositery.dart';
+import 'package:vehicanich/data/repositories/shop_details/shop_details_keys.dart';
+import 'package:vehicanich/data/repositories/shop_details/shop_repositery.dart';
 // import 'package:vehicanich/screens/login_screen/login_screen.dart';
 import 'package:vehicanich/screens/shop_details_screen/details_page.dart';
 import 'package:vehicanich/services/firebase_auth_implementation/firebase_auth_service.dart';

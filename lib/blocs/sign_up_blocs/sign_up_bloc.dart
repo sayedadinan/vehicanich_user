@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vehicanich/models/user_model.dart';
-import 'package:vehicanich/repositories/user_repositery.dart';
+import 'package:vehicanich/data/repositories/user_repositery.dart';
 import 'package:vehicanich/services/firebase_auth_implementation/firebase_auth_service.dart';
 part 'sign_up_event.dart';
 part 'sign_up_state.dart';

@@ -27,14 +27,15 @@ class AppColor {
 final class Myappallcolor extends AppColor {
   Myappallcolor()
       : super(
+            appbackgroundcolor: Colors.black,
             bottomnavigationforcolor: const Color.fromARGB(0, 0, 0, 0),
             emergencybuttoncolor: const Color.fromARGB(255, 127, 28, 31),
             appbarbackgroundcolor: const Color.fromARGB(255, 46, 96, 89),
             colorblack: Colors.black,
             colorwhite: Colors.white,
-            appbackgroundcolor: const Color.fromARGB(255, 4, 59, 73),
+            // appbackgroundcolor: const Color.fromARGB(255, 4, 59, 73),
             textcolor: const Color.fromARGB(255, 167, 199, 198),
             buttonforgroundcolor: const Color.fromARGB(255, 17, 187, 180),
             listcontainer: const Color.fromARGB(255, 71, 100, 108),
-            detailspageboxcolor: Color.fromARGB(255, 27, 66, 60));
+            detailspageboxcolor: const Color.fromARGB(255, 27, 66, 60));
 }

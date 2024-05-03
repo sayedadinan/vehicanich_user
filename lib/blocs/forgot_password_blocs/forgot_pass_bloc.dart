@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vehicanich/blocs/forgot_password_blocs/forgot_pass_event.dart';
 import 'package:vehicanich/blocs/forgot_password_blocs/forgot_pass_state.dart';
-import 'package:vehicanich/repositories/forgot_password.dart';
+import 'package:vehicanich/data/repositories/forgot_password.dart';
 
 class ForgotBloc extends Bloc<ForgotButtonEvent, ForgotButtonState> {
   ForgotBloc() : super(InitialForgotstage()) {
