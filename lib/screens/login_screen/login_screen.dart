@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vehicanich/blocs/login_bloc/login_bloc.dart';
 import 'package:vehicanich/screens/forgot_password/forgot_password.dart';
 import 'package:vehicanich/services/firebase_auth_implementation/firebase_auth_service.dart';
+import 'package:vehicanich/utils/app_custom_loader.dart';
 import 'package:vehicanich/utils/app_snackbar.dart';
 import 'package:vehicanich/utils/bottom_navigation/bottom_navigation.dart';
 import 'package:vehicanich/utils/app_colors.dart';
@@ -23,25 +24,25 @@ class Loginscreen extends StatelessWidget {
   final FirebaseAuthService auth = FirebaseAuthService();
   @override
   Widget build(BuildContext context) {
-    return BlocListener<LoginBloc, LoginBlocState>(
-        listener: (context, state) {
-          if (state is NavigateToForgetPage) {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const Forgotpasswordscreen()));
-          }
-          if (state is NavigateToHome) {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => BottomBar()));
-          }
-          if (state is LoginErrorHappened) {
-            CustomSnackBar(
-                message: state.error,
-                backgroundColor: Myappallcolor().emergencybuttoncolor);
-          }
-        },
-        child: Scaffold(
+    return BlocListener<LoginBloc, LoginBlocState>(listener: (context, state) {
+      if (state is NavigateToForgetPage) {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => const Forgotpasswordscreen()));
+      }
+      if (state is NavigateToHome) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => BottomBar()));
+      }
+      if (state is LoginErrorHappened) {
+        CustomSnackBar(
+            message: state.error,
+            backgroundColor: Myappallcolor().emergencybuttoncolor);
+      }
+    }, child: BlocBuilder<LoginBloc, LoginBlocState>(
+      builder: (context, state) {
+        return Scaffold(
           backgroundColor: Myappallcolor().appbackgroundcolor,
           body: SingleChildScrollView(
             child: Column(
@@ -62,11 +63,14 @@ class Loginscreen extends StatelessWidget {
                   hinttext: 'Enter your password',
                   controller: passwordController,
                 ),
+                SizedBox(
+                    height: Mymediaquery().mediaqueryheight(0.01, context)),
                 Forgetbutton(
                   function: () =>
                       context.read<LoginBloc>().add(ForgotButtonPressed()),
                 ),
-                SizedBox(height: Mymediaquery().mediaqueryheight(0.1, context)),
+                SizedBox(
+                    height: Mymediaquery().mediaqueryheight(0.06, context)),
                 CustomButton(
                   bordercolor: Colors.transparent,
                   buttontextcolor: Myappallcolor().colorwhite,
@@ -98,7 +102,9 @@ class Loginscreen extends StatelessWidget {
               ],
             ),
           ),
-        ));
+        );
+      },
+    ));
   }
 
   // signIn(BuildContext context) async {

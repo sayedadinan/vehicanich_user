@@ -4,6 +4,7 @@ import 'package:vehicanich/blocs/sign_up_blocs/sign_up_bloc.dart';
 import 'package:vehicanich/models/user_model.dart';
 import 'package:vehicanich/screens/verify_screen/verify_email_screen.dart';
 import 'package:vehicanich/utils/app_colors.dart';
+import 'package:vehicanich/utils/app_custom_loader.dart';
 import 'package:vehicanich/utils/app_snackbar.dart';
 import 'package:vehicanich/utils/app_textfields.dart';
 import 'package:vehicanich/utils/app_textvalidators.dart';
@@ -26,8 +27,8 @@ class SigninScreen extends StatelessWidget {
         child: BlocListener<SignUpBLoc, SignUpState>(
             listener: (context, state) {
               if (state is SignUpLoading) {
-                const Center(
-                  child: CircularProgressIndicator(),
+                Center(
+                  child: loader,
                 );
               }
               if (state is SignUpError) {
@@ -37,11 +38,7 @@ class SigninScreen extends StatelessWidget {
                   backgroundColor: Colors.red,
                 ).show(context);
               }
-              // } else if (state is SignUpEmailNotVerified) {
-              //   // final currentUser = FirebaseAuth.instance.currentUser;
-              //   Navigator.of(context).push(
-              //       MaterialPageRoute(builder: (context) => VerifyEmailPage()));
-              // }
+
               if (state is SignUpSuccess) {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => const VerifyEmail()));

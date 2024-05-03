@@ -6,6 +6,6 @@ class Mymediaquery {
   }
 
   double mediaquerywidth(double value, context) {
-    return MediaQuery.of(context).size.height * value;
+    return MediaQuery.of(context).size.width * value;
   }
 }

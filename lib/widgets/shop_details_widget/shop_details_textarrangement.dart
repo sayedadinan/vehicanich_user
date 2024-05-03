@@ -14,10 +14,10 @@ class ShopTextArrange extends StatelessWidget {
         Text(
           shopname,
           style: TextStyle(
-              fontFamily: 'Oswald',
+              // fontFamily: 'Oswald',
               color: Myappallcolor().colorwhite,
               fontWeight: FontWeight.w300,
-              fontSize: Mymediaquery().mediaquerywidth(0.03, context)),
+              fontSize: Mymediaquery().mediaquerywidth(0.06, context)),
         ),
         SizedBox(
           width: Mymediaquery().mediaquerywidth(0.05, context),
@@ -29,14 +29,14 @@ class ShopTextArrange extends StatelessWidget {
               color: Myappallcolor().colorwhite,
             ),
             SizedBox(
-              width: Mymediaquery().mediaquerywidth(0.01, context),
+              width: Mymediaquery().mediaquerywidth(0.02, context),
             ),
             Text(
               'Map View',
               style: TextStyle(
                   color: Myappallcolor().colorwhite,
                   fontWeight: FontWeight.w400,
-                  fontSize: Mymediaquery().mediaquerywidth(0.03, context)),
+                  fontSize: Mymediaquery().mediaquerywidth(0.04, context)),
             ),
           ],
         ),
@@ -54,7 +54,7 @@ class ShopTimeText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: Mymediaquery().mediaquerywidth(0.35, context),
+      width: Mymediaquery().mediaquerywidth(0.7, context),
       height: Mymediaquery().mediaqueryheight(0.03, context),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(7),
@@ -69,10 +69,10 @@ class ShopTimeText extends StatelessWidget {
               'working time',
               style: TextStyle(
                   color: Myappallcolor().colorwhite,
-                  fontSize: Mymediaquery().mediaquerywidth(0.02, context)),
+                  fontSize: Mymediaquery().mediaquerywidth(0.03, context)),
             ),
             SizedBox(
-              width: Mymediaquery().mediaquerywidth(0.02, context),
+              width: Mymediaquery().mediaquerywidth(0.03, context),
             ),
             Text(
               startingtime,
@@ -109,17 +109,19 @@ class DetailsPageCrButton extends StatelessWidget {
     return Row(
       children: [
         SizedBox(
-          width: Mymediaquery().mediaquerywidth(0.03, context),
+          width: Mymediaquery().mediaquerywidth(0.10, context),
         ),
         Container(
           decoration: BoxDecoration(
               border: Border.all(color: Myappallcolor().colorwhite),
               borderRadius: BorderRadius.circular(8)),
-          width: Mymediaquery().mediaqueryheight(0.09, context),
+          width: Mymediaquery().mediaqueryheight(0.1, context),
           height: Mymediaquery().mediaqueryheight(0.02, context),
           child: Center(
             child: Text('CR & BOARD',
-                style: TextStyle(color: Myappallcolor().colorwhite)),
+                style: TextStyle(
+                    color: Myappallcolor().colorwhite,
+                    fontSize: Mymediaquery().mediaquerywidth(0.02, context))),
           ),
         ),
       ],
@@ -134,7 +136,7 @@ class DetailsPageDescription extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       // color: Myappallcolor().textcolor,
-      width: Mymediaquery().mediaquerywidth(0.39, context),
+      width: Mymediaquery().mediaquerywidth(0.8, context),
       child: Text(
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsu",
         style: TextStyle(color: Myappallcolor().colorwhite),
@@ -154,7 +156,7 @@ class DetailsPageTitleText extends StatelessWidget {
       style: TextStyle(
           color: Myappallcolor().colorwhite,
           fontWeight: FontWeight.w400,
-          fontSize: Mymediaquery().mediaquerywidth(0.03, context)),
+          fontSize: Mymediaquery().mediaquerywidth(0.04, context)),
     );
   }
 }

@@ -8,17 +8,15 @@ class CustomDivider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        SizedBox(
-          width: Mymediaquery().mediaquerywidth(0.03, context),
-        ),
         Container(
           height: 1,
-          width: 142,
+          width: Mymediaquery().mediaquerywidth(0.35, context),
           color: Myappallcolor().colorwhite,
         ),
         SizedBox(
-          width: Mymediaquery().mediaquerywidth(0.03, context),
+          width: Mymediaquery().mediaquerywidth(0.04, context),
         ),
         Text(
           'Or',
@@ -29,7 +27,7 @@ class CustomDivider extends StatelessWidget {
         ),
         Container(
           height: 1,
-          width: 142,
+          width: Mymediaquery().mediaquerywidth(0.35, context),
           color: Myappallcolor().colorwhite,
         ),
       ],

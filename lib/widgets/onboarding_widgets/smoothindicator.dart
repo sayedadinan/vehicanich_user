@@ -16,13 +16,13 @@ class Smoothindicatorwithbutton extends StatelessWidget {
     return Container(
       padding: EdgeInsets.only(
           left: Mymediaquery().mediaquerywidth(0.01, context),
-          right: Mymediaquery().mediaquerywidth(0.05, context),
-          bottom: Mymediaquery().mediaqueryheight(0.06, context)),
+          right: Mymediaquery().mediaquerywidth(0.13, context),
+          bottom: Mymediaquery().mediaqueryheight(0.07, context)),
       color: Myappallcolor().appbackgroundcolor,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          SizedBox(width: Mymediaquery().mediaquerywidth(0.02, context)),
+          SizedBox(width: Mymediaquery().mediaquerywidth(0.01, context)),
           Padding(
             padding: EdgeInsets.only(
               bottom: Mymediaquery().mediaqueryheight(0.01, context),
@@ -41,18 +41,13 @@ class Smoothindicatorwithbutton extends StatelessWidget {
               context
                   .read<OnboardingBloc>()
                   .add(NextButtonPressed(pageController.page!));
-              // Navigator.push(
-              //     context,
-              //     MaterialPageRoute(
-              //       builder: (context) => const Loginorsign(),
-              //     ));
             },
             child: Container(
-              width: Mymediaquery().mediaquerywidth(0.08, context),
-              height: Mymediaquery().mediaqueryheight(0.08, context),
+              width: Mymediaquery().mediaquerywidth(0.17, context),
+              height: Mymediaquery().mediaqueryheight(0.07, context),
               decoration: BoxDecoration(
                   color: Myappallcolor().buttonforgroundcolor,
-                  borderRadius: BorderRadius.circular(11)),
+                  borderRadius: BorderRadius.circular(18)),
               child: const Icon(Icons.arrow_forward_ios_rounded),
             ),
           )

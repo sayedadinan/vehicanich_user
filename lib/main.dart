@@ -12,7 +12,7 @@ import 'package:vehicanich/blocs/user_updation_blocs/user_updation_bloc.dart';
 import 'package:vehicanich/firebase_options.dart';
 import 'package:vehicanich/screens/onboarding/onboarding_screen.dart';
 import 'package:vehicanich/utils/app_colors.dart';
-import 'package:vehicanich/utils/bottom_navigation/bottom_navigation.dart';
+// import 'package:vehicanich/utils/bottom_navigation/bottom_navigation.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -41,16 +41,17 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(
               seedColor: Myappallcolor().buttonforgroundcolor),
           useMaterial3: true),
-      home: StreamBuilder<User?>(
-        stream: FirebaseAuth.instance.authStateChanges(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return BottomBar();
-          } else {
-            return Splashscreen();
-          }
-        },
-      ),
+      home: Splashscreen(),
+      // home: StreamBuilder<User?>(
+      //   stream: FirebaseAuth.instance.authStateChanges(),
+      //   builder: (context, snapshot) {
+      //     if (snapshot.hasData) {
+      //       return BottomBar();
+      //     } else {
+      //       return Splashscreen();
+      //     }
+      //   },
+      // ),
     );
   }
 }

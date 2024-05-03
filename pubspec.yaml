@@ -28,6 +28,8 @@ dependencies:
   cloud_firestore: ^4.16.1
   google_sign_in: ^6.2.1
   flutter_animated_loadingkit: ^0.0.7
+  connectivity_plus: ^6.0.3
+  easy_date_timeline: ^1.0.6
 
 dev_dependencies:
   flutter_test:
@@ -63,9 +65,9 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: Bitter
+    - family: Cormorant_Garamond
       fonts:
-        - asset: assets/fonts/Bitter-VariableFont_wght.ttf
+        - asset: assets/fonts/Cormorant_Garamond/CormorantGaramond-SemiBold.ttf
         # - asset: assets/fonts/Oswald-VariableFont_wght.ttf
   #         style: italic
     - family: Oswald

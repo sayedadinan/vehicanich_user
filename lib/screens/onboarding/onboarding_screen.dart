@@ -45,7 +45,7 @@ class Splashscreen extends StatelessWidget {
                     SizedBox(
                         height: Mymediaquery().mediaqueryheight(0.1, context)),
                     Myonboardmaintitle(
-                      size: Mymediaquery().mediaquerywidth(0.06, context),
+                      size: Mymediaquery().mediaquerywidth(0.11, context),
                       title: controller.items[index].title,
                       textcolor: Myappallcolor().textcolor,
                     ),

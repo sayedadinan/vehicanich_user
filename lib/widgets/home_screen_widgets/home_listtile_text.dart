@@ -7,27 +7,42 @@ class ListtileText extends StatelessWidget {
   final String phone;
   final String startingtime;
   final String closingtime;
+  final String shoplocation;
   const ListtileText({
     super.key,
     required this.shopname,
     required this.phone,
     required this.startingtime,
     required this.closingtime,
+    required this.shoplocation,
   });
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           shopname,
           style: TextStyle(
+              // fontFamily: 'Cormorant_Garamond',
               color: Myappallcolor().colorwhite,
               fontWeight: FontWeight.w300,
-              fontSize: Mymediaquery().mediaquerywidth(0.03, context)),
+              fontSize: Mymediaquery().mediaquerywidth(0.05, context)),
         ),
-        SizedBox(height: Mymediaquery().mediaquerywidth(0.01, context)),
+        Row(
+          children: [
+            Text(
+              shoplocation,
+              style: TextStyle(
+                // fontFamily: 'Cormorant_Garamond',
+                color: Myappallcolor().colorwhite,
+                fontWeight: FontWeight.w300,
+              ),
+            )
+          ],
+        ),
+        SizedBox(height: Mymediaquery().mediaqueryheight(0.01, context)),
         Row(
           children: [
             Text(
@@ -35,7 +50,7 @@ class ListtileText extends StatelessWidget {
               style: TextStyle(
                   color: Myappallcolor().colorwhite,
                   fontWeight: FontWeight.w300,
-                  fontSize: Mymediaquery().mediaquerywidth(0.02, context)),
+                  fontSize: Mymediaquery().mediaquerywidth(0.03, context)),
             ),
             SizedBox(width: Mymediaquery().mediaquerywidth(0.01, context)),
             Text(
@@ -51,7 +66,7 @@ class ListtileText extends StatelessWidget {
               style: TextStyle(
                   color: Myappallcolor().colorwhite,
                   fontWeight: FontWeight.w300,
-                  fontSize: Mymediaquery().mediaquerywidth(0.02, context)),
+                  fontSize: Mymediaquery().mediaquerywidth(0.03, context)),
             ),
           ],
         ),

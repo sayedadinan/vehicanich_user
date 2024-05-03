@@ -21,3 +21,5 @@ class LoginErrorHappened extends LoginBlocState {
 
   LoginErrorHappened({required this.error});
 }
+
+class LoginLoading extends LoginBlocState {}

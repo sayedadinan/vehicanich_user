@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:vehicanich/repositories/shop_details/shop_details_keys.dart';
+import 'package:vehicanich/screens/body_maintaince_screens/body_maintains_category.dart';
 import 'package:vehicanich/utils/app_colors.dart';
 import 'package:vehicanich/utils/app_custom_button.dart';
 import 'package:vehicanich/utils/mediaquery.dart';
+import 'package:vehicanich/utils/page_transition/page_slide_transition.dart';
 import 'package:vehicanich/widgets/shop_details_widget/shop_details_iconrow.dart';
 import 'package:vehicanich/widgets/shop_details_widget/shop_details_textarrangement.dart';
 import 'package:vehicanich/widgets/shop_details_widget/shop_image_container.dart';
@@ -58,7 +60,7 @@ class ShopDetailsPage extends StatelessWidget {
                   Row(
                     children: [
                       SizedBox(
-                          width: Mymediaquery().mediaquerywidth(0.04, context)),
+                          width: Mymediaquery().mediaquerywidth(0.10, context)),
                       const DetailsPageTitleText(titletext: 'Description')
                     ],
                   ),
@@ -70,13 +72,17 @@ class ShopDetailsPage extends StatelessWidget {
                   const DetailsPageCrButton(),
                   SizedBox(
                       height: Mymediaquery().mediaqueryheight(0.02, context)),
-                  const DetailsPageRow(),
+                  Padding(
+                    padding: EdgeInsets.only(
+                        left: Mymediaquery().mediaquerywidth(0.05, context)),
+                    child: const DetailsPageRow(),
+                  ),
                   SizedBox(
                       height: Mymediaquery().mediaqueryheight(0.02, context)),
                   Row(
                     children: [
                       SizedBox(
-                        width: Mymediaquery().mediaquerywidth(0.04, context),
+                        width: Mymediaquery().mediaquerywidth(0.10, context),
                       ),
                       const DetailsPageTitleText(titletext: 'for emergency'),
                     ],
@@ -87,15 +93,15 @@ class ShopDetailsPage extends StatelessWidget {
                       bordercolor: Myappallcolor().buttonforgroundcolor,
                       color: Myappallcolor().emergencybuttoncolor,
                       function: () {},
-                      text: 'SOS',
-                      fontSize: Mymediaquery().mediaquerywidth(0.02, context),
+                      text: 'Emergency service',
+                      fontSize: Mymediaquery().mediaquerywidth(0.03, context),
                       buttontextcolor: Myappallcolor().colorwhite),
                   SizedBox(
                       height: Mymediaquery().mediaqueryheight(0.02, context)),
                   Row(
                     children: [
                       SizedBox(
-                        width: Mymediaquery().mediaquerywidth(0.04, context),
+                        width: Mymediaquery().mediaquerywidth(0.10, context),
                       ),
                       const DetailsPageTitleText(titletext: 'Our services'),
                     ],
@@ -105,9 +111,12 @@ class ShopDetailsPage extends StatelessWidget {
                   CustomButton(
                       bordercolor: Myappallcolor().colorwhite,
                       color: Colors.transparent,
-                      function: () {},
+                      function: () {
+                        Navigator.of(context).push(SlideTransitionPageRoute(
+                            child: const BodyMaintainceandRepair()));
+                      },
                       text: 'Body Maintaince and Repair',
-                      fontSize: Mymediaquery().mediaquerywidth(0.02, context),
+                      fontSize: Mymediaquery().mediaquerywidth(0.03, context),
                       buttontextcolor: Myappallcolor().colorwhite),
                   SizedBox(
                       height: Mymediaquery().mediaqueryheight(0.02, context)),
@@ -116,7 +125,7 @@ class ShopDetailsPage extends StatelessWidget {
                       color: Colors.transparent,
                       function: () {},
                       text: 'Interior Services',
-                      fontSize: Mymediaquery().mediaquerywidth(0.02, context),
+                      fontSize: Mymediaquery().mediaquerywidth(0.03, context),
                       buttontextcolor: Myappallcolor().colorwhite),
                   SizedBox(
                       height: Mymediaquery().mediaqueryheight(0.02, context)),
@@ -125,7 +134,7 @@ class ShopDetailsPage extends StatelessWidget {
                       color: Colors.transparent,
                       function: () {},
                       text: 'Engine and Mechanical Services',
-                      fontSize: Mymediaquery().mediaquerywidth(0.02, context),
+                      fontSize: Mymediaquery().mediaquerywidth(0.03, context),
                       buttontextcolor: Myappallcolor().colorwhite),
                 ],
               ),

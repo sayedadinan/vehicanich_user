@@ -15,4 +15,7 @@ class Shopkeys {
   final String bodyservicemap = "bodyservicemap";
   final String interiorservicemap = "interiorservicemap";
   final String enginservicemap = 'engineservicemap';
+  final String isApproved = 'isApproved';
+  final String isRejected = 'isRejected';
+  final String locationaddress = 'locationaddress';
 }

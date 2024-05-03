@@ -23,8 +23,8 @@ class Inputfield extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(
-          left: Mymediaquery().mediaquerywidth(0.02, context),
-          right: Mymediaquery().mediaquerywidth(0.02, context)),
+          left: Mymediaquery().mediaquerywidth(0.05, context),
+          right: Mymediaquery().mediaquerywidth(0.05, context)),
       child: TextFormField(
         autovalidateMode: AutovalidateMode.onUserInteraction,
         controller: controller,

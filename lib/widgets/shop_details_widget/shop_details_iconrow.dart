@@ -9,13 +9,13 @@ class DetailsPageRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        SizedBox(width: Mymediaquery().mediaquerywidth(0.03, context)),
+        SizedBox(width: Mymediaquery().mediaquerywidth(0.05, context)),
         const IconSetup(icon: Icons.call_outlined),
-        SizedBox(width: Mymediaquery().mediaquerywidth(0.03, context)),
+        SizedBox(width: Mymediaquery().mediaquerywidth(0.05, context)),
         const IconSetup(icon: Icons.send),
-        SizedBox(width: Mymediaquery().mediaquerywidth(0.03, context)),
+        SizedBox(width: Mymediaquery().mediaquerywidth(0.05, context)),
         const IconSetup(icon: Icons.message_rounded),
-        SizedBox(width: Mymediaquery().mediaquerywidth(0.03, context)),
+        SizedBox(width: Mymediaquery().mediaquerywidth(0.05, context)),
         const IconSetup(icon: Icons.share)
       ],
     );
@@ -30,7 +30,7 @@ class IconSetup extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: Mymediaquery().mediaqueryheight(0.07, context),
-      width: Mymediaquery().mediaquerywidth(0.07, context),
+      width: Mymediaquery().mediaquerywidth(0.16, context),
       decoration: BoxDecoration(
           border: Border.all(color: Myappallcolor().colorwhite),
           borderRadius: BorderRadius.circular(100)),
@@ -38,7 +38,7 @@ class IconSetup extends StatelessWidget {
         child: Icon(
           icon,
           color: Myappallcolor().colorwhite,
-          size: Mymediaquery().mediaquerywidth(0.03, context),
+          size: Mymediaquery().mediaquerywidth(0.06, context),
         ),
       ),
     );

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:vehicanich/repositories/shop_details/shop_details_keys.dart';
 import 'package:vehicanich/repositories/shop_details/shop_repositery.dart';
+// import 'package:vehicanich/screens/login_screen/login_screen.dart';
 import 'package:vehicanich/screens/shop_details_screen/details_page.dart';
+import 'package:vehicanich/services/firebase_auth_implementation/firebase_auth_service.dart';
 import 'package:vehicanich/utils/app_colors.dart';
 import 'package:vehicanich/utils/app_custom_loader.dart';
 import 'package:vehicanich/utils/mediaquery.dart';
@@ -18,7 +20,9 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              signOut(context);
+            },
             icon: Icon(
               Icons.settings,
               color: Myappallcolor().colorwhite,
@@ -84,6 +88,8 @@ class HomeScreen extends StatelessWidget {
                                   top: Mymediaquery()
                                       .mediaqueryheight(0.01, context)),
                               child: ListtileText(
+                                shoplocation:
+                                    shopDetails[Shopkeys().locationaddress],
                                 shopname: shopDetails[Shopkeys().shopname],
                                 phone: shopDetails[Shopkeys().phone],
                                 startingtime:

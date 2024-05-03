@@ -4,12 +4,12 @@ import 'package:vehicanich/utils/app_images.dart';
 class OnboardingItems {
   List<OnboardingInfo> items = [
     OnboardingInfo(
-      title: 'VEHICANICH',
+      title: 'VEHI-CANICH',
       subtitle: 'We make your car\nsmarter',
       image: onboardingfirst,
     ),
     OnboardingInfo(
-        title: 'VEHICANICH',
+        title: 'VEHI-CANICH',
         subtitle: 'Get updates of your\n vehicle condition',
         image: onboardingthird)
   ];

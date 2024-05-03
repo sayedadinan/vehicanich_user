@@ -9,7 +9,7 @@ class ImageContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: Mymediaquery().mediaquerywidth(0.09, context),
+      width: Mymediaquery().mediaquerywidth(0.27, context),
       height: Mymediaquery().mediaqueryheight(0.10, context),
       child: Hero(
         tag: tag.toString(),

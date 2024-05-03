@@ -29,6 +29,7 @@ class LoginBloc extends Bloc<LoginBlocEvent, LoginBlocState> {
 
   loginScreenButtonPressed(
       LoginScreenButtonPressed event, Emitter<LoginBlocState> emit) async {
+    emit(LoginLoading());
     try {
       User? user = await auth.sighInWIthEmailAndPassword(
           event.email.text, event.password.text);

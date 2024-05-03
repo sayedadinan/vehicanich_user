@@ -2,6 +2,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:vehicanich/screens/login_screen/login_screen.dart';
 import 'package:vehicanich/utils/bottom_navigation/bottom_navigation.dart'; // Import material.dart for using Navigator
 
 class FirebaseAuthService {
@@ -64,5 +65,19 @@ Future<void> signInWithGoogle(BuildContext context) async {
     // Handle sign-in errors here
     print("Error signing in with Google: $e");
     // Display an error message or take appropriate action
+  }
+}
+
+Future<void> signOut(BuildContext context) async {
+  try {
+    await GoogleSignIn().signOut();
+    // Navigate to the login screen and remove all existing routes
+    Navigator.of(context).pushAndRemoveUntil(
+      MaterialPageRoute(builder: (context) => Loginscreen()),
+      (route) => false,
+    );
+  } catch (e) {
+    print('Error signing out: $e');
+    rethrow;
   }
 }

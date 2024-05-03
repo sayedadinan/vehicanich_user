@@ -29,31 +29,27 @@ class Loginorsign extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
-                height: Mymediaquery().mediaqueryheight(0.2, context),
+                height: Mymediaquery().mediaqueryheight(0.1, context),
               ),
               Row(
                 children: [
-                  SizedBox(
-                    width: Mymediaquery().mediaquerywidth(0.17, context),
-                  ),
-                  Myonboardmaintitle(
-                    size: Mymediaquery().mediaquerywidth(0.05, context),
-                    textcolor: Myappallcolor().colorwhite,
-                    title: 'VEHII',
+                  Padding(
+                    padding: EdgeInsets.only(
+                        left: Mymediaquery().mediaquerywidth(0.08, context)),
+                    child: Myonboardmaintitle(
+                      size: Mymediaquery().mediaquerywidth(0.12, context),
+                      textcolor: Myappallcolor().colorwhite,
+                      title: 'VEHI-CANICH',
+                    ),
                   ),
                 ],
               ),
-              Myonboardmaintitle(
-                size: Mymediaquery().mediaquerywidth(0.06, context),
-                textcolor: Myappallcolor().colorwhite,
-                title: 'Canich',
-              ),
               SizedBox(
-                height: Mymediaquery().mediaqueryheight(0.2, context),
+                height: Mymediaquery().mediaqueryheight(0.4, context),
               ),
               const Loginorsigntext(),
               SizedBox(
-                height: Mymediaquery().mediaqueryheight(0.1, context),
+                height: Mymediaquery().mediaqueryheight(0.04, context),
               ),
               CustomButton(
                 bordercolor: Colors.transparent,
