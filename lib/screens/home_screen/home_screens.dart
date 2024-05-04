@@ -3,8 +3,8 @@ import 'package:vehicanich/data/repositories/shop_details/shop_details_keys.dart
 import 'package:vehicanich/data/repositories/shop_details/shop_repositery.dart';
 // import 'package:vehicanich/screens/login_screen/login_screen.dart';
 import 'package:vehicanich/screens/shop_details_screen/details_page.dart';
-import 'package:vehicanich/services/firebase_auth_implementation/firebase_auth_service.dart';
 import 'package:vehicanich/utils/app_colors.dart';
+import 'package:vehicanich/utils/app_custom_appbar.dart';
 import 'package:vehicanich/utils/app_custom_loader.dart';
 import 'package:vehicanich/utils/mediaquery.dart';
 import 'package:vehicanich/widgets/home_screen_widgets/home_image_widget.dart';
@@ -16,19 +16,12 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        actions: [
-          IconButton(
-            onPressed: () {
-              signOut(context);
-            },
-            icon: Icon(
-              Icons.settings,
-              color: Myappallcolor().colorwhite,
-            ),
-          )
-        ],
+      appBar: PreferredSize(
+        preferredSize: Size(
+            double.infinity, Mymediaquery().mediaqueryheight(0.103, context)),
+        child: const CustomAppbar(
+          appbartext: '',
+        ),
       ),
       backgroundColor: Myappallcolor().appbackgroundcolor,
       body: FutureBuilder<List<Map<String, dynamic>>>(
@@ -58,7 +51,7 @@ class HomeScreen extends StatelessWidget {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => ShopDetailsPage(
                                 shopdetails: shopDetails,
-                                tag: shopDetails[Shopkeys().licenceimagepath],
+                                tag: shopDetails[Shopkeys.licenceimagepath],
                               )));
                     },
                     child: Card(
@@ -76,10 +69,9 @@ class HomeScreen extends StatelessWidget {
                                     top: Mymediaquery()
                                         .mediaqueryheight(0.01, context)),
                                 child: ImageContainer(
-                                    tag: shopDetails[
-                                        Shopkeys().licenceimagepath],
-                                    imagepath: shopDetails[
-                                        Shopkeys().bannerimagepath])),
+                                    tag: shopDetails[Shopkeys.licenceimagepath],
+                                    imagepath:
+                                        shopDetails[Shopkeys.bannerimagepath])),
                             SizedBox(
                                 width: Mymediaquery()
                                     .mediaquerywidth(0.04, context)),
@@ -89,13 +81,12 @@ class HomeScreen extends StatelessWidget {
                                       .mediaqueryheight(0.01, context)),
                               child: ListtileText(
                                 shoplocation:
-                                    shopDetails[Shopkeys().locationaddress],
-                                shopname: shopDetails[Shopkeys().shopname],
-                                phone: shopDetails[Shopkeys().phone],
+                                    shopDetails[Shopkeys.locationaddress],
+                                shopname: shopDetails[Shopkeys.shopname],
+                                phone: shopDetails[Shopkeys.phone],
                                 startingtime:
-                                    shopDetails[Shopkeys().startingtime],
-                                closingtime:
-                                    shopDetails[Shopkeys().closingtime],
+                                    shopDetails[Shopkeys.startingtime],
+                                closingtime: shopDetails[Shopkeys.closingtime],
                               ),
                             )
                           ],

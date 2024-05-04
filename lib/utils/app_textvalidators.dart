@@ -32,4 +32,34 @@ class Validators {
     }
     return null;
   }
+
+  String? validateVehicleNumber(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Vehicle Number cannot be empty';
+    }
+
+    // Regular expression pattern for vehicle number format "XX 00 0000"
+    RegExp regExp = RegExp(r'^[A-Z]{2}\s\d{2}\s\d{4}$');
+
+    if (!regExp.hasMatch(value)) {
+      return 'Enter a valid vehicle number';
+    }
+
+    return null;
+  }
+
+  String? validatePhoneNumber(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Phone number cannot be empty';
+    }
+
+    // Regular expression pattern for phone number format
+    RegExp regExp = RegExp(r'^[0-9]{10}$');
+
+    if (!regExp.hasMatch(value)) {
+      return 'Enter a valid 10-digit phone number';
+    }
+
+    return null;
+  }
 }

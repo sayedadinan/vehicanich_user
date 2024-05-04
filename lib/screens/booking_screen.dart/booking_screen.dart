@@ -1,16 +1,29 @@
 import 'package:easy_date_timeline/easy_date_timeline.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:vehicanich/blocs/booking_blocs/bloc/booking_bloc.dart';
 import 'package:vehicanich/utils/app_colors.dart';
 import 'package:vehicanich/utils/app_custom_appbar.dart';
 import 'package:vehicanich/utils/app_custom_button.dart';
 import 'package:vehicanich/utils/app_textfields.dart';
+import 'package:vehicanich/utils/app_textvalidators.dart';
 import 'package:vehicanich/utils/mediaquery.dart';
 import 'package:vehicanich/widgets/details_widget/custom_text.dart';
 import 'package:vehicanich/widgets/details_widget/details_text.dart';
 
+// ignore: must_be_immutable
 class BookingScreen extends StatelessWidget {
-  const BookingScreen({super.key});
-
+  final String servicename;
+  final dynamic rate;
+  final String phonenumber;
+  BookingScreen(
+      {super.key,
+      required this.servicename,
+      required this.rate,
+      required this.phonenumber});
+  TextEditingController vehiclenumberController = TextEditingController();
+  TextEditingController userbookingphoneController = TextEditingController();
+  late DateTime selectingdate;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,8 +31,8 @@ class BookingScreen extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: Size(
             double.infinity, Mymediaquery().mediaqueryheight(0.183, context)),
-        child: const CustomAppbar(
-          appbartext: 'Dent Repair and works',
+        child: CustomAppbar(
+          appbartext: servicename,
         ),
       ),
       body: SingleChildScrollView(
@@ -28,23 +41,29 @@ class BookingScreen extends StatelessWidget {
             SizedBox(height: Mymediaquery().mediaqueryheight(0.05, context)),
             const CustomizedText(text: detailspagestatictext),
             SizedBox(height: Mymediaquery().mediaqueryheight(0.02, context)),
-
-            ///here i want to use that calender
             Padding(
               padding: EdgeInsets.only(
                   left: Mymediaquery().mediaquerywidth(0.04, context),
                   right: Mymediaquery().mediaquerywidth(0.04, context)),
               child: EasyDateTimeLine(
+                disabledDates: [DateTime.utc(2024, 05, 05)],
                 initialDate: DateTime.now(),
                 onDateChange: (selectedDate) {
-                  // Handle selected date change here
+                  selectingdate = selectedDate;
                 },
               ),
             ),
             SizedBox(height: Mymediaquery().mediaqueryheight(0.03, context)),
-            const Inputfield(hinttext: 'your vehicle number'),
+            Inputfield(
+                hinttext: 'your vehicle number',
+                controller: vehiclenumberController,
+                validator: (value) =>
+                    Validators().validateVehicleNumber(value)),
             SizedBox(height: Mymediaquery().mediaqueryheight(0.02, context)),
-            const Inputfield(hinttext: 'your phone number'),
+            Inputfield(
+                hinttext: 'your phone number',
+                controller: userbookingphoneController,
+                validator: (value) => Validators().validatePhoneNumber(value)),
             SizedBox(height: Mymediaquery().mediaqueryheight(0.06, context)),
             Container(
               decoration: BoxDecoration(
@@ -90,7 +109,7 @@ class BookingScreen extends StatelessWidget {
               children: [
                 SizedBox(width: Mymediaquery().mediaquerywidth(0.08, context)),
                 Text(
-                  detailsprise,
+                  '₹ ${rate.toString()}',
                   style: TextStyle(
                       fontWeight: FontWeight.w400,
                       color: Myappallcolor().colorwhite,
@@ -114,7 +133,15 @@ class BookingScreen extends StatelessWidget {
             SizedBox(height: Mymediaquery().mediaqueryheight(0.03, context)),
             CustomButton(
                 color: Myappallcolor().buttonforgroundcolor,
-                function: () {},
+                function: () {
+                  context.read<BookingBloc>().add(BookingbuttonPressed(
+                        shopphonenumber: phonenumber,
+                        datepicked: selectingdate,
+                        vehiclenumbercontroller: vehiclenumberController.text,
+                        userphonenumbercontroller:
+                            userbookingphoneController.text,
+                      ));
+                },
                 text: 'Proceed to pay',
                 fontSize: Mymediaquery().mediaquerywidth(0.04, context),
                 buttontextcolor: Myappallcolor().colorwhite,

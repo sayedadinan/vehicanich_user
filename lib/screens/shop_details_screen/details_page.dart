@@ -22,7 +22,7 @@ class ShopDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<BodyMaintainceBloc, BodyMaintainceState>(
       listener: (context, state) {
-        if (state is BodyMaintainceInitial) {
+        if (state is BodyMaintaincebuttonNavigation) {
           Navigator.of(context).push(
               SlideTransitionPageRoute(child: const BodyMaintainceandRepair()));
         }
@@ -34,19 +34,18 @@ class ShopDetailsPage extends StatelessWidget {
             child: Column(
               children: [
                 ShopDetailImage(
-                    tag: tag,
-                    imagepath: shopdetails[Shopkeys().bannerimagepath]),
+                    tag: tag, imagepath: shopdetails[Shopkeys.bannerimagepath]),
                 SizedBox(
                     height: Mymediaquery().mediaqueryheight(0.03, context)),
                 ShopTextArrange(
-                  shopname: shopdetails[Shopkeys().shopname],
+                  shopname: shopdetails[Shopkeys.shopname],
                 ),
                 SizedBox(
                   height: Mymediaquery().mediaqueryheight(0.02, context),
                 ),
                 ShopTimeText(
-                  startingtime: shopdetails[Shopkeys().startingtime],
-                  closingtime: shopdetails[Shopkeys().closingtime],
+                  startingtime: shopdetails[Shopkeys.startingtime],
+                  closingtime: shopdetails[Shopkeys.closingtime],
                 ),
                 SizedBox(
                   height: Mymediaquery().mediaqueryheight(0.04, context),
@@ -136,8 +135,8 @@ class ShopDetailsPage extends StatelessWidget {
                           function: () {
                             context.read<BodyMaintainceBloc>().add(
                                 BodyMaintainceButtonPressed(
-                                    servicemapkey: Shopkeys().bodyservicemap,
-                                    shopphone: shopdetails[Shopkeys().phone]));
+                                    servicemapkey: Shopkeys.bodyservicemap,
+                                    shopphone: shopdetails[Shopkeys.phone]));
                           },
                           text: 'Body Maintaince and Repair',
                           fontSize:

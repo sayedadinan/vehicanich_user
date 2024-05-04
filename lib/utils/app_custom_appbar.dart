@@ -25,7 +25,7 @@ class CustomAppbar extends StatelessWidget {
           child: Text(
             appbartext,
             style: TextStyle(
-                fontSize: Mymediaquery().mediaquerywidth(0.05, context),
+                fontSize: Mymediaquery().mediaquerywidth(0.06, context),
                 color: Myappallcolor().colorwhite),
           ),
         ),

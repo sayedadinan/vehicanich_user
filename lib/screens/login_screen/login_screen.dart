@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vehicanich/blocs/login_bloc/login_bloc.dart';
 import 'package:vehicanich/screens/forgot_password/forgot_password.dart';
 import 'package:vehicanich/services/firebase_auth_implementation/firebase_auth_service.dart';
+import 'package:vehicanich/utils/app_custom_loader.dart';
 import 'package:vehicanich/utils/app_snackbar.dart';
+import 'package:vehicanich/utils/app_textvalidators.dart';
 import 'package:vehicanich/utils/bottom_navigation/bottom_navigation.dart';
 import 'package:vehicanich/utils/app_colors.dart';
 import 'package:vehicanich/utils/app_googlebutton.dart';
@@ -41,6 +43,9 @@ class Loginscreen extends StatelessWidget {
       }
     }, child: BlocBuilder<LoginBloc, LoginBlocState>(
       builder: (context, state) {
+        if (state is LoginLoading) {
+          return loader;
+        }
         return Scaffold(
           backgroundColor: Myappallcolor().appbackgroundcolor,
           body: SingleChildScrollView(
@@ -51,17 +56,17 @@ class Loginscreen extends StatelessWidget {
                 SizedBox(
                     height: Mymediaquery().mediaqueryheight(0.05, context)),
                 Inputfield(
-                  keyboardType: TextInputType.emailAddress,
-                  hinttext: 'Enter your email',
-                  controller: emailController,
-                ),
+                    keyboardType: TextInputType.emailAddress,
+                    hinttext: 'Enter your email',
+                    controller: emailController,
+                    validator: (value) => Validators().validateEmail(value)),
                 SizedBox(
                     height: Mymediaquery().mediaqueryheight(0.02, context)),
                 Inputfield(
-                  icon: const Icon(Icons.remove_red_eye_outlined),
-                  hinttext: 'Enter your password',
-                  controller: passwordController,
-                ),
+                    icon: const Icon(Icons.remove_red_eye_outlined),
+                    hinttext: 'Enter your password',
+                    controller: passwordController,
+                    validator: (value) => Validators().validatePassword(value)),
                 SizedBox(
                     height: Mymediaquery().mediaqueryheight(0.01, context)),
                 Forgetbutton(
@@ -105,18 +110,4 @@ class Loginscreen extends StatelessWidget {
       },
     ));
   }
-
-  // signIn(BuildContext context) async {
-  //   String email = emailController.text;
-  //   String password = passwordController.text;
-  //   User? user = await auth.sighInWIthEmailAndPassword(email, password);
-  //   if (user != null) {
-  //     print('user is successfully signedIn');
-  //     // ignore: use_build_context_synchronously
-  //     Navigator.of(context)
-  //         .push(MaterialPageRoute(builder: (context) => BottomBar()));
-  //   } else {
-  //     print('some error happened');
-  //   }
-  // }
 }

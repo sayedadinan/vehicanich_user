@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:vehicanich/utils/mediaquery.dart';
 
@@ -12,12 +13,12 @@ class ImageContainer extends StatelessWidget {
       width: Mymediaquery().mediaquerywidth(0.27, context),
       height: Mymediaquery().mediaqueryheight(0.10, context),
       child: Hero(
-        tag: tag.toString(),
-        child: Image.network(
-          imagepath,
-          fit: BoxFit.fill,
-        ),
-      ),
+          tag: tag.toString(),
+          child: CachedNetworkImage(
+            imageUrl: imagepath,
+            placeholder: (context, url) => CircularProgressIndicator(),
+            errorWidget: (context, url, error) => Icon(Icons.error),
+          )),
     );
   }
 }
