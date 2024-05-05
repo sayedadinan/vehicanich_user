@@ -1,22 +1,20 @@
 import 'package:bloc/bloc.dart';
 import 'package:vehicanich/data/repositories/shop_details/shop_repositery.dart';
-part 'body_maintaince_event.dart';
-part 'body_maintaince_state.dart';
+part 'interior_event.dart';
+part 'interior_state.dart';
 
-class BodyMaintainceBloc
-    extends Bloc<BodyMaintainceEvent, BodyMaintainceState> {
-  BodyMaintainceBloc()
-      : super(BodyMaintainceInitial(
-            prices: [], servicekeys: [], phonenumber: '')) {
-    on<BodyMaintainceButtonPressed>(bodymaintaincebuttonpressed);
+class InteriorBloc extends Bloc<InteriorEvent, InteriorState> {
+  InteriorBloc()
+      : super(InteriorInitial(phonenumber: '', prices: [], servicekeys: [])) {
+    on<InteriorServiceButtonPressed>(interiorservicebuttonpressed);
   }
-  bodymaintaincebuttonpressed(BodyMaintainceButtonPressed event,
-      Emitter<BodyMaintainceState> emit) async {
-    emit(BodyMaintaincebuttonNavigation(
+  interiorservicebuttonpressed(
+      InteriorServiceButtonPressed event, Emitter<InteriorState> emit) async {
+    emit(InteriorServiceeButtonNavigation(
         phonenumber: event.shopphone,
         prices: state.prices,
         servicekeys: state.servicekeys));
-    emit(Bodymaintainceloading(
+    emit(InteriorServiceloading(
         phonenumber: event.shopphone,
         prices: state.prices,
         servicekeys: state.servicekeys));
@@ -30,11 +28,11 @@ class BodyMaintainceBloc
         services.add(key);
         rates.add(value);
       });
-      emit(BodyMaintainceLoaded(
+      emit(InteriorServiceLoaded(
           prices: rates,
           servicekeys: services,
           phonenumber: state.phonenumber));
-      emit(BodyMaintainceInitial(
+      emit(InteriorInitial(
           prices: rates,
           servicekeys: services,
           phonenumber: state.phonenumber));

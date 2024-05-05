@@ -14,7 +14,7 @@ class UserDetailsUpdationBloc
       UserDataFetched event, Emitter<UserDetailsUpdationState> emit) async {
     emit(UserDetailsLoading());
     try {
-      final user = await UserRepository().getuserDetails(event.email);
+      final user = await UserRepository().getuserDetails();
       emit(UserDetailsLoaded(user: user));
     } catch (e) {
       // emit(UserDetailserror(error: 'Failed to load user details'));

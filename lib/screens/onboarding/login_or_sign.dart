@@ -36,7 +36,7 @@ class Loginorsign extends StatelessWidget {
                   children: [
                     Padding(
                       padding: EdgeInsets.only(
-                          left: Mymediaquery().mediaquerywidth(0.09, context)),
+                          left: Mymediaquery().mediaquerywidth(0.14, context)),
                       child: Myonboardmaintitle(
                         size: Mymediaquery().mediaquerywidth(0.12, context),
                         textcolor: Myappallcolor().colorwhite,
@@ -45,50 +45,43 @@ class Loginorsign extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: Mymediaquery().mediaqueryheight(0.5, context),
+                Image.asset(
+                  'assets/images/Animation - 1714891020642.gif',
+                  width: 200, // Adjust the width to your desired size
+                  height: 100, // Adjust the height to your desired size
                 ),
-                Container(
+                SizedBox(
                   height: Mymediaquery().mediaqueryheight(0.4, context),
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                      color: Myappallcolor().appbarbackgroundcolor,
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(58),
-                        topRight: Radius.circular(58),
-                      )),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: Mymediaquery().mediaqueryheight(0.08, context),
-                      ),
-                      CustomButton(
-                        bordercolor: Colors.transparent,
-                        buttontextcolor: Myappallcolor().colorwhite,
-                        text: 'Login',
-                        function: () => context
-                            .read<OnboardingBloc>()
-                            .add(LoginButtonPressed()),
-                        fontSize:
-                            Mymediaquery().mediaqueryheight(0.02, context),
-                        color: Myappallcolor().buttonforgroundcolor,
-                      ),
-                      SizedBox(
-                        height: Mymediaquery().mediaqueryheight(0.02, context),
-                      ),
-                      CustomButton(
-                        bordercolor: Colors.white,
-                        buttontextcolor: Myappallcolor().colorwhite,
-                        text: 'Register',
-                        function: () => context
-                            .read<OnboardingBloc>()
-                            .add((Signinbuttonpressed())),
-                        fontSize:
-                            Mymediaquery().mediaqueryheight(0.02, context),
-                        color: Colors.transparent,
-                      ),
-                    ],
-                  ),
+                ),
+                Column(
+                  children: [
+                    SizedBox(
+                      height: Mymediaquery().mediaqueryheight(0.08, context),
+                    ),
+                    CustomButton(
+                      bordercolor: Colors.transparent,
+                      buttontextcolor: Myappallcolor().colorwhite,
+                      text: 'Login',
+                      function: () => context
+                          .read<OnboardingBloc>()
+                          .add(LoginButtonPressed()),
+                      fontSize: Mymediaquery().mediaqueryheight(0.02, context),
+                      color: Myappallcolor().buttonforgroundcolor,
+                    ),
+                    SizedBox(
+                      height: Mymediaquery().mediaqueryheight(0.02, context),
+                    ),
+                    CustomButton(
+                      bordercolor: Colors.white,
+                      buttontextcolor: Myappallcolor().colorwhite,
+                      text: 'Register',
+                      function: () => context
+                          .read<OnboardingBloc>()
+                          .add((Signinbuttonpressed())),
+                      fontSize: Mymediaquery().mediaqueryheight(0.02, context),
+                      color: Colors.transparent,
+                    ),
+                  ],
                 )
               ],
             ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:vehicanich/blocs/body_main_service/bloc/body_maintaince_bloc.dart';
+import 'package:vehicanich/blocs/booking_blocs/body_main_bloc/body_maintaince_bloc.dart';
 import 'package:vehicanich/data/repositories/shop_details/shop_details_keys.dart';
 import 'package:vehicanich/screens/body_maintaince_screens/body_maintains_category.dart';
 import 'package:vehicanich/utils/app_colors.dart';
@@ -15,16 +15,29 @@ class ShopDetailsPage extends StatelessWidget {
   final String tag;
   final Map<String, dynamic> shopdetails;
   const ShopDetailsPage(
-      {Key? key, required this.tag, required this.shopdetails})
-      : super(key: key);
+      {super.key, required this.tag, required this.shopdetails});
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<BodyMaintainceBloc, BodyMaintainceState>(
       listener: (context, state) {
         if (state is BodyMaintaincebuttonNavigation) {
-          Navigator.of(context).push(
-              SlideTransitionPageRoute(child: const BodyMaintainceandRepair()));
+          Navigator.of(context).push(SlideTransitionPageRoute(
+              child: const ServiceDetails(
+            textforappbar: 'Body Maintaince and \n Repair',
+          )));
+        }
+        if (state is InteriorServiceeButtonNavigation) {
+          Navigator.of(context).push(SlideTransitionPageRoute(
+              child: const ServiceDetails(
+            textforappbar: '       Interior Services',
+          )));
+        }
+        if (state is EngineServiceeButtonNavigation) {
+          Navigator.of(context).push(SlideTransitionPageRoute(
+              child: const ServiceDetails(
+            textforappbar: 'Engine and Mechanical Services',
+          )));
         }
       },
       builder: (context, state) {
@@ -148,7 +161,12 @@ class ShopDetailsPage extends StatelessWidget {
                       CustomButton(
                           bordercolor: Myappallcolor().colorwhite,
                           color: Colors.transparent,
-                          function: () {},
+                          function: () {
+                            context.read<BodyMaintainceBloc>().add(
+                                InteriorButtonPressed(
+                                    servicemapkey: Shopkeys.interiorservicemap,
+                                    shopphone: shopdetails[Shopkeys.phone]));
+                          },
                           text: 'Interior Services',
                           fontSize:
                               Mymediaquery().mediaquerywidth(0.03, context),
@@ -159,7 +177,12 @@ class ShopDetailsPage extends StatelessWidget {
                       CustomButton(
                           bordercolor: Myappallcolor().colorwhite,
                           color: Colors.transparent,
-                          function: () {},
+                          function: () {
+                            context.read<BodyMaintainceBloc>().add(
+                                EngineServiceButtonPressed(
+                                    servicemapkey: Shopkeys.enginservicemap,
+                                    shopphone: shopdetails[Shopkeys.phone]));
+                          },
                           text: 'Engine and Mechanical Services',
                           fontSize:
                               Mymediaquery().mediaquerywidth(0.03, context),

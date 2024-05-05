@@ -1,7 +1,7 @@
 import 'package:easy_date_timeline/easy_date_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:vehicanich/blocs/booking_blocs/bloc/booking_bloc.dart';
+import 'package:vehicanich/blocs/booking_blocs/booking_bloc/booking_bloc.dart';
 import 'package:vehicanich/utils/app_colors.dart';
 import 'package:vehicanich/utils/app_custom_appbar.dart';
 import 'package:vehicanich/utils/app_custom_button.dart';
@@ -135,12 +135,12 @@ class BookingScreen extends StatelessWidget {
                 color: Myappallcolor().buttonforgroundcolor,
                 function: () {
                   context.read<BookingBloc>().add(BookingbuttonPressed(
-                        shopphonenumber: phonenumber,
-                        datepicked: selectingdate,
-                        vehiclenumbercontroller: vehiclenumberController.text,
-                        userphonenumbercontroller:
-                            userbookingphoneController.text,
-                      ));
+                      shopphonenumber: phonenumber,
+                      datepicked: selectingdate,
+                      vehiclenumbercontroller: vehiclenumberController.text,
+                      userphonenumbercontroller:
+                          userbookingphoneController.text,
+                      servicename: servicename));
                 },
                 text: 'Proceed to pay',
                 fontSize: Mymediaquery().mediaquerywidth(0.04, context),

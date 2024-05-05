@@ -27,12 +27,14 @@ class UserRepository {
   }
 
   /// Fetches user details from Firestore based on email.
-  Future<UserModel> getuserDetails(String email) async {
+  Future<UserModel> getuserDetails() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String? email = prefs.getString('user_email');
     print("Fetching user details for email: $email");
     try {
       final snapshot = await _db
           .collection(ReferenceKeys.users)
-          .where(ReferenceKeys.email, isEqualTo: email)
+          .where('Email', isEqualTo: email)
           .get();
       if (snapshot.docs.isEmpty) {
         throw Exception("No user found with email: $email");
@@ -69,5 +71,24 @@ class UserRepository {
   Future<void> removeUserEmailFromSharedPreferences() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.remove('user_email');
+  }
+
+  Future<List<Map<String, dynamic>>> userMybookings() async {
+    try {
+      final userId = await UserDocId().getUserId();
+      final userDocRef = UserDataReference()
+          .userCollectionReference()
+          .doc(userId)
+          .collection(ReferenceKeys.bookings);
+      final querySnapshot = await userDocRef.get();
+      final List<Map<String, dynamic>> bookings = querySnapshot.docs
+          .map((DocumentSnapshot doc) => doc.data() as Map<String, dynamic>)
+          .toList();
+      print('this all fetched$bookings');
+      return bookings;
+    } catch (e) {
+      print('Error fetching user bookings: $e');
+      rethrow; // Rethrow the error to handle it further up the call stack
+    }
   }
 }

@@ -35,9 +35,10 @@ class BookingBloc extends Bloc<BookingEvent, BookingState> {
         .doc(shopid)
         .collection("newbooking");
     reference.add({
-      "phone": event.userphonenumbercontroller,
+      "shopphone": event.userphonenumbercontroller,
       "vehiclenumber": event.vehiclenumbercontroller,
-      "date": formattedDate
+      "date": formattedDate,
+      "servicename": event.servicename,
     });
     final userDocRef = UserDataReference()
         .userCollectionReference()
@@ -48,7 +49,8 @@ class BookingBloc extends Bloc<BookingEvent, BookingState> {
       userDocRef.set({
         "shopphone": event.shopphonenumber,
         "date": formattedDate,
-        "vehiclenumber": event.vehiclenumbercontroller
+        "vehiclenumber": event.vehiclenumbercontroller,
+        "servicename": event.servicename,
       });
       // DocumentSnapshot<Object?> datas = await userDocRef.get();
       // Map<String, dynamic>? data = datas.data() as Map<String, dynamic>?;

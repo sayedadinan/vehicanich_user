@@ -20,7 +20,7 @@ class CustomAppbar extends StatelessWidget {
         padding: EdgeInsets.only(
             left: Mymediaquery().mediaquerywidth(0.18, context),
             top: Mymediaquery().mediaqueryheight(0.12, context)),
-        child: Container(
+        child: SizedBox(
           width: Mymediaquery().mediaquerywidth(0.2, context),
           child: Text(
             appbartext,

@@ -48,7 +48,7 @@ class ShopRepository {
           .where(Shopkeys.isApproved, isEqualTo: true)
           .get();
       List<Map<String, dynamic>> shopDetailsList = [];
-      querySnapshot.docs.forEach((doc) {
+      for (var doc in querySnapshot.docs) {
         Map<String, dynamic> shopDetails = doc.data() as Map<String, dynamic>;
         if (shopDetails.containsKey(servicemapkey)) {
           Map<String, dynamic>? serviceMap = shopDetails[servicemapkey];
@@ -56,7 +56,7 @@ class ShopRepository {
             shopDetailsList.add(shopDetails);
           }
         }
-      });
+      }
       List<Map<String, dynamic>> filteredList = shopDetailsList.where((shop) {
         return shop['phone'] == shopIdentifier || shop['id'] == shopIdentifier;
       }).toList();

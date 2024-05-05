@@ -14,7 +14,7 @@ class Shopkeys {
   static String bannerimagepath = "bannerimagepath";
   static String bodyservicemap = "bodyservicemap";
   static String interiorservicemap = "interiorservicemap";
-  static String enginservicemap = 'engineservicemap';
+  static String enginservicemap = 'enginservicemap';
   static String isApproved = 'isApproved';
   static String isRejected = 'isRejected';
   static String locationaddress = 'locationaddress';

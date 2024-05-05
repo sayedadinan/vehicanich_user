@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:vehicanich/blocs/body_main_service/bloc/body_maintaince_bloc.dart';
+import 'package:vehicanich/blocs/booking_blocs/body_main_bloc/body_maintaince_bloc.dart';
 import 'package:vehicanich/screens/booking_screen.dart/booking_screen.dart';
 import 'package:vehicanich/utils/app_colors.dart';
 import 'package:vehicanich/utils/app_custom_appbar.dart';
@@ -10,8 +10,9 @@ import 'package:vehicanich/utils/page_transition/page_fade_transition.dart';
 import 'package:vehicanich/widgets/details_widget/custom_text.dart';
 import 'package:vehicanich/widgets/details_widget/details_text.dart';
 
-class BodyMaintainceandRepair extends StatelessWidget {
-  const BodyMaintainceandRepair({super.key});
+class ServiceDetails extends StatelessWidget {
+  final String textforappbar;
+  const ServiceDetails({super.key, required this.textforappbar});
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +21,8 @@ class BodyMaintainceandRepair extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: Size(
             double.infinity, Mymediaquery().mediaqueryheight(0.183, context)),
-        child: const CustomAppbar(
-          appbartext: 'Body Maintenance and \n Repair',
+        child: CustomAppbar(
+          appbartext: textforappbar,
         ),
       ),
       body: BlocConsumer<BodyMaintainceBloc, BodyMaintainceState>(
@@ -60,10 +61,9 @@ class BodyMaintainceandRepair extends StatelessWidget {
                         onTap: () {
                           Navigator.of(context).push(FadeTransitionPageRoute(
                               child: BookingScreen(
-                            phonenumber: state.phonenumber,
-                            rate: rates[index].toString(),
-                            servicename: servicelist[index],
-                          )));
+                                  phonenumber: state.phonenumber,
+                                  rate: rates[index].toString(),
+                                  servicename: servicelist[index])));
                         },
                         child: Container(
                           decoration: BoxDecoration(
@@ -77,7 +77,7 @@ class BodyMaintainceandRepair extends StatelessWidget {
                               SizedBox(
                                   height: Mymediaquery()
                                       .mediaqueryheight(0.03, context)),
-                              Container(
+                              SizedBox(
                                 height: Mymediaquery()
                                     .mediaqueryheight(0.05, context),
                                 width: Mymediaquery()

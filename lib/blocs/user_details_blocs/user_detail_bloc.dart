@@ -12,7 +12,7 @@ class UserDetailsBloc extends Bloc<UserDetailsEvent, UserDetailsState> {
   userdataloaded(UserDataLoaded event, Emitter<UserDetailsState> emit) async {
     emit(UserDetailsLoading());
     try {
-      final user = await UserRepository().getuserDetails(event.email);
+      final user = await UserRepository().getuserDetails();
       emit(UserDetailsLoaded(user: user));
     } catch (e) {
       // emit(UserDetailserror(error: 'Failed to load user details'));
