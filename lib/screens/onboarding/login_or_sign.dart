@@ -25,54 +25,73 @@ class Loginorsign extends StatelessWidget {
         },
         child: Scaffold(
           backgroundColor: Myappallcolor().appbackgroundcolor,
-          body: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: Mymediaquery().mediaqueryheight(0.1, context),
-              ),
-              Row(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(
-                        left: Mymediaquery().mediaquerywidth(0.08, context)),
-                    child: Myonboardmaintitle(
-                      size: Mymediaquery().mediaquerywidth(0.12, context),
-                      textcolor: Myappallcolor().colorwhite,
-                      title: 'VEHI-CANICH',
+          body: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: Mymediaquery().mediaqueryheight(0.1, context),
+                ),
+                Row(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(
+                          left: Mymediaquery().mediaquerywidth(0.09, context)),
+                      child: Myonboardmaintitle(
+                        size: Mymediaquery().mediaquerywidth(0.12, context),
+                        textcolor: Myappallcolor().colorwhite,
+                        title: 'VEHI-CANICH',
+                      ),
                     ),
+                  ],
+                ),
+                SizedBox(
+                  height: Mymediaquery().mediaqueryheight(0.5, context),
+                ),
+                Container(
+                  height: Mymediaquery().mediaqueryheight(0.4, context),
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                      color: Myappallcolor().appbarbackgroundcolor,
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(58),
+                        topRight: Radius.circular(58),
+                      )),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: Mymediaquery().mediaqueryheight(0.08, context),
+                      ),
+                      CustomButton(
+                        bordercolor: Colors.transparent,
+                        buttontextcolor: Myappallcolor().colorwhite,
+                        text: 'Login',
+                        function: () => context
+                            .read<OnboardingBloc>()
+                            .add(LoginButtonPressed()),
+                        fontSize:
+                            Mymediaquery().mediaqueryheight(0.02, context),
+                        color: Myappallcolor().buttonforgroundcolor,
+                      ),
+                      SizedBox(
+                        height: Mymediaquery().mediaqueryheight(0.02, context),
+                      ),
+                      CustomButton(
+                        bordercolor: Colors.white,
+                        buttontextcolor: Myappallcolor().colorwhite,
+                        text: 'Register',
+                        function: () => context
+                            .read<OnboardingBloc>()
+                            .add((Signinbuttonpressed())),
+                        fontSize:
+                            Mymediaquery().mediaqueryheight(0.02, context),
+                        color: Colors.transparent,
+                      ),
+                    ],
                   ),
-                ],
-              ),
-              SizedBox(
-                height: Mymediaquery().mediaqueryheight(0.4, context),
-              ),
-              const Loginorsigntext(),
-              SizedBox(
-                height: Mymediaquery().mediaqueryheight(0.04, context),
-              ),
-              CustomButton(
-                bordercolor: Colors.transparent,
-                buttontextcolor: Myappallcolor().colorwhite,
-                text: 'Login',
-                function: () =>
-                    context.read<OnboardingBloc>().add(LoginButtonPressed()),
-                fontSize: Mymediaquery().mediaqueryheight(0.02, context),
-                color: Myappallcolor().textcolor,
-              ),
-              SizedBox(
-                height: Mymediaquery().mediaqueryheight(0.02, context),
-              ),
-              CustomButton(
-                bordercolor: Colors.transparent,
-                buttontextcolor: Myappallcolor().colorwhite,
-                text: 'Register',
-                function: () =>
-                    context.read<OnboardingBloc>().add((Signinbuttonpressed())),
-                fontSize: Mymediaquery().mediaqueryheight(0.02, context),
-                color: Myappallcolor().buttonforgroundcolor,
-              ),
-            ],
+                )
+              ],
+            ),
           ),
         ));
   }

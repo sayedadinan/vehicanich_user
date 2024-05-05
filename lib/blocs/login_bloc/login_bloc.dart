@@ -38,7 +38,7 @@ class LoginBloc extends Bloc<LoginBlocEvent, LoginBlocState> {
       if (user != null) {
         print('user login successful');
         emit(NavigateToHome());
-        UserRepositery().saveUserEmailToSharedPreferences(event.email.text);
+        UserRepository().saveUserEmailToSharedPreferences(event.email.text);
       } else {
         print('something went wrong');
       }

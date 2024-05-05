@@ -14,7 +14,7 @@ class UserDetailsUpdationBloc
       UserDataFetched event, Emitter<UserDetailsUpdationState> emit) async {
     emit(UserDetailsLoading());
     try {
-      final user = await UserRepositery().getuserDetails(event.email);
+      final user = await UserRepository().getuserDetails(event.email);
       emit(UserDetailsLoaded(user: user));
     } catch (e) {
       // emit(UserDetailserror(error: 'Failed to load user details'));
@@ -24,7 +24,7 @@ class UserDetailsUpdationBloc
   userdetailsupdatebutton(UserDetailsUpdateButton event,
       Emitter<UserDetailsUpdationState> emit) async {
     try {
-      await UserRepositery().updateuser(event.user);
+      await UserRepository().updateuser(event.user);
       emit(UserDetailsUpdationButton());
     } catch (e) {
       print('error is here in userdetailsupdation bloc $e');

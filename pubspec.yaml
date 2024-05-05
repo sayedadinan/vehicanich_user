@@ -56,6 +56,7 @@ flutter:
     - assets/images/car_workshop_for_splash-removebg-preview 1.png
     - assets/images/img3.png
     - assets/images/user-profile 1.png
+    - assets/images/workshop.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

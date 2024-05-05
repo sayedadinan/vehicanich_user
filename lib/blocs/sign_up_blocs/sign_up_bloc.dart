@@ -24,9 +24,9 @@ class SignUpBLoc extends Bloc<SignUpEvent, SignUpState> {
           userName: event.user.userName,
           password: event.user.password,
           email: event.user.email);
-      await UserRepositery().saveUserData(user, userCredential!.uid);
+      await UserRepository().saveUserData(user, userCredential!.uid);
       emit(SignUpSuccess());
-      await UserRepositery().saveUserEmailToSharedPreferences(event.user.email);
+      await UserRepository().saveUserEmailToSharedPreferences(event.user.email);
     } catch (e) {
       emit(SignUpError(text: 'there is some error $e'));
     }
