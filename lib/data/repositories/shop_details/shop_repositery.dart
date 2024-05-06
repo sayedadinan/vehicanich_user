@@ -8,6 +8,7 @@ class ShopRepository {
       final QuerySnapshot querySnapshot = await ShopReference()
           .shopCollectionReference()
           .where(Shopkeys.isApproved, isEqualTo: true)
+          .where(Shopkeys.isRejected, isEqualTo: false)
           .get();
       final List<Map<String, dynamic>> shopDetailsList = querySnapshot.docs
           .map((DocumentSnapshot doc) => doc.data() as Map<String, dynamic>)

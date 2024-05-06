@@ -35,10 +35,13 @@ class BookingBloc extends Bloc<BookingEvent, BookingState> {
         .doc(shopid)
         .collection("newbooking");
     reference.add({
-      "shopphone": event.userphonenumbercontroller,
+      "userphone": event.userphonenumbercontroller,
       "vehiclenumber": event.vehiclenumbercontroller,
       "date": formattedDate,
       "servicename": event.servicename,
+      "isPending": true,
+      "isStarted": false,
+      "isCompleted": false,
     });
     final userDocRef = UserDataReference()
         .userCollectionReference()
@@ -52,12 +55,6 @@ class BookingBloc extends Bloc<BookingEvent, BookingState> {
         "vehiclenumber": event.vehiclenumbercontroller,
         "servicename": event.servicename,
       });
-      // DocumentSnapshot<Object?> datas = await userDocRef.get();
-      // Map<String, dynamic>? data = datas.data() as Map<String, dynamic>?;
-      // List<dynamic> dataList = data?[ReferenceKeys.bookingdetails] ?? [];
-      // List<dynamic> newlist = [...dataList, ...forchanging];
-      // userDocRef.update({ReferenceKeys.bookingdetails: newlist});
-      // print(newlist);
     } catch (e) {
       // Handle errors
     }
