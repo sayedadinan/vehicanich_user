@@ -41,7 +41,7 @@ class BookingBloc extends Bloc<BookingEvent, BookingState> {
       "servicename": event.servicename,
       "isPending": true,
       "isStarted": false,
-      "isCompleted": false,
+      "isCompleted": false
     });
     final userDocRef = UserDataReference()
         .userCollectionReference()
