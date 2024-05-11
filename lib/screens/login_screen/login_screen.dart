@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vehicanich/blocs/login_bloc/login_bloc.dart';
 import 'package:vehicanich/screens/forgot_password/forgot_password.dart';
-import 'package:vehicanich/services/firebase_auth_implementation/firebase_auth_service.dart';
+import 'package:vehicanich/data/services/firebase_auth_implementation/firebase_auth_service.dart';
 import 'package:vehicanich/utils/app_custom_loader.dart';
 import 'package:vehicanich/utils/app_snackbar.dart';
 import 'package:vehicanich/utils/app_textvalidators.dart';

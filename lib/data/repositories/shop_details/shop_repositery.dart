@@ -38,6 +38,7 @@ class ShopRepository {
         .where(Shopkeys.phone, isEqualTo: phone)
         .get();
     final docid = querySnapshot.docs.first.id;
+    print('this is shop id $docid');
     return docid;
   }
 
