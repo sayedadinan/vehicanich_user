@@ -17,6 +17,7 @@ class BookingBloc extends Bloc<BookingEvent, BookingState> {
   bookingbuttonpressed(
       BookingbuttonPressed event, Emitter<BookingState> emit) async {
     final userid = await UserDocId().getUserId();
+    final userEmail = await UserDocId().getUserEmail();
     List<dynamic> carrying = [];
     List<dynamic> forchanging = [];
     print(event.userphonenumbercontroller);
@@ -41,7 +42,9 @@ class BookingBloc extends Bloc<BookingEvent, BookingState> {
       "servicename": event.servicename,
       "isPending": true,
       "isStarted": false,
-      "isCompleted": false
+      "isCompleted": false,
+      "userId": userid,
+      "userEmail": userEmail
     });
     final userDocRef = UserDataReference()
         .userCollectionReference()

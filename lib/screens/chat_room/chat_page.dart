@@ -2,7 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:vehicanich/data/services/chat_services/chat_services.dart';
+import 'package:vehicanich/utils/app_colors.dart';
 import 'package:vehicanich/utils/app_textfields.dart';
+import 'package:vehicanich/utils/mediaquery.dart';
+import 'package:vehicanich/widgets/chat_room/chat_bubble.dart';
 
 class ChatPage extends StatelessWidget {
   final String receiverUserPhone;
@@ -15,37 +18,54 @@ class ChatPage extends StatelessWidget {
   final ChatService chatService = ChatService();
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   sendMessage() async {
-    if (messageController.text.isNotEmpty) {
+    print('this is inside of chat$receiverUserID');
+    if (receiverUserID.isNotEmpty && messageController.text.isNotEmpty) {
+      print(receiverUserID);
+      print(messageController.text);
       await chatService.sendMessage(receiverUserID, messageController.text);
       messageController.clear();
+    } else {
+      print('Error: receiverUserID is null or message is empty');
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      backgroundColor: Myappallcolor().appbackgroundcolor,
+      appBar: AppBar(
+        backgroundColor: Myappallcolor().appbarbackgroundcolor,
+      ),
       body: Column(
-        children: [Expanded(child: buildMessageList()), buildMessageInput()],
+        children: [
+          Expanded(child: buildMessageList()),
+          buildMessageInput(context)
+        ],
       ),
     );
   }
 
-  buildMessageInput() {
-    return Row(
-      children: [
-        Expanded(
+  buildMessageInput(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(
+          bottom: Mymediaquery().mediaqueryheight(0.03, context)),
+      child: Row(
+        children: [
+          Expanded(
             child: Inputfield(
-          hinttext: 'Enter message',
-          controller: messageController,
-        )),
-        IconButton(
-            onPressed: sendMessage,
-            icon: const Icon(
-              Icons.send,
-              size: 30,
-            ))
-      ],
+              hinttext: 'Enter message',
+              controller: messageController,
+            ),
+          ),
+          IconButton(
+              onPressed: sendMessage,
+              icon: Icon(
+                Icons.send,
+                size: 30,
+                color: Myappallcolor().colorwhite,
+              ))
+        ],
+      ),
     );
   }
 
@@ -57,7 +77,12 @@ class ChatPage extends StatelessWidget {
     return Container(
       alignment: alignment,
       child: Column(
-        children: [Text(data['senderEmail']), Text(data['message'])],
+        children: [
+          // Text(data['sendEmail']),
+          ChatBubble(
+            message: data['message'],
+          )
+        ],
       ),
     );
   }

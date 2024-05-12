@@ -7,7 +7,10 @@ class BodyMaintainceBloc
     extends Bloc<BodyMaintainceEvent, BodyMaintainceState> {
   BodyMaintainceBloc()
       : super(BodyMaintainceInitial(
-            prices: [], servicekeys: [], phonenumber: '')) {
+          prices: [],
+          servicekeys: [],
+          phonenumber: '',
+        )) {
     on<BodyMaintainceButtonPressed>(bodymaintaincebuttonpressed);
     on<InteriorButtonPressed>(interiorbuttonpressed);
     on<EngineServiceButtonPressed>(engineservicebuttonpressed);

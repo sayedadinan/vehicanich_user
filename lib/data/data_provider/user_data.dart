@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vehicanich/data/data_provider/keys.dart';
 
@@ -20,5 +21,15 @@ class UserDocId {
             .where('Email', isEqualTo: useremail)
             .get();
     return querysnapshot.docs.first.id;
+  }
+
+  Future<String?> getUserEmail() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      return user.email;
+    } else {
+      // If no user is authenticated, return null
+      return null;
+    }
   }
 }

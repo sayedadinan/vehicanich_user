@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vehicanich/blocs/booking_blocs/body_main_bloc/body_maintaince_bloc.dart';
 import 'package:vehicanich/blocs/booking_blocs/booking_bloc/booking_bloc.dart';
 import 'package:vehicanich/blocs/bottom_nav_blocs/bottom_nav_bloc.dart';
+import 'package:vehicanich/blocs/chat_bloc/bloc/chating_bloc.dart';
 import 'package:vehicanich/blocs/forgot_password_blocs/forgot_pass_bloc.dart';
 import 'package:vehicanich/blocs/login_bloc/login_bloc.dart';
 import 'package:vehicanich/blocs/onboarding_blocs/onboarding_bloc.dart';
@@ -30,6 +31,7 @@ void main() async {
     BlocProvider(create: (context) => UserDetailsUpdationBloc()),
     BlocProvider(create: (context) => BodyMaintainceBloc()),
     BlocProvider(create: (context) => BookingBloc()),
+    BlocProvider(create: (context) => ChatingBloc()),
   ], child: const MyApp()));
 }
 

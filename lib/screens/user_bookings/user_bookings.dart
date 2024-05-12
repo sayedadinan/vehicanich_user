@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:vehicanich/data/data_provider/keys.dart';
 import 'package:vehicanich/data/repositories/user_repositery.dart';
 import 'package:vehicanich/utils/app_colors.dart';
+import 'package:vehicanich/utils/app_custom_loader.dart';
 import 'package:vehicanich/utils/mediaquery.dart';
 
 class UserBookingsPage extends StatelessWidget {
@@ -67,7 +69,7 @@ class _UserBookingsBody extends StatelessWidget {
                     future: UserRepository().userMybookings(),
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
-                        return const CircularProgressIndicator();
+                        return loader;
                       } else if (snapshot.hasError) {
                         return Text('Error: ${snapshot.error}');
                       } else {
@@ -92,31 +94,44 @@ class _UserBookingsBody extends StatelessWidget {
                                       .mediaqueryheight(0.00, context),
                                 ),
                                 child: Card(
-                                  color: Myappallcolor().listcontainer,
-                                  child: SizedBox(
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: Myappallcolor().listcontainer,
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
                                     height: Mymediaquery()
-                                        .mediaqueryheight(0.16, context),
+                                        .mediaqueryheight(0.12, context),
                                     child: Row(
                                       children: [
-                                        SizedBox(
-                                          width: Mymediaquery()
-                                              .mediaquerywidth(0.02, context),
-                                        ),
-                                        Text(
-                                          bookings['shopphone'] ??
-                                              'Shop Phone not available',
-                                          style: const TextStyle(
-                                              color: Colors.white),
-                                        ),
-                                        SizedBox(
-                                          width: Mymediaquery()
-                                              .mediaquerywidth(0.23, context),
-                                        ),
-                                        Text(
-                                          bookings['date'] ??
-                                              'Shop Phone not available',
-                                          style: const TextStyle(
-                                              color: Colors.white),
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                              left: Mymediaquery()
+                                                  .mediaquerywidth(
+                                                      0.05, context)),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Rowforcontainer(
+                                                  valuetext: bookings[
+                                                      ReferenceKeys
+                                                          .servicename],
+                                                  keytext: 'Service Category'),
+                                              Rowforcontainer(
+                                                  valuetext: bookings[
+                                                      ReferenceKeys
+                                                          .vehiclenumber],
+                                                  keytext: 'Vehicle Number'),
+                                              Rowforcontainer(
+                                                  valuetext: bookings[
+                                                      ReferenceKeys.date],
+                                                  keytext: 'booked date'),
+                                              Rowforcontainer(
+                                                  valuetext: bookings[
+                                                      ReferenceKeys.shopphone],
+                                                  keytext: 'shop phone'),
+                                            ],
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -143,6 +158,39 @@ class _UserBookingsBody extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class Rowforcontainer extends StatelessWidget {
+  final String keytext;
+  final String valuetext;
+  const Rowforcontainer(
+      {super.key, required this.valuetext, required this.keytext});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        SizedBox(width: Mymediaquery().mediaquerywidth(0.08, context)),
+        SizedBox(
+          width: Mymediaquery().mediaquerywidth(0.32, context),
+          child: Text(keytext),
+        ),
+        Text(
+          ':',
+          style: TextStyle(
+            fontSize: 20,
+            color: Myappallcolor().textcolor,
+          ),
+        ),
+        Padding(
+            padding: EdgeInsets.only(
+                left: Mymediaquery().mediaquerywidth(0.04, context)),
+            child: Text(
+              valuetext,
+            )),
+      ],
     );
   }
 }

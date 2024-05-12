@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vehicanich/blocs/booking_blocs/body_main_bloc/body_maintaince_bloc.dart';
+import 'package:vehicanich/blocs/chat_bloc/bloc/chating_bloc.dart';
 import 'package:vehicanich/data/repositories/shop_details/shop_details_keys.dart';
 import 'package:vehicanich/screens/body_maintaince_screens/body_maintains_category.dart';
 import 'package:vehicanich/utils/app_colors.dart';
@@ -11,11 +12,24 @@ import 'package:vehicanich/widgets/shop_details_widget/shop_details_iconrow.dart
 import 'package:vehicanich/widgets/shop_details_widget/shop_details_textarrangement.dart';
 import 'package:vehicanich/widgets/shop_details_widget/shop_image_container.dart';
 
-class ShopDetailsPage extends StatelessWidget {
+class ShopDetailsPage extends StatefulWidget {
   final String tag;
   final Map<String, dynamic> shopdetails;
   const ShopDetailsPage(
       {super.key, required this.tag, required this.shopdetails});
+
+  @override
+  State<ShopDetailsPage> createState() => _ShopDetailsPageState();
+}
+
+class _ShopDetailsPageState extends State<ShopDetailsPage> {
+  @override
+  void initState() {
+    super.initState();
+    context
+        .read<ChatingBloc>()
+        .add(FetchShopId(shopPhone: widget.shopdetails[Shopkeys.phone]));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,18 +61,19 @@ class ShopDetailsPage extends StatelessWidget {
             child: Column(
               children: [
                 ShopDetailImage(
-                    tag: tag, imagepath: shopdetails[Shopkeys.bannerimagepath]),
+                    tag: widget.tag,
+                    imagepath: widget.shopdetails[Shopkeys.bannerimagepath]),
                 SizedBox(
                     height: Mymediaquery().mediaqueryheight(0.03, context)),
                 ShopTextArrange(
-                  shopname: shopdetails[Shopkeys.shopname],
+                  shopname: widget.shopdetails[Shopkeys.shopname],
                 ),
                 SizedBox(
                   height: Mymediaquery().mediaqueryheight(0.02, context),
                 ),
                 ShopTimeText(
-                  startingtime: shopdetails[Shopkeys.startingtime],
-                  closingtime: shopdetails[Shopkeys.closingtime],
+                  startingtime: widget.shopdetails[Shopkeys.startingtime],
+                  closingtime: widget.shopdetails[Shopkeys.closingtime],
                 ),
                 SizedBox(
                   height: Mymediaquery().mediaqueryheight(0.04, context),
@@ -101,7 +116,9 @@ class ShopDetailsPage extends StatelessWidget {
                         padding: EdgeInsets.only(
                             left:
                                 Mymediaquery().mediaquerywidth(0.05, context)),
-                        child: const DetailsPageRow(),
+                        child: DetailsPageRow(
+                          shopPhone: widget.shopdetails[Shopkeys.phone],
+                        ),
                       ),
                       SizedBox(
                           height:
@@ -149,7 +166,8 @@ class ShopDetailsPage extends StatelessWidget {
                             context.read<BodyMaintainceBloc>().add(
                                 BodyMaintainceButtonPressed(
                                     servicemapkey: Shopkeys.bodyservicemap,
-                                    shopphone: shopdetails[Shopkeys.phone]));
+                                    shopphone:
+                                        widget.shopdetails[Shopkeys.phone]));
                           },
                           text: 'Body Maintaince and Repair',
                           fontSize:
@@ -165,7 +183,8 @@ class ShopDetailsPage extends StatelessWidget {
                             context.read<BodyMaintainceBloc>().add(
                                 InteriorButtonPressed(
                                     servicemapkey: Shopkeys.interiorservicemap,
-                                    shopphone: shopdetails[Shopkeys.phone]));
+                                    shopphone:
+                                        widget.shopdetails[Shopkeys.phone]));
                           },
                           text: 'Interior Services',
                           fontSize:
@@ -181,7 +200,8 @@ class ShopDetailsPage extends StatelessWidget {
                             context.read<BodyMaintainceBloc>().add(
                                 EngineServiceButtonPressed(
                                     servicemapkey: Shopkeys.enginservicemap,
-                                    shopphone: shopdetails[Shopkeys.phone]));
+                                    shopphone:
+                                        widget.shopdetails[Shopkeys.phone]));
                           },
                           text: 'Engine and Mechanical Services',
                           fontSize:

@@ -16,11 +16,12 @@ class BookingScreen extends StatelessWidget {
   final String servicename;
   final dynamic rate;
   final String phonenumber;
-  BookingScreen(
-      {super.key,
-      required this.servicename,
-      required this.rate,
-      required this.phonenumber});
+  BookingScreen({
+    super.key,
+    required this.servicename,
+    required this.rate,
+    required this.phonenumber,
+  });
   TextEditingController vehiclenumberController = TextEditingController();
   TextEditingController userbookingphoneController = TextEditingController();
   late DateTime selectingdate;
@@ -135,12 +136,13 @@ class BookingScreen extends StatelessWidget {
                 color: Myappallcolor().buttonforgroundcolor,
                 function: () {
                   context.read<BookingBloc>().add(BookingbuttonPressed(
-                      shopphonenumber: phonenumber,
-                      datepicked: selectingdate,
-                      vehiclenumbercontroller: vehiclenumberController.text,
-                      userphonenumbercontroller:
-                          userbookingphoneController.text,
-                      servicename: servicename));
+                        shopphonenumber: phonenumber,
+                        datepicked: selectingdate,
+                        vehiclenumbercontroller: vehiclenumberController.text,
+                        userphonenumbercontroller:
+                            userbookingphoneController.text,
+                        servicename: servicename,
+                      ));
                 },
                 text: 'Proceed to pay',
                 fontSize: Mymediaquery().mediaquerywidth(0.04, context),
