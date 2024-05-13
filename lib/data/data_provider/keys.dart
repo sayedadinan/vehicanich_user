@@ -9,4 +9,6 @@ class ReferenceKeys {
   static String date = 'date';
   static String vehiclenumber = 'vehiclenumber';
   static String servicename = 'servicename';
+  static String ordered = "ordered";
+  static String shopId = "shopId";
 }

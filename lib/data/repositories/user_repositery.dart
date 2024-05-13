@@ -79,7 +79,8 @@ class UserRepository {
       final userDocRef = UserDataReference()
           .userCollectionReference()
           .doc(userId)
-          .collection(ReferenceKeys.bookings);
+          .collection(ReferenceKeys.bookings)
+          .where(ReferenceKeys.ordered, isEqualTo: true);
       final querySnapshot = await userDocRef.get();
       final List<Map<String, dynamic>> bookings = querySnapshot.docs
           .map((DocumentSnapshot doc) => doc.data() as Map<String, dynamic>)
@@ -91,4 +92,6 @@ class UserRepository {
       rethrow; // Rethrow the error to handle it further up the call stack
     }
   }
+
+  bookingsCancelling(shopId) {}
 }

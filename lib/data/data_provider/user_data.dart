@@ -28,7 +28,6 @@ class UserDocId {
     if (user != null) {
       return user.email;
     } else {
-      // If no user is authenticated, return null
       return null;
     }
   }

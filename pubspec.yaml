@@ -71,15 +71,15 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  fonts:
-    - family: Cormorant_Garamond
-      fonts:
-        - asset: assets/fonts/Cormorant_Garamond/CormorantGaramond-SemiBold.ttf
-        # - asset: assets/fonts/Oswald-VariableFont_wght.ttf
-  #         style: italic
-    - family: Oswald
-      fonts:
-        - asset: assets/fonts/Oswald-VariableFont_wght.ttf
+  # fonts:
+  #   - family: Cormorant_Garamond
+  #     fonts:
+  #       - asset: assets/fonts/Cormorant_Garamond/CormorantGaramond-SemiBold.ttf
+  #       # - asset: assets/fonts/Oswald-VariableFont_wght.ttf
+  # #         style: italic
+  #   - family: Oswald
+  #     fonts:
+  #       - asset: assets/fonts/Oswald-VariableFont_wght.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
   #

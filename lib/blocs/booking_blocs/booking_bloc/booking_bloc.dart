@@ -2,6 +2,7 @@
 import 'package:bloc/bloc.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vehicanich/data/data_provider/keys.dart';
 import 'package:vehicanich/data/data_provider/shop_data.dart';
 import 'package:vehicanich/data/data_provider/user_data.dart';
@@ -13,6 +14,7 @@ part 'booking_state.dart';
 class BookingBloc extends Bloc<BookingEvent, BookingState> {
   BookingBloc() : super(BookingInitial()) {
     on<BookingbuttonPressed>(bookingbuttonpressed);
+    on<BookingCancelledPressed>(bookingcancelledPressed);
   }
   bookingbuttonpressed(
       BookingbuttonPressed event, Emitter<BookingState> emit) async {
@@ -44,7 +46,8 @@ class BookingBloc extends Bloc<BookingEvent, BookingState> {
       "isStarted": false,
       "isCompleted": false,
       "userId": userid,
-      "userEmail": userEmail
+      "userEmail": userEmail,
+      "ordered": true
     });
     final userDocRef = UserDataReference()
         .userCollectionReference()
@@ -57,9 +60,47 @@ class BookingBloc extends Bloc<BookingEvent, BookingState> {
         "date": formattedDate,
         "vehiclenumber": event.vehiclenumbercontroller,
         "servicename": event.servicename,
+        "ordered": true,
+        "shopId": shopid
       });
     } catch (e) {
       // Handle errors
     }
+  }
+
+  bookingcancelledPressed(
+      BookingCancelledPressed event, Emitter<BookingState> emit) async {
+    print('worked');
+    print('this is shopId${event.shopId}');
+    final userEmail = await UserDocId().getUserEmail();
+    final userId = await UserDocId().getUserId();
+    final currentIdInShop = await ShopReference()
+        .shopCollectionReference()
+        .doc(event.shopId)
+        .collection("newbooking")
+        .where(ReferenceKeys.vehiclenumber, isEqualTo: event.vehicleNumber)
+        .where(ReferenceKeys.servicename, isEqualTo: event.serviceName)
+        .get();
+    final bookingIdInShop = currentIdInShop.docs.first.id;
+    final reference = ShopReference()
+        .shopCollectionReference()
+        .doc(event.shopId)
+        .collection("newbooking")
+        .doc(bookingIdInShop);
+    reference.update({ReferenceKeys.ordered: false});
+    final currentIdUser = await UserDataReference()
+        .userCollectionReference()
+        .doc(userId)
+        .collection(ReferenceKeys.bookings)
+        .where(ReferenceKeys.servicename, isEqualTo: event.serviceName)
+        .get();
+    final bookingIdInUser = currentIdUser.docs.first.id;
+    print('this is bookinguser $bookingIdInUser');
+    final userDocRef = await UserDataReference()
+        .userCollectionReference()
+        .doc(userId)
+        .collection(ReferenceKeys.bookings)
+        .doc(bookingIdInUser);
+    userDocRef.update({ReferenceKeys.ordered: false});
   }
 }

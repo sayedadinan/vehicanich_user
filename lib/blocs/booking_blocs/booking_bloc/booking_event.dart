@@ -18,3 +18,14 @@ class BookingbuttonPressed extends BookingEvent {
     required this.shopphonenumber,
   });
 }
+
+class BookingCancelledPressed extends BookingEvent {
+  final String shopId;
+  final String serviceName;
+  final String vehicleNumber;
+  BookingCancelledPressed({
+    required this.serviceName,
+    required this.shopId,
+    required this.vehicleNumber,
+  });
+}
