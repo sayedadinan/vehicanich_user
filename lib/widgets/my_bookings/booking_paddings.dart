@@ -28,7 +28,7 @@ class PaddingsOfBookingCard extends StatelessWidget {
               bookings: bookings,
             )));
           },
-          child: my_booking_card(bookings: bookings)),
+          child: My_booking_card(bookings: bookings)),
     );
   }
 }

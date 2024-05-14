@@ -4,8 +4,8 @@ import 'package:vehicanich/utils/app_colors.dart';
 import 'package:vehicanich/utils/mediaquery.dart';
 import 'package:vehicanich/widgets/my_bookings/row_text_arrange.dart';
 
-class my_booking_card extends StatelessWidget {
-  const my_booking_card({
+class My_booking_card extends StatelessWidget {
+  const My_booking_card({
     super.key,
     required this.bookings,
   });

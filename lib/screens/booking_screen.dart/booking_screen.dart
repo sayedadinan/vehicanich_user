@@ -2,6 +2,7 @@ import 'package:easy_date_timeline/easy_date_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vehicanich/blocs/booking_blocs/booking_bloc/booking_bloc.dart';
+import 'package:vehicanich/screens/home_screen/home_screens.dart';
 import 'package:vehicanich/utils/app_colors.dart';
 import 'package:vehicanich/utils/app_custom_appbar.dart';
 import 'package:vehicanich/utils/app_custom_button.dart';
@@ -143,6 +144,10 @@ class BookingScreen extends StatelessWidget {
                             userbookingphoneController.text,
                         servicename: servicename,
                       ));
+                  Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (context) => const HomeScreen()),
+                    (Route<dynamic> route) => false,
+                  );
                 },
                 text: 'Proceed to pay',
                 fontSize: Mymediaquery().mediaquerywidth(0.04, context),

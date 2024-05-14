@@ -21,6 +21,7 @@ class ChatService {
       List<String> ids = [currentUserId, receiverId];
       ids.sort();
       String chatRoomId = ids.join("_");
+      print('this is sending $chatRoomId ');
       await firestore
           .collection('chat_rooms')
           .doc(chatRoomId)
@@ -35,11 +36,13 @@ class ChatService {
   }
 
   Stream<QuerySnapshot> getMessages(String userId, String otherUserId) {
+    print('object');
     try {
       List<String> ids = [userId, otherUserId];
       ids.sort();
       print('this ids $ids');
       dynamic chatRoomId = ids.join("_");
+      print('this getting $chatRoomId ');
       return firestore
           .collection('chat_rooms')
           .doc(chatRoomId)

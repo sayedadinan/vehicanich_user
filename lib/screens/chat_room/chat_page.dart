@@ -17,7 +17,7 @@ class ChatPage extends StatelessWidget {
   final TextEditingController messageController = TextEditingController();
   final ChatService chatService = ChatService();
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
-  sendMessage() async {
+  sendMessages() async {
     print('this is inside of chat$receiverUserID');
     if (receiverUserID.isNotEmpty && messageController.text.isNotEmpty) {
       print(receiverUserID);
@@ -58,7 +58,7 @@ class ChatPage extends StatelessWidget {
             ),
           ),
           IconButton(
-              onPressed: sendMessage,
+              onPressed: sendMessages,
               icon: Icon(
                 Icons.send,
                 size: 30,
@@ -90,7 +90,9 @@ class ChatPage extends StatelessWidget {
   buildMessageList() {
     return StreamBuilder(
       stream: chatService.getMessages(
-          receiverUserID, firebaseAuth.currentUser!.uid),
+        receiverUserID,
+        firebaseAuth.currentUser!.uid,
+      ),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           return Text('Error${snapshot.error}');
