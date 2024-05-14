@@ -36,11 +36,9 @@ class ChatService {
   }
 
   Stream<QuerySnapshot> getMessages(String userId, String otherUserId) {
-    print('object');
     try {
       List<String> ids = [userId, otherUserId];
       ids.sort();
-      print('this ids $ids');
       dynamic chatRoomId = ids.join("_");
       print('this getting $chatRoomId ');
       return firestore
@@ -50,7 +48,6 @@ class ChatService {
           .orderBy('timestamp', descending: false)
           .snapshots();
     } catch (e) {
-      // Handle the exception here
       print('Error fetching messages: $e');
       // Return an empty stream or throw the error based on your requirement
       return Stream.empty();

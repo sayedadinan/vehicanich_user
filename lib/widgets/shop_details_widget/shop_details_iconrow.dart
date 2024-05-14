@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:vehicanich/blocs/chat_bloc/bloc/chating_bloc.dart';
+import 'package:vehicanich/data/repositories/shop_details/shop_details_keys.dart';
+import 'package:vehicanich/data/services/call_services.dart';
 import 'package:vehicanich/screens/chat_room/chat_page.dart';
 import 'package:vehicanich/utils/app_colors.dart';
 import 'package:vehicanich/utils/mediaquery.dart';
 import 'package:vehicanich/utils/page_transition/page_fade_transition.dart';
 
 class DetailsPageRow extends StatelessWidget {
+  final Map<String, dynamic> shopdetails;
   final String shopPhone;
-  const DetailsPageRow({super.key, required this.shopPhone});
+  const DetailsPageRow(
+      {super.key, required this.shopPhone, required this.shopdetails});
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +22,17 @@ class DetailsPageRow extends StatelessWidget {
         return Row(
           children: [
             SizedBox(width: Mymediaquery().mediaquerywidth(0.05, context)),
-            const IconSetup(icon: Icons.call_outlined),
+            InkWell(
+              onTap: () {
+                print(shopPhone);
+                CallService().makePhoneCall(shopPhone);
+              },
+              splashColor: Colors.grey.withOpacity(0.5),
+              splashFactory: InkSplash.splashFactory,
+              child: const IconSetup(icon: Icons.call_outlined),
+            ),
             SizedBox(width: Mymediaquery().mediaquerywidth(0.05, context)),
-            const IconSetup(icon: Icons.send),
+            InkWell(onTap: () {}, child: const IconSetup(icon: Icons.send)),
             SizedBox(width: Mymediaquery().mediaquerywidth(0.05, context)),
             GestureDetector(
                 onTap: () {
@@ -33,7 +46,12 @@ class DetailsPageRow extends StatelessWidget {
                 },
                 child: IconSetup(icon: Icons.message_rounded)),
             SizedBox(width: Mymediaquery().mediaquerywidth(0.05, context)),
-            const IconSetup(icon: Icons.share)
+            InkWell(
+                onTap: () {
+                  Share.share(
+                      'Shop Name : ${shopdetails[Shopkeys.shopname]},     Phone : $shopPhone,Location : ${shopdetails[Shopkeys.locationaddress]}');
+                },
+                child: const IconSetup(icon: Icons.share))
           ],
         );
       },

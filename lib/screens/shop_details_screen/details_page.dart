@@ -117,6 +117,7 @@ class _ShopDetailsPageState extends State<ShopDetailsPage> {
                             left:
                                 Mymediaquery().mediaquerywidth(0.05, context)),
                         child: DetailsPageRow(
+                          shopdetails: widget.shopdetails,
                           shopPhone: widget.shopdetails[Shopkeys.phone],
                         ),
                       ),
