@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:vehicanich/data/services/details_services/map_view.dart';
 import 'package:vehicanich/utils/app_colors.dart';
 import 'package:vehicanich/utils/mediaquery.dart';
 
 class ShopTextArrange extends StatelessWidget {
   final String shopname;
-  const ShopTextArrange({super.key, required this.shopname});
+  final double longitude;
+  final double latitude;
+  const ShopTextArrange(
+      {super.key,
+      required this.shopname,
+      required this.longitude,
+      required this.latitude});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +21,6 @@ class ShopTextArrange extends StatelessWidget {
         Text(
           shopname,
           style: TextStyle(
-              // fontFamily: 'Oswald',
               color: Myappallcolor().colorwhite,
               fontWeight: FontWeight.w300,
               fontSize: Mymediaquery().mediaquerywidth(0.06, context)),
@@ -31,12 +37,17 @@ class ShopTextArrange extends StatelessWidget {
             SizedBox(
               width: Mymediaquery().mediaquerywidth(0.02, context),
             ),
-            Text(
-              'Map View',
-              style: TextStyle(
-                  color: Myappallcolor().colorwhite,
-                  fontWeight: FontWeight.w400,
-                  fontSize: Mymediaquery().mediaquerywidth(0.04, context)),
+            GestureDetector(
+              onTap: () {
+                MapViews().launchMap(latitude, longitude);
+              },
+              child: Text(
+                'Map View',
+                style: TextStyle(
+                    color: Myappallcolor().colorwhite,
+                    fontWeight: FontWeight.w400,
+                    fontSize: Mymediaquery().mediaquerywidth(0.04, context)),
+              ),
             ),
           ],
         ),

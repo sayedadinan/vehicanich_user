@@ -33,6 +33,8 @@ class _ShopDetailsPageState extends State<ShopDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
+    double latitude = widget.shopdetails[Shopkeys.shoplocation].latitude;
+    double longitude = widget.shopdetails[Shopkeys.shoplocation].longitude;
     return BlocConsumer<BodyMaintainceBloc, BodyMaintainceState>(
       listener: (context, state) {
         if (state is BodyMaintaincebuttonNavigation) {
@@ -66,6 +68,8 @@ class _ShopDetailsPageState extends State<ShopDetailsPage> {
                 SizedBox(
                     height: Mymediaquery().mediaqueryheight(0.03, context)),
                 ShopTextArrange(
+                  longitude: longitude,
+                  latitude: latitude,
                   shopname: widget.shopdetails[Shopkeys.shopname],
                 ),
                 SizedBox(

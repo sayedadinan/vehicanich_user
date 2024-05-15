@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:vehicanich/blocs/chat_bloc/bloc/chating_bloc.dart';
 import 'package:vehicanich/data/repositories/shop_details/shop_details_keys.dart';
-import 'package:vehicanich/data/services/call_services.dart';
+import 'package:vehicanich/data/services/details_services/call_services.dart';
 import 'package:vehicanich/screens/chat_room/chat_page.dart';
 import 'package:vehicanich/utils/app_colors.dart';
 import 'package:vehicanich/utils/mediaquery.dart';

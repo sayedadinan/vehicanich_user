@@ -5,7 +5,7 @@ class Shopkeys {
   static String whatsapp = 'whatsapp';
   static String phone = 'phone';
   static String shopname = 'shopname';
-  static String shoplocation = 'shoplocation';
+  static String shoplocation = 'location';
   static String description = 'description';
   static String startingtime = 'startingtime';
   static String closingtime = 'closingtime';
