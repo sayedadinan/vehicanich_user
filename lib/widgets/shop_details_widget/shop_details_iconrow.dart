@@ -4,6 +4,7 @@ import 'package:share_plus/share_plus.dart';
 import 'package:vehicanich/blocs/chat_bloc/bloc/chating_bloc.dart';
 import 'package:vehicanich/data/repositories/shop_details/shop_details_keys.dart';
 import 'package:vehicanich/data/services/details_services/call_services.dart';
+import 'package:vehicanich/data/services/details_services/whatsapp_service.dart';
 import 'package:vehicanich/screens/chat_room/chat_page.dart';
 import 'package:vehicanich/utils/app_colors.dart';
 import 'package:vehicanich/utils/mediaquery.dart';
@@ -14,7 +15,7 @@ class DetailsPageRow extends StatelessWidget {
   final String shopPhone;
   const DetailsPageRow(
       {super.key, required this.shopPhone, required this.shopdetails});
-
+  final shop = 9744157749;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ChatingBloc, ChatingState>(
@@ -32,7 +33,12 @@ class DetailsPageRow extends StatelessWidget {
               child: const IconSetup(icon: Icons.call_outlined),
             ),
             SizedBox(width: Mymediaquery().mediaquerywidth(0.05, context)),
-            InkWell(onTap: () {}, child: const IconSetup(icon: Icons.send)),
+            InkWell(
+                onTap: () {
+                  WhatsappService().launchWhatsApp(
+                      shop.toString(), 'this is a message from vehicanich');
+                },
+                child: const IconSetup(icon: Icons.send)),
             SizedBox(width: Mymediaquery().mediaquerywidth(0.05, context)),
             GestureDetector(
                 onTap: () {
