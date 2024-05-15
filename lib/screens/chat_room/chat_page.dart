@@ -18,10 +18,7 @@ class ChatPage extends StatelessWidget {
   final ChatService chatService = ChatService();
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   sendMessages() async {
-    print('this is inside of chat$receiverUserID');
     if (receiverUserID.isNotEmpty && messageController.text.isNotEmpty) {
-      print(receiverUserID);
-      print(messageController.text);
       await chatService.sendMessage(receiverUserID, messageController.text);
       messageController.clear();
     } else {
@@ -45,7 +42,9 @@ class ChatPage extends StatelessWidget {
     );
   }
 
-  buildMessageInput(BuildContext context) {
+  buildMessageInput(
+    BuildContext context,
+  ) {
     return Padding(
       padding: EdgeInsets.only(
           bottom: Mymediaquery().mediaqueryheight(0.03, context)),

@@ -6,10 +6,13 @@ import 'package:vehicanich/screens/home_screen/home_screens.dart';
 import 'package:vehicanich/utils/app_colors.dart';
 import 'package:vehicanich/utils/app_custom_appbar.dart';
 import 'package:vehicanich/utils/app_custom_button.dart';
+import 'package:vehicanich/utils/app_sizedbox.dart';
 import 'package:vehicanich/utils/app_textfields.dart';
 import 'package:vehicanich/utils/app_textvalidators.dart';
 import 'package:vehicanich/utils/mediaquery.dart';
-import 'package:vehicanich/widgets/details_widget/custom_text.dart';
+import 'package:vehicanich/widgets/details_widget/widget_arrangements/additional_text.dart';
+import 'package:vehicanich/widgets/details_widget/widget_arrangements/booking_instruction.dart';
+import 'package:vehicanich/widgets/details_widget/widget_arrangements/custom_text.dart';
 import 'package:vehicanich/widgets/details_widget/details_text.dart';
 
 // ignore: must_be_immutable
@@ -38,9 +41,9 @@ class BookingScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: Mymediaquery().mediaqueryheight(0.05, context)),
+            CustomSizedBoxHeight(0.05),
             const CustomizedText(text: detailspagestatictext),
-            SizedBox(height: Mymediaquery().mediaqueryheight(0.02, context)),
+            CustomSizedBoxHeight(0.02),
             Padding(
               padding: EdgeInsets.only(
                   left: Mymediaquery().mediaquerywidth(0.04, context),
@@ -53,70 +56,22 @@ class BookingScreen extends StatelessWidget {
                 },
               ),
             ),
-            SizedBox(height: Mymediaquery().mediaqueryheight(0.03, context)),
+            CustomSizedBoxHeight(0.03),
             Inputfield(
                 hinttext: 'your vehicle number',
                 controller: vehiclenumberController,
                 validator: (value) =>
                     Validators().validateVehicleNumber(value)),
-            SizedBox(height: Mymediaquery().mediaqueryheight(0.02, context)),
+            CustomSizedBoxHeight(0.02),
             Inputfield(
                 hinttext: 'your phone number',
                 controller: userbookingphoneController,
                 validator: (value) => Validators().validatePhoneNumber(value)),
             SizedBox(height: Mymediaquery().mediaqueryheight(0.06, context)),
-            Container(
-              decoration: BoxDecoration(
-                  color: Myappallcolor().detailspageboxcolor,
-                  border: Border.all(color: Myappallcolor().colorwhite),
-                  borderRadius: BorderRadius.circular(12)),
-              width: Mymediaquery().mediaquerywidth(0.78, context),
-              height: Mymediaquery().mediaqueryheight(0.21, context),
-              child: Column(
-                children: [
-                  SizedBox(
-                      height: Mymediaquery().mediaqueryheight(0.03, context)),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        detailscontainerpricetext,
-                        style: TextStyle(color: Myappallcolor().colorwhite),
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                      height: Mymediaquery().mediaqueryheight(0.02, context)),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        detailscontainerdescriptiontext,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w200,
-                            color: Myappallcolor().colorwhite,
-                            fontSize:
-                                Mymediaquery().mediaquerywidth(0.03, context)),
-                      )
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                SizedBox(width: Mymediaquery().mediaquerywidth(0.08, context)),
-                Text(
-                  detailspricedescription,
-                  style: TextStyle(
-                      fontWeight: FontWeight.w200,
-                      color: Myappallcolor().colorwhite,
-                      fontSize: Mymediaquery().mediaquerywidth(0.03, context)),
-                )
-              ],
-            ),
-            SizedBox(height: Mymediaquery().mediaqueryheight(0.03, context)),
+            const BookingInstructions(),
+            CustomSizedBoxHeight(0.02),
+            const PriceAdditionalText(),
+            CustomSizedBoxHeight(0.03),
             CustomButton(
                 color: Myappallcolor().buttonforgroundcolor,
                 function: () {
