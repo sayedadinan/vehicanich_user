@@ -7,8 +7,7 @@ class BodyMaintainceBloc
     extends Bloc<BodyMaintainceEvent, BodyMaintainceState> {
   BodyMaintainceBloc()
       : super(BodyMaintainceInitial(
-          prices: [],
-          servicekeys: [],
+          services: [],
           phonenumber: '',
         )) {
     on<BodyMaintainceButtonPressed>(bodymaintaincebuttonpressed);
@@ -18,31 +17,17 @@ class BodyMaintainceBloc
   bodymaintaincebuttonpressed(BodyMaintainceButtonPressed event,
       Emitter<BodyMaintainceState> emit) async {
     emit(BodyMaintaincebuttonNavigation(
-        phonenumber: event.shopphone,
-        prices: state.prices,
-        servicekeys: state.servicekeys));
+        phonenumber: event.shopphone, services: state.services));
     emit(Bodymaintainceloading(
-        phonenumber: event.shopphone,
-        prices: state.prices,
-        servicekeys: state.servicekeys));
+        phonenumber: event.shopphone, services: state.services));
     try {
       final servicemap = await ShopRepository()
           .getShopDetailswithmap(event.shopphone, event.servicemapkey);
-      List<String> services = [];
-      List<dynamic> rates = [];
-      Map<String, dynamic> map = servicemap.first[event.servicemapkey];
-      map.forEach((key, value) {
-        services.add(key);
-        rates.add(value);
-      });
+      List<dynamic> serviceList = servicemap.first[event.servicemapkey];
       emit(BodyMaintainceLoaded(
-          prices: rates,
-          servicekeys: services,
-          phonenumber: state.phonenumber));
+          phonenumber: state.phonenumber, services: serviceList));
       emit(BodyMaintainceInitial(
-          prices: rates,
-          servicekeys: services,
-          phonenumber: state.phonenumber));
+          services: serviceList, phonenumber: state.phonenumber));
     } catch (e) {
       print('something went wrong in bloc body $e');
     }
@@ -51,31 +36,22 @@ class BodyMaintainceBloc
   interiorbuttonpressed(
       InteriorButtonPressed event, Emitter<BodyMaintainceState> emit) async {
     emit(InteriorServiceeButtonNavigation(
-        phonenumber: event.shopphone,
-        prices: state.prices,
-        servicekeys: state.servicekeys));
+        phonenumber: event.shopphone, services: state.services));
     emit(InteriorServiceloading(
-        phonenumber: event.shopphone,
-        prices: state.prices,
-        servicekeys: state.servicekeys));
+      services: state.services,
+      phonenumber: event.shopphone,
+    ));
     try {
       final servicemap = await ShopRepository()
           .getShopDetailswithmap(event.shopphone, event.servicemapkey);
-      List<String> services = [];
-      List<dynamic> rates = [];
-      Map<String, dynamic> map = servicemap.first[event.servicemapkey];
-      map.forEach((key, value) {
-        services.add(key);
-        rates.add(value);
-      });
+      List<dynamic> serviceList = servicemap.first[event.servicemapkey];
+
       emit(InteriorServiceLoaded(
-          prices: rates,
-          servicekeys: services,
-          phonenumber: state.phonenumber));
+        services: state.services,
+        phonenumber: state.phonenumber,
+      ));
       emit(BodyMaintainceInitial(
-          prices: rates,
-          servicekeys: services,
-          phonenumber: state.phonenumber));
+          phonenumber: state.phonenumber, services: serviceList));
     } catch (e) {
       print('something went wrong in bloc interior $e');
     }
@@ -84,33 +60,21 @@ class BodyMaintainceBloc
   engineservicebuttonpressed(EngineServiceButtonPressed event,
       Emitter<BodyMaintainceState> emit) async {
     emit(EngineServiceeButtonNavigation(
-        phonenumber: event.shopphone,
-        prices: state.prices,
-        servicekeys: state.servicekeys));
+      services: state.services,
+      phonenumber: event.shopphone,
+    ));
     emit(EngineServiceloading(
-        phonenumber: event.shopphone,
-        prices: state.prices,
-        servicekeys: state.servicekeys));
+      services: state.services,
+      phonenumber: event.shopphone,
+    ));
     try {
       final servicemap = await ShopRepository()
           .getShopDetailswithmap(event.shopphone, event.servicemapkey);
-      List<String> services = [];
-      List<dynamic> rates = [];
-      Map<String, dynamic> map = servicemap.first[event.servicemapkey];
-      map.forEach((key, value) {
-        services.add(key);
-        rates.add(value);
-      });
-      print(services);
-      print(rates);
+      List<dynamic> serviceList = servicemap.first[event.servicemapkey];
       emit(EngineServiceLoaded(
-          prices: rates,
-          servicekeys: services,
-          phonenumber: state.phonenumber));
+          phonenumber: state.phonenumber, services: state.services));
       emit(BodyMaintainceInitial(
-          prices: rates,
-          servicekeys: services,
-          phonenumber: state.phonenumber));
+          phonenumber: state.phonenumber, services: serviceList));
     } catch (e) {
       print('something went wrong in bloc in engine $e');
     }

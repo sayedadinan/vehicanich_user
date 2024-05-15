@@ -1,82 +1,51 @@
 part of 'body_maintaince_bloc.dart';
 
 sealed class BodyMaintainceState {
-  List<String> servicekeys = [];
-  List<dynamic> prices = [];
+  List<dynamic> services;
   final String phonenumber;
-  BodyMaintainceState({
-    required this.prices,
-    required this.servicekeys,
-    required this.phonenumber,
-  });
+
+  BodyMaintainceState({required this.phonenumber, required this.services});
 }
 
 final class BodyMaintainceInitial extends BodyMaintainceState {
-  BodyMaintainceInitial(
-      {required super.prices,
-      required super.servicekeys,
-      required super.phonenumber});
+  BodyMaintainceInitial({required super.phonenumber, required super.services});
 }
 
 class BodyMaintaincebuttonNavigation extends BodyMaintainceState {
   BodyMaintaincebuttonNavigation(
-      {required super.prices,
-      required super.servicekeys,
-      required super.phonenumber});
+      {required super.phonenumber, required super.services});
 }
 
 class BodyMaintainceLoaded extends BodyMaintainceState {
-  BodyMaintainceLoaded(
-      {required super.prices,
-      required super.servicekeys,
-      required super.phonenumber});
+  BodyMaintainceLoaded({required super.phonenumber, required super.services});
 }
 
 class Bodymaintainceloading extends BodyMaintainceState {
-  Bodymaintainceloading(
-      {required super.prices,
-      required super.servicekeys,
-      required super.phonenumber});
+  Bodymaintainceloading({required super.phonenumber, required super.services});
 }
 
 class InteriorServiceeButtonNavigation extends BodyMaintainceState {
   InteriorServiceeButtonNavigation(
-      {required super.prices,
-      required super.servicekeys,
-      required super.phonenumber});
+      {required super.phonenumber, required super.services});
 }
 
 class InteriorServiceLoaded extends BodyMaintainceState {
-  InteriorServiceLoaded(
-      {required super.prices,
-      required super.servicekeys,
-      required super.phonenumber});
+  InteriorServiceLoaded({required super.phonenumber, required super.services});
 }
 
 class InteriorServiceloading extends BodyMaintainceState {
-  InteriorServiceloading(
-      {required super.prices,
-      required super.servicekeys,
-      required super.phonenumber});
+  InteriorServiceloading({required super.phonenumber, required super.services});
 }
 
 class EngineServiceeButtonNavigation extends BodyMaintainceState {
   EngineServiceeButtonNavigation(
-      {required super.prices,
-      required super.servicekeys,
-      required super.phonenumber});
+      {required super.phonenumber, required super.services});
 }
 
 class EngineServiceLoaded extends BodyMaintainceState {
-  EngineServiceLoaded(
-      {required super.prices,
-      required super.servicekeys,
-      required super.phonenumber});
+  EngineServiceLoaded({required super.phonenumber, required super.services});
 }
 
 class EngineServiceloading extends BodyMaintainceState {
-  EngineServiceloading(
-      {required super.prices,
-      required super.servicekeys,
-      required super.phonenumber});
+  EngineServiceloading({required super.phonenumber, required super.services});
 }

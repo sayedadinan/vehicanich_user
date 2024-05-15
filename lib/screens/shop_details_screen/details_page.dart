@@ -6,6 +6,7 @@ import 'package:vehicanich/data/repositories/shop_details/shop_details_keys.dart
 import 'package:vehicanich/screens/body_maintaince_screens/body_maintains_category.dart';
 import 'package:vehicanich/utils/app_colors.dart';
 import 'package:vehicanich/utils/app_custom_button.dart';
+import 'package:vehicanich/utils/app_googlebutton.dart';
 import 'package:vehicanich/utils/mediaquery.dart';
 import 'package:vehicanich/utils/page_transition/page_slide_transition.dart';
 import 'package:vehicanich/widgets/shop_details_widget/shop_details_iconrow.dart';
@@ -164,7 +165,7 @@ class _ShopDetailsPageState extends State<ShopDetailsPage> {
                       SizedBox(
                           height:
                               Mymediaquery().mediaqueryheight(0.02, context)),
-                      CustomButton(
+                      CustomGoogleButton(
                           bordercolor: Myappallcolor().colorwhite,
                           color: Colors.transparent,
                           function: () {

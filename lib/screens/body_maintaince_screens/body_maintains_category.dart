@@ -33,8 +33,8 @@ class ServiceDetails extends StatelessWidget {
               child: loader,
             );
           }
-          List<String> servicelist = state.servicekeys;
-          List<dynamic> rates = state.prices;
+          List<dynamic> servicelist = state.services;
+
           return Column(
             children: [
               SizedBox(height: Mymediaquery().mediaqueryheight(0.05, context)),
@@ -62,7 +62,6 @@ class ServiceDetails extends StatelessWidget {
                           Navigator.of(context).push(FadeTransitionPageRoute(
                               child: BookingScreen(
                                   phonenumber: state.phonenumber,
-                                  rate: rates[index].toString(),
                                   servicename: servicelist[index])));
                         },
                         child: Container(

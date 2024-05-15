@@ -14,17 +14,17 @@ class ShopRepository {
           .map((DocumentSnapshot doc) => doc.data() as Map<String, dynamic>)
           .toList();
 
-      // print('Successfully fetched data: $shopDetailsList');
+      print('Successfully fetched data: $shopDetailsList');
       // print(shopDetailsList.first[Shopkeys().bodyservicemap]);
-      Map<String, dynamic> map = shopDetailsList.first[Shopkeys.bodyservicemap];
-      List<String> m = [];
-      List<int> p = [];
-      map.forEach((key, value) {
-        m.add(key);
-        p.add(value);
-      });
-      print(m);
-      print(p.toString());
+      // Map<String, dynamic> map = shopDetailsList.first[Shopkeys.bodyservicemap];
+      // List<String> m = [];
+      // List<int> p = [];
+      // map.forEach((key, value) {
+      //   m.add(key);
+      //   p.add(value);
+      // });
+      // print(m);
+      // print(p.toString());
       return shopDetailsList;
     } catch (e) {
       print('Error fetching data: $e');
@@ -53,7 +53,8 @@ class ShopRepository {
       for (var doc in querySnapshot.docs) {
         Map<String, dynamic> shopDetails = doc.data() as Map<String, dynamic>;
         if (shopDetails.containsKey(servicemapkey)) {
-          Map<String, dynamic>? serviceMap = shopDetails[servicemapkey];
+          List<dynamic> serviceMap = shopDetails[servicemapkey];
+          // ignore: unnecessary_null_comparison
           if (serviceMap != null) {
             shopDetailsList.add(shopDetails);
           }
@@ -64,7 +65,7 @@ class ShopRepository {
       }).toList();
       return filteredList;
     } catch (e) {
-      print('Error fetching data: $e');
+      print('Error fetching data s: $e');
       rethrow;
     }
   }

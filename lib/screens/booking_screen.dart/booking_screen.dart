@@ -15,12 +15,10 @@ import 'package:vehicanich/widgets/details_widget/details_text.dart';
 // ignore: must_be_immutable
 class BookingScreen extends StatelessWidget {
   final String servicename;
-  final dynamic rate;
   final String phonenumber;
   BookingScreen({
     super.key,
     required this.servicename,
-    required this.rate,
     required this.phonenumber,
   });
   TextEditingController vehiclenumberController = TextEditingController();
@@ -104,20 +102,6 @@ class BookingScreen extends StatelessWidget {
                   ),
                 ],
               ),
-            ),
-            SizedBox(height: Mymediaquery().mediaqueryheight(0.06, context)),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                SizedBox(width: Mymediaquery().mediaquerywidth(0.08, context)),
-                Text(
-                  '₹ ${rate.toString()}',
-                  style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      color: Myappallcolor().colorwhite,
-                      fontSize: Mymediaquery().mediaquerywidth(0.03, context)),
-                )
-              ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
