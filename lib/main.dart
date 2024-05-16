@@ -20,7 +20,7 @@ import 'package:vehicanich/utils/constants/stripe_key.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await dotenv.load(fileName: "assets/.env");
+  await dotenv.load(fileName: ".env");
   Stripe.publishableKey = stripKey;
   await Stripe.instance.applySettings();
   await Firebase.initializeApp(
