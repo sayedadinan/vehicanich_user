@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:vehicanich/blocs/booking_blocs/body_main_bloc/body_maintaince_bloc.dart';
 import 'package:vehicanich/blocs/booking_blocs/booking_bloc/booking_bloc.dart';
 import 'package:vehicanich/blocs/bottom_nav_blocs/bottom_nav_bloc.dart';
@@ -14,10 +16,13 @@ import 'package:vehicanich/blocs/user_updation_blocs/user_updation_bloc.dart';
 import 'package:vehicanich/firebase_options.dart';
 import 'package:vehicanich/screens/onboarding/onboarding_screen.dart';
 import 'package:vehicanich/utils/app_colors.dart';
-// import 'package:vehicanich/utils/bottom_navigation/bottom_navigation.dart';
+import 'package:vehicanich/utils/constants/stripe_key.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: "assets/.env");
+  Stripe.publishableKey = stripKey;
+  await Stripe.instance.applySettings();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

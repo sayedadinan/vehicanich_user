@@ -1,0 +1,2 @@
+const String stripKey =
+    "pk_test_51PGxXLSCOXgnvgMP12I2dYyrdsURAK2JEFoJlqz7E1tslC30zBMFDGGHIe0SlSkBz74Ubj94qOxNIaA4AlemivV400voV5EhrM";
