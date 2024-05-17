@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,6 +18,7 @@ import 'package:vehicanich/blocs/user_updation_blocs/user_updation_bloc.dart';
 import 'package:vehicanich/firebase_options.dart';
 import 'package:vehicanich/screens/onboarding/onboarding_screen.dart';
 import 'package:vehicanich/utils/app_colors.dart';
+import 'package:vehicanich/utils/bottom_navigation/bottom_navigation.dart';
 import 'package:vehicanich/utils/constants/stripe_key.dart';
 
 void main() async {
@@ -53,17 +55,17 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(
               seedColor: Myappallcolor().buttonforgroundcolor),
           useMaterial3: true),
-      home: Splashscreen(),
-      // home: StreamBuilder<User?>(
-      //   stream: FirebaseAuth.instance.authStateChanges(),
-      //   builder: (context, snapshot) {
-      //     if (snapshot.hasData) {
-      //       return BottomBar();
-      //     } else {
-      //       return Splashscreen();
-      //     }
-      //   },
-      // ),
+      // home: Splashscreen(),
+      home: StreamBuilder<User?>(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return BottomBar();
+          } else {
+            return Splashscreen();
+          }
+        },
+      ),
     );
   }
 }

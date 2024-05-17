@@ -17,22 +17,29 @@ class Rowforcontainer extends StatelessWidget {
           width: Mymediaquery().mediaquerywidth(0.32, context),
           child: Text(
             keytext,
-            style: TextStyle(color: Myappallcolor().colorwhite),
+            style: TextStyle(
+                color: Myappallcolor().colorwhite,
+                fontSize: Mymediaquery().mediaquerywidth(0.04, context)),
           ),
         ),
         Text(
           ':',
           style: TextStyle(
-            fontSize: 20,
+            fontSize: Mymediaquery().mediaquerywidth(0.03, context),
             color: Myappallcolor().textcolor,
           ),
         ),
         Padding(
             padding: EdgeInsets.only(
                 left: Mymediaquery().mediaquerywidth(0.04, context)),
-            child: Text(
-              valuetext,
-              style: TextStyle(color: Myappallcolor().colorwhite),
+            child: SizedBox(
+              width: Mymediaquery().mediaquerywidth(0.3, context),
+              child: Text(
+                valuetext,
+                style: TextStyle(
+                    color: Myappallcolor().colorwhite,
+                    fontSize: Mymediaquery().mediaquerywidth(0.03, context)),
+              ),
             )),
       ],
     );

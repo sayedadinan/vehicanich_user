@@ -11,6 +11,7 @@ class AppColor {
   final Color bottomnavigationforcolor;
   final Color listcontainer;
   final Color detailspageboxcolor;
+  final Color bookingCardColor;
   AppColor(
       {required this.appbackgroundcolor,
       required this.bottomnavigationforcolor,
@@ -21,7 +22,8 @@ class AppColor {
       required this.appbarbackgroundcolor,
       required this.emergencybuttoncolor,
       required this.listcontainer,
-      required this.detailspageboxcolor});
+      required this.detailspageboxcolor,
+      required this.bookingCardColor});
 }
 
 final class Myappallcolor extends AppColor {
@@ -37,5 +39,6 @@ final class Myappallcolor extends AppColor {
             textcolor: const Color.fromARGB(255, 167, 199, 198),
             buttonforgroundcolor: const Color.fromARGB(255, 17, 187, 180),
             listcontainer: const Color.fromARGB(255, 71, 100, 108),
-            detailspageboxcolor: const Color.fromARGB(255, 27, 66, 60));
+            detailspageboxcolor: const Color.fromARGB(255, 27, 66, 60),
+            bookingCardColor: const Color.fromARGB(255, 1, 38, 48));
 }
