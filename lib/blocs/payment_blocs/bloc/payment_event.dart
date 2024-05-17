@@ -7,3 +7,5 @@ class PaymentButtonPressed extends PaymentEvent {
 
   PaymentButtonPressed({required this.amount});
 }
+
+class ShowSuccess extends PaymentEvent {}

@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
@@ -8,11 +9,14 @@ part 'payment_state.dart';
 class PaymentBloc extends Bloc<PaymentEvent, PaymentState> {
   PaymentBloc() : super(PaymentInitial()) {
     on<PaymentButtonPressed>(paymentButtonTap);
+    on<ShowSuccess>(showSuccess);
   }
   paymentButtonTap(
       PaymentButtonPressed event, Emitter<PaymentState> emit) async {
     try {
+      log('worked this bloc');
       double convertedMoney = double.parse(event.amount);
+      log(convertedMoney.toString());
       int amount = convertedMoney.toInt();
       await initPaymentSheet(amount: amount.toString());
       await Stripe.instance.presentPaymentSheet();
@@ -49,3 +53,5 @@ Future<void> initPaymentSheet({required String amount}) async {
     rethrow;
   }
 }
+
+showSuccess(ShowSuccess event, Emitter<PaymentState> emit) async {}

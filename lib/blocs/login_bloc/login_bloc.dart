@@ -35,6 +35,7 @@ class LoginBloc extends Bloc<LoginBlocEvent, LoginBlocState> {
     try {
       User? user = await auth.sighInWIthEmailAndPassword(
           event.email.text, event.password.text);
+      print('this user $user');
       if (user != null) {
         print('user login successful');
         emit(NavigateToHome());
