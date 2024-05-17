@@ -18,4 +18,8 @@ class Shopkeys {
   static String isApproved = 'isApproved';
   static String isRejected = 'isRejected';
   static String locationaddress = 'locationaddress';
+  static String newBooking = 'newbooking';
+  static String isPending = 'isPending';
+  static String isStarted = 'isStarted';
+  static String isCompleted = 'isCompleted';
 }

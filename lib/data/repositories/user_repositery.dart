@@ -1,4 +1,6 @@
 // user_repository.dart
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vehicanich/data/data_provider/keys.dart';
@@ -30,7 +32,7 @@ class UserRepository {
   Future<UserModel> getuserDetails() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     final String? email = prefs.getString('user_email');
-    print("Fetching user details for email: $email");
+    log("Fetching user details for email: $email");
     try {
       final snapshot = await _db
           .collection(ReferenceKeys.users)
@@ -43,7 +45,7 @@ class UserRepository {
           snapshot.docs.map((e) => UserModel.fromSnapshot(e)).single;
       return userData;
     } catch (e) {
-      print("Error fetching user details: $e");
+      log("Error fetching user details: $e");
       rethrow;
     }
   }
@@ -56,7 +58,7 @@ class UserRepository {
           .doc(user.id)
           .update(user.toJson());
     } catch (e) {
-      print('error is there for updation $e');
+      log('error is there for updation $e');
       rethrow;
     }
   }
@@ -85,13 +87,11 @@ class UserRepository {
       final List<Map<String, dynamic>> bookings = querySnapshot.docs
           .map((DocumentSnapshot doc) => doc.data() as Map<String, dynamic>)
           .toList();
-      print('this all fetched$bookings');
+      log('this all fetched$bookings');
       return bookings;
     } catch (e) {
-      print('Error fetching user bookings: $e');
+      log('Error fetching user bookings: $e');
       rethrow; // Rethrow the error to handle it further up the call stack
     }
   }
-
-  bookingsCancelling(shopId) {}
 }

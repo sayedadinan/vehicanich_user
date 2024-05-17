@@ -10,7 +10,7 @@ class RowTexts extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        CustomSizedBoxWidth(0.10),
+        const CustomSizedBoxWidth(0.10),
         DetailsPageTitleText(titletext: text),
       ],
     );

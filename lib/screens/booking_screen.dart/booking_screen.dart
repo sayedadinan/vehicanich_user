@@ -45,16 +45,16 @@ class BookingScreen extends StatelessWidget {
         child: BlocBuilder<PaymentBloc, PaymentState>(
           builder: (context, state) {
             if (state is PaymentSuccess) {
-              return SuccessScreen();
+              return const SuccessScreen();
               // Navigator.of(context)
               //     .push(FadeTransitionPageRoute(child: SuccessScreen()));
             }
             return SingleChildScrollView(
               child: Column(
                 children: [
-                  CustomSizedBoxHeight(0.05),
+                  const CustomSizedBoxHeight(0.05),
                   const CustomizedText(text: detailspagestatictext),
-                  CustomSizedBoxHeight(0.02),
+                  const CustomSizedBoxHeight(0.02),
                   Padding(
                     padding: EdgeInsets.only(
                         left: Mymediaquery().mediaquerywidth(0.04, context),
@@ -67,13 +67,13 @@ class BookingScreen extends StatelessWidget {
                       },
                     ),
                   ),
-                  CustomSizedBoxHeight(0.03),
+                  const CustomSizedBoxHeight(0.03),
                   Inputfield(
                       hinttext: 'your vehicle number',
                       controller: vehiclenumberController,
                       validator: (value) =>
                           Validators().validateVehicleNumber(value)),
-                  CustomSizedBoxHeight(0.02),
+                  const CustomSizedBoxHeight(0.02),
                   Inputfield(
                       hinttext: 'your phone number',
                       controller: userbookingphoneController,
@@ -82,9 +82,9 @@ class BookingScreen extends StatelessWidget {
                   SizedBox(
                       height: Mymediaquery().mediaqueryheight(0.06, context)),
                   const BookingInstructions(),
-                  CustomSizedBoxHeight(0.02),
+                  const CustomSizedBoxHeight(0.02),
                   const PriceAdditionalText(),
-                  CustomSizedBoxHeight(0.03),
+                  const CustomSizedBoxHeight(0.03),
                   CustomButton(
                       color: Myappallcolor().buttonforgroundcolor,
                       function: () {

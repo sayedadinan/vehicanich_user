@@ -29,3 +29,14 @@ class BookingCancelledPressed extends BookingEvent {
     required this.vehicleNumber,
   });
 }
+
+class CurrentStatus extends BookingEvent {
+  final String shopId;
+  final String serviceName;
+  final String vehicleNumber;
+
+  CurrentStatus(
+      {required this.shopId,
+      required this.serviceName,
+      required this.vehicleNumber});
+}

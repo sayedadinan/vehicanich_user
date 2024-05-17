@@ -50,16 +50,16 @@ class _ShopDetailsPageState extends State<ShopDetailsPage> {
                 ShopDetailImage(
                     tag: widget.tag,
                     imagepath: widget.shopdetails[Shopkeys.bannerimagepath]),
-                CustomSizedBoxHeight(0.03),
+                const CustomSizedBoxHeight(0.03),
                 ShopTextArrange(
                     longitude: longitude,
                     latitude: latitude,
                     shopname: widget.shopdetails[Shopkeys.shopname]),
-                CustomSizedBoxHeight(0.02),
+                const CustomSizedBoxHeight(0.02),
                 ShopTimeText(
                     startingtime: widget.shopdetails[Shopkeys.startingtime],
                     closingtime: widget.shopdetails[Shopkeys.closingtime]),
-                CustomSizedBoxHeight(0.04),
+                const CustomSizedBoxHeight(0.04),
                 Container(
                   width: double.infinity,
                   height: Mymediaquery().mediaqueryheight(1, context),
@@ -70,15 +70,15 @@ class _ShopDetailsPageState extends State<ShopDetailsPage> {
                           topRight: Radius.circular(30))),
                   child: Column(
                     children: [
-                      CustomSizedBoxHeight(0.03),
+                      const CustomSizedBoxHeight(0.03),
                       const RowTexts(text: 'Description'),
-                      CustomSizedBoxHeight(0.02),
+                      const CustomSizedBoxHeight(0.02),
                       DetailsPageDescription(
                         text: widget.shopdetails[Shopkeys.description],
                       ),
-                      CustomSizedBoxHeight(0.02),
+                      const CustomSizedBoxHeight(0.02),
                       const DetailsPageCrButton(),
-                      CustomSizedBoxHeight(0.02),
+                      const CustomSizedBoxHeight(0.02),
                       Padding(
                           padding: EdgeInsets.only(
                               left: Mymediaquery()
@@ -86,9 +86,9 @@ class _ShopDetailsPageState extends State<ShopDetailsPage> {
                           child: DetailsPageRow(
                               shopdetails: widget.shopdetails,
                               shopPhone: widget.shopdetails[Shopkeys.phone])),
-                      CustomSizedBoxHeight(0.02),
+                      const CustomSizedBoxHeight(0.02),
                       const RowTexts(text: 'for emergency'),
-                      CustomSizedBoxHeight(0.02),
+                      const CustomSizedBoxHeight(0.02),
                       CustomButton(
                           bordercolor: Myappallcolor().buttonforgroundcolor,
                           color: Myappallcolor().emergencybuttoncolor,
@@ -97,21 +97,21 @@ class _ShopDetailsPageState extends State<ShopDetailsPage> {
                           fontSize:
                               Mymediaquery().mediaquerywidth(0.03, context),
                           buttontextcolor: Myappallcolor().colorwhite),
-                      CustomSizedBoxHeight(0.02),
+                      const CustomSizedBoxHeight(0.02),
                       const RowTexts(text: 'Our services'),
-                      CustomSizedBoxHeight(0.02),
+                      const CustomSizedBoxHeight(0.02),
                       buildServiceButton(
                           'Body Maintaince and Repair',
                           Shopkeys.bodyservicemap,
                           context,
                           widget.shopdetails[Shopkeys.phone]),
-                      CustomSizedBoxHeight(0.02),
+                      const CustomSizedBoxHeight(0.02),
                       buildServiceButton(
                           'Interior Services',
                           Shopkeys.interiorservicemap,
                           context,
                           widget.shopdetails[Shopkeys.phone]),
-                      CustomSizedBoxHeight(0.02),
+                      const CustomSizedBoxHeight(0.02),
                       buildServiceButton(
                           'Engine and Mechanical Services',
                           Shopkeys.enginservicemap,

@@ -7,11 +7,11 @@ class AppText extends StatelessWidget {
   final String text;
   // final String fontFamily; // New parameter for font family
   const AppText({
-    Key? key,
+    super.key,
     required this.text,
     required this.size,
     // required this.fontFamily, // Required font family parameter
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

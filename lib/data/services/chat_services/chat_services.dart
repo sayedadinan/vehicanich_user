@@ -31,7 +31,7 @@ class ChatService {
       // Handle the exception here
       print('Error sending message: $e');
       // You can re-throw the exception or handle it based on your requirement
-      throw e;
+      rethrow;
     }
   }
 
@@ -50,7 +50,7 @@ class ChatService {
     } catch (e) {
       print('Error fetching messages: $e');
       // Return an empty stream or throw the error based on your requirement
-      return Stream.empty();
+      return const Stream.empty();
     }
   }
 }

@@ -20,7 +20,7 @@ class My_booking_card extends StatelessWidget {
         decoration: BoxDecoration(
             color: Myappallcolor().bookingCardColor,
             borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: Myappallcolor().buttonforgroundcolor)),
+            border: Border.all(color: Myappallcolor().colorwhite)),
         height: Mymediaquery().mediaqueryheight(0.12, context),
         child: Row(
           children: [
@@ -30,7 +30,7 @@ class My_booking_card extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CustomSizedBoxHeight(0.02),
+                  const CustomSizedBoxHeight(0.02),
                   Rowforcontainer(
                       valuetext: bookings[ReferenceKeys.servicename],
                       keytext: 'Service Category'),

@@ -1,4 +1,6 @@
 // ignore_for_file: avoid_print, unused_local_variable
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -7,14 +9,18 @@ import 'package:vehicanich/data/data_provider/keys.dart';
 import 'package:vehicanich/data/data_provider/shop_data.dart';
 import 'package:vehicanich/data/data_provider/user_data.dart';
 import 'package:intl/intl.dart';
+import 'package:vehicanich/data/repositories/shop_details/shop_details_keys.dart';
 import 'package:vehicanich/data/repositories/shop_details/shop_repositery.dart';
 part 'booking_event.dart';
 part 'booking_state.dart';
 
 class BookingBloc extends Bloc<BookingEvent, BookingState> {
-  BookingBloc() : super(BookingInitial()) {
+  BookingBloc()
+      : super(BookingInitial(
+            isCompleted: false, isPending: false, isStarted: false)) {
     on<BookingbuttonPressed>(bookingbuttonpressed);
     on<BookingCancelledPressed>(bookingcancelledPressed);
+    on<CurrentStatus>(currentStatus);
   }
   bookingbuttonpressed(
       BookingbuttonPressed event, Emitter<BookingState> emit) async {
@@ -47,7 +53,7 @@ class BookingBloc extends Bloc<BookingEvent, BookingState> {
       "isCompleted": false,
       "userId": userid,
       "userEmail": userEmail,
-      "ordered": true
+      "ordered": true,
     });
     final userDocRef = UserDataReference()
         .userCollectionReference()
@@ -61,7 +67,7 @@ class BookingBloc extends Bloc<BookingEvent, BookingState> {
         "vehiclenumber": event.vehiclenumbercontroller,
         "servicename": event.servicename,
         "ordered": true,
-        "shopId": shopid
+        "shopId": shopid,
       });
     } catch (e) {
       // Handle errors
@@ -77,7 +83,7 @@ class BookingBloc extends Bloc<BookingEvent, BookingState> {
     final currentIdInShop = await ShopReference()
         .shopCollectionReference()
         .doc(event.shopId)
-        .collection("newbooking")
+        .collection(Shopkeys.newBooking)
         .where(ReferenceKeys.vehiclenumber, isEqualTo: event.vehicleNumber)
         .where(ReferenceKeys.servicename, isEqualTo: event.serviceName)
         .get();
@@ -85,7 +91,7 @@ class BookingBloc extends Bloc<BookingEvent, BookingState> {
     final reference = ShopReference()
         .shopCollectionReference()
         .doc(event.shopId)
-        .collection("newbooking")
+        .collection(Shopkeys.newBooking)
         .doc(bookingIdInShop);
     reference.update({ReferenceKeys.ordered: false});
     final currentIdUser = await UserDataReference()
@@ -96,11 +102,64 @@ class BookingBloc extends Bloc<BookingEvent, BookingState> {
         .get();
     final bookingIdInUser = currentIdUser.docs.first.id;
     print('this is bookinguser $bookingIdInUser');
-    final userDocRef = await UserDataReference()
+    final userDocRef = UserDataReference()
         .userCollectionReference()
         .doc(userId)
         .collection(ReferenceKeys.bookings)
         .doc(bookingIdInUser);
     userDocRef.update({ReferenceKeys.ordered: false});
+  }
+
+  currentStatus(CurrentStatus event, Emitter<BookingState> emit) async {
+    try {
+      final currentIdInShop = await ShopReference()
+          .shopCollectionReference()
+          .doc(event.shopId)
+          .collection(Shopkeys.newBooking)
+          .where(ReferenceKeys.vehiclenumber, isEqualTo: event.vehicleNumber)
+          .where(ReferenceKeys.servicename, isEqualTo: event.serviceName)
+          .get();
+      log('from bloc 1 $currentIdInShop');
+
+      if (currentIdInShop.docs.isNotEmpty) {
+        final bookingIdInShop = currentIdInShop.docs.first.id;
+        log('bloc 3 $bookingIdInShop');
+        final shopBookingDetails = await ShopReference()
+            .shopCollectionReference()
+            .doc(event.shopId)
+            .collection(Shopkeys.newBooking)
+            .doc(bookingIdInShop)
+            .get();
+        log('from bloc 2 $shopBookingDetails');
+        if (shopBookingDetails.exists) {
+          final isPending = shopBookingDetails[Shopkeys.isPending];
+          final isCompleted = shopBookingDetails[Shopkeys.isCompleted];
+          final isStarted = shopBookingDetails[Shopkeys.isStarted];
+          log('this worked pending $isPending');
+          log('this worked completed $isCompleted');
+          log('this worked started $isStarted');
+
+          if (isCompleted == true) {
+            emit(BookingInitial(
+                isStarted: true, isPending: true, isCompleted: true));
+          } else if (isStarted == true) {
+            emit(BookingInitial(
+                isStarted: true, isPending: true, isCompleted: false));
+          } else if (isPending == true) {
+            emit(BookingInitial(
+                isStarted: false, isPending: true, isCompleted: false));
+          } else {
+            log('there is some error in bloc');
+          }
+        }
+        log(state.isStarted.toString());
+        log(state.isPending.toString());
+        log(state.isCompleted.toString());
+      } else {
+        log('No matching documents found.');
+      }
+    } catch (e) {
+      log('there is some error in current status bloc $e');
+    }
   }
 }

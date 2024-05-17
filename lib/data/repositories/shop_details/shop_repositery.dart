@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:vehicanich/data/data_provider/keys.dart';
 import 'package:vehicanich/data/data_provider/shop_data.dart';
 import 'package:vehicanich/data/repositories/shop_details/shop_details_keys.dart';
 
@@ -67,6 +70,21 @@ class ShopRepository {
     } catch (e) {
       print('Error fetching data s: $e');
       rethrow;
+    }
+  }
+
+  currentStatus(shopId, vehicleNumber, serviceName) async {
+    try {
+      final shopData = await ShopReference()
+          .shopCollectionReference()
+          .doc(shopId)
+          .collection(Shopkeys.newBooking)
+          .where(ReferenceKeys.vehiclenumber, isEqualTo: vehicleNumber)
+          .where(ReferenceKeys.servicename, isEqualTo: serviceName)
+          .get();
+      return shopData;
+    } catch (e) {
+      log('current status taking area error$e');
     }
   }
 }

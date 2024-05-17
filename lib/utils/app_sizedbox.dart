@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class CustomSizedBoxHeight extends StatelessWidget {
   final double height;
 
-  CustomSizedBoxHeight(this.height);
+  const CustomSizedBoxHeight(this.height, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class CustomSizedBoxHeight extends StatelessWidget {
 class CustomSizedBoxWidth extends StatelessWidget {
   final double width;
 
-  CustomSizedBoxWidth(this.width);
+  const CustomSizedBoxWidth(this.width, {super.key});
 
   @override
   Widget build(BuildContext context) {

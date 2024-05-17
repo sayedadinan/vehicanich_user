@@ -50,7 +50,7 @@ class DetailsPageRow extends StatelessWidget {
                     receiverUserID: state.shopId,
                   )));
                 },
-                child: IconSetup(icon: Icons.message_rounded)),
+                child: const IconSetup(icon: Icons.message_rounded)),
             SizedBox(width: Mymediaquery().mediaquerywidth(0.05, context)),
             InkWell(
                 onTap: () {

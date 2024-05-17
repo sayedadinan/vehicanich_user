@@ -8,7 +8,7 @@ class SuccessScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Myappallcolor().appbackgroundcolor,
-      body: Center(
+      body: const Center(
         child: Text('Success'),
       ),
     );
