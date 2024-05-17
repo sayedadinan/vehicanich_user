@@ -3,10 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vehicanich/blocs/booking_blocs/booking_bloc/booking_bloc.dart';
 import 'package:vehicanich/data/data_provider/keys.dart';
+import 'package:vehicanich/screens/total_payment_screen/total_bill_screen.dart';
 import 'package:vehicanich/utils/app_colors.dart';
 import 'package:vehicanich/utils/app_custom_appbar.dart';
+import 'package:vehicanich/utils/app_googlebutton.dart';
 import 'package:vehicanich/utils/app_sizedbox.dart';
 import 'package:vehicanich/utils/mediaquery.dart';
+import 'package:vehicanich/utils/page_transition/page_fade_transition.dart';
 import 'package:vehicanich/widgets/my_bookings/row_text_arrange.dart';
 import 'package:vehicanich/widgets/my_bookings/time_line_order.dart';
 
@@ -83,6 +86,25 @@ class _BookingDetailsState extends State<BookingDetails> {
             const CustomSizedBoxHeight(0.02),
             TimeLineOrder(
               widget: widget,
+            ),
+            BlocBuilder<BookingBloc, BookingState>(
+              builder: (context, state) {
+                if (state.isCompleted) {
+                  return CustomGoogleButton(
+                    bordercolor: Myappallcolor().colorwhite,
+                    buttontextcolor: Myappallcolor().colorwhite,
+                    color: Colors.transparent,
+                    fontSize: Mymediaquery().mediaquerywidth(0.03, context),
+                    function: () {
+                      Navigator.of(context).push(
+                          FadeTransitionPageRoute(child: TotalBillScreen()));
+                    },
+                    text: 'Total bill',
+                  );
+                } else {
+                  return Container();
+                }
+              },
             ),
           ],
         ),
