@@ -77,7 +77,7 @@ class _BookingDetailsState extends State<BookingDetails> {
                     const CustomSizedBoxHeight(0.001),
                     RowforBookingsInside(
                         valuetext: widget.bookings[ReferenceKeys.shopphone],
-                        keytext: 'shop phone'),
+                        keytext: ''),
                     const CustomSizedBoxHeight(0.001),
                   ],
                 ),
@@ -96,8 +96,10 @@ class _BookingDetailsState extends State<BookingDetails> {
                     color: Colors.transparent,
                     fontSize: Mymediaquery().mediaquerywidth(0.03, context),
                     function: () {
-                      Navigator.of(context).push(
-                          FadeTransitionPageRoute(child: TotalBillScreen()));
+                      Navigator.of(context).push(FadeTransitionPageRoute(
+                          child: TotalBillScreen(
+                        bookings: widget.bookings,
+                      )));
                     },
                     text: 'Total bill',
                   );
@@ -106,6 +108,7 @@ class _BookingDetailsState extends State<BookingDetails> {
                 }
               },
             ),
+            const CustomSizedBoxHeight(0.13)
           ],
         ),
       ),

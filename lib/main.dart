@@ -13,6 +13,7 @@ import 'package:vehicanich/blocs/login_bloc/login_bloc.dart';
 import 'package:vehicanich/blocs/onboarding_blocs/onboarding_bloc.dart';
 import 'package:vehicanich/blocs/payment_blocs/bloc/payment_bloc.dart';
 import 'package:vehicanich/blocs/sign_up_blocs/sign_up_bloc.dart';
+import 'package:vehicanich/blocs/total_bill/bloc/total_bill_bloc.dart';
 import 'package:vehicanich/blocs/user_details_blocs/user_detail_bloc.dart';
 import 'package:vehicanich/blocs/user_updation_blocs/user_updation_bloc.dart';
 import 'package:vehicanich/firebase_options.dart';
@@ -41,6 +42,7 @@ void main() async {
     BlocProvider(create: (context) => BookingBloc()),
     BlocProvider(create: (context) => ChatingBloc()),
     BlocProvider(create: (context) => PaymentBloc()),
+    BlocProvider(create: (context) => TotalBillBloc()),
   ], child: const MyApp()));
 }
 
@@ -69,42 +71,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-// project_name/
-// ├── android/
-// ├── ios/
-// ├── lib/
-// │   ├── blocs/
-// │   │   ├── authentication/
-// │   │   │   ├── authentication_bloc.dart
-// │   │   │   └── authentication_event.dart
-// │   │   ├── data/
-// │   │   │   ├── data_bloc.dart
-// │   │   │   └── data_event.dart
-// │   │   └── ...
-// │   ├── models/
-// │   │   ├── user.dart
-// │   │   └── ...
-// │   ├── repositories/
-// │   │   ├── authentication_repository.dart
-// │   │   └── data_repository.dart
-// │   ├── screens/
-// │   │   ├── login_screen.dart
-// │   │   ├── home_screen.dart
-// │   │   └── ...
-// │   ├── services/
-// │   │   ├── firebase_auth_service.dart
-// │   │   ├── firebase_firestore_service.dart
-// │   │   └── ...
-// │   ├── utils/
-// │   │   ├── firebase_utils.dart
-// │   │   └── ...
-// │   ├── widgets/
-// │   │   ├── common_widget1.dart
-// │   │   ├── common_widget2.dart
-// │   │   └── ...
-// │   ├── app.dart
-// │   ├── main.dart
-// ├── test/
-// ├── pubspec.yaml
-// ├── README.md
-// └── ...

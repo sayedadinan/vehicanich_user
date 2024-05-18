@@ -11,4 +11,8 @@ class ReferenceKeys {
   static String servicename = 'servicename';
   static String ordered = "ordered";
   static String shopId = "shopId";
+  static String extraFitting = 'extraFitting';
+  static String extraServices = 'extraServices';
+  static String serviceName = 'serviceName';
+  static String totalAmount = 'totalAmount';
 }

@@ -22,4 +22,5 @@ class Shopkeys {
   static String isPending = 'isPending';
   static String isStarted = 'isStarted';
   static String isCompleted = 'isCompleted';
+  static String totalBill = "totalBill";
 }

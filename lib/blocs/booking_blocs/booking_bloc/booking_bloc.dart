@@ -19,7 +19,7 @@ class BookingBloc extends Bloc<BookingEvent, BookingState> {
       : super(BookingInitial(
             isCompleted: false, isPending: false, isStarted: false)) {
     on<BookingbuttonPressed>(bookingbuttonpressed);
-    on<BookingCancelledPressed>(bookingcancelledPressed);
+    on<BookingCancelledPressed>(bookingCancelledPressed);
     on<CurrentStatus>(currentStatus);
   }
   bookingbuttonpressed(
@@ -74,40 +74,17 @@ class BookingBloc extends Bloc<BookingEvent, BookingState> {
     }
   }
 
-  bookingcancelledPressed(
+  bookingCancelledPressed(
       BookingCancelledPressed event, Emitter<BookingState> emit) async {
-    print('worked');
-    print('this is shopId${event.shopId}');
-    final userEmail = await UserDocId().getUserEmail();
-    final userId = await UserDocId().getUserId();
-    final currentIdInShop = await ShopReference()
-        .shopCollectionReference()
-        .doc(event.shopId)
-        .collection(Shopkeys.newBooking)
-        .where(ReferenceKeys.vehiclenumber, isEqualTo: event.vehicleNumber)
-        .where(ReferenceKeys.servicename, isEqualTo: event.serviceName)
-        .get();
-    final bookingIdInShop = currentIdInShop.docs.first.id;
-    final reference = ShopReference()
-        .shopCollectionReference()
-        .doc(event.shopId)
-        .collection(Shopkeys.newBooking)
-        .doc(bookingIdInShop);
-    reference.update({ReferenceKeys.ordered: false});
-    final currentIdUser = await UserDataReference()
-        .userCollectionReference()
-        .doc(userId)
-        .collection(ReferenceKeys.bookings)
-        .where(ReferenceKeys.servicename, isEqualTo: event.serviceName)
-        .get();
-    final bookingIdInUser = currentIdUser.docs.first.id;
-    print('this is bookinguser $bookingIdInUser');
-    final userDocRef = UserDataReference()
-        .userCollectionReference()
-        .doc(userId)
-        .collection(ReferenceKeys.bookings)
-        .doc(bookingIdInUser);
-    userDocRef.update({ReferenceKeys.ordered: false});
+    // print('worked');
+    // print('this is shopId${event.shopId}');
+    final userEmail = await getUserEmail();
+    final userId = await getUserId();
+    final bookingIdInShop = await getBookingIdInShop(
+        event.shopId, event.vehicleNumber, event.serviceName);
+    updateBookingInShop(event.shopId, bookingIdInShop);
+    final bookingIdInUser = await getBookingIdInUser(userId, event.serviceName);
+    updateBookingInUser(userId, bookingIdInUser);
   }
 
   currentStatus(CurrentStatus event, Emitter<BookingState> emit) async {
@@ -120,7 +97,6 @@ class BookingBloc extends Bloc<BookingEvent, BookingState> {
           .where(ReferenceKeys.servicename, isEqualTo: event.serviceName)
           .get();
       log('from bloc 1 $currentIdInShop');
-
       if (currentIdInShop.docs.isNotEmpty) {
         final bookingIdInShop = currentIdInShop.docs.first.id;
         log('bloc 3 $bookingIdInShop');
@@ -130,7 +106,6 @@ class BookingBloc extends Bloc<BookingEvent, BookingState> {
             .collection(Shopkeys.newBooking)
             .doc(bookingIdInShop)
             .get();
-        log('from bloc 2 $shopBookingDetails');
         if (shopBookingDetails.exists) {
           final isPending = shopBookingDetails[Shopkeys.isPending];
           final isCompleted = shopBookingDetails[Shopkeys.isCompleted];
