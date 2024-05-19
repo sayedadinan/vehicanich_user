@@ -13,3 +13,16 @@ class FetchTotalBill extends TotalBillEvent {
     required this.serviceName,
   });
 }
+
+class AddMoneyToWallet extends TotalBillEvent {
+  final String shopId;
+  final String amount;
+
+  AddMoneyToWallet({required this.amount, required this.shopId});
+}
+
+class MoneyAddeddSuccess extends TotalBillEvent {
+  final String shopId;
+
+  MoneyAddeddSuccess({required this.shopId});
+}

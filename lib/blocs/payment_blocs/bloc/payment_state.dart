@@ -7,9 +7,7 @@ final class PaymentInitial extends PaymentState {}
 class PaymentLoading extends PaymentState {}
 
 class PaymentSuccess extends PaymentState {
-  final String amount;
-
-  PaymentSuccess({required this.amount});
+  PaymentSuccess();
 }
 
 class PaymentFailed extends PaymentState {}

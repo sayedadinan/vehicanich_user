@@ -20,12 +20,11 @@ import 'package:vehicanich/firebase_options.dart';
 import 'package:vehicanich/screens/onboarding/onboarding_screen.dart';
 import 'package:vehicanich/utils/app_colors.dart';
 import 'package:vehicanich/utils/bottom_navigation/bottom_navigation.dart';
-import 'package:vehicanich/utils/constants/stripe_key.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: ".env");
-  Stripe.publishableKey = stripKey;
+  Stripe.publishableKey = dotenv.env["STRIPE_PUBLISH_KEY"]!;
   await Stripe.instance.applySettings();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,

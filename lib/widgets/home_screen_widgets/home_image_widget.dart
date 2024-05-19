@@ -15,6 +15,7 @@ class ImageContainer extends StatelessWidget {
       child: Hero(
           tag: tag.toString(),
           child: CachedNetworkImage(
+            fit: BoxFit.cover,
             imageUrl: imagepath,
             placeholder: (context, url) => const CircularProgressIndicator(),
             errorWidget: (context, url, error) => const Icon(Icons.error),

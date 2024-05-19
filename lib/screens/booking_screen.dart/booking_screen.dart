@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vehicanich/blocs/booking_blocs/booking_bloc/booking_bloc.dart';
 import 'package:vehicanich/blocs/payment_blocs/bloc/payment_bloc.dart';
-import 'package:vehicanich/screens/success_screen/success_screen.dart';
 import 'package:vehicanich/utils/app_colors.dart';
 import 'package:vehicanich/utils/app_custom_appbar.dart';
 import 'package:vehicanich/utils/app_custom_button.dart';
@@ -21,6 +20,7 @@ import 'package:vehicanich/widgets/details_widget/details_text.dart';
 class BookingScreen extends StatelessWidget {
   final String servicename;
   final String phonenumber;
+
   BookingScreen({
     super.key,
     required this.servicename,
@@ -44,11 +44,7 @@ class BookingScreen extends StatelessWidget {
         create: (context) => PaymentBloc(),
         child: BlocBuilder<PaymentBloc, PaymentState>(
           builder: (context, state) {
-            if (state is PaymentSuccess) {
-              return const SuccessScreen();
-              // Navigator.of(context)
-              //     .push(FadeTransitionPageRoute(child: SuccessScreen()));
-            }
+            if (state is PaymentSuccess) {}
             return SingleChildScrollView(
               child: Column(
                 children: [

@@ -9,18 +9,19 @@ part 'payment_state.dart';
 class PaymentBloc extends Bloc<PaymentEvent, PaymentState> {
   PaymentBloc() : super(PaymentInitial()) {
     on<PaymentButtonPressed>(paymentButtonTap);
-    on<ShowSuccess>(showSuccess);
   }
   paymentButtonTap(
       PaymentButtonPressed event, Emitter<PaymentState> emit) async {
     try {
+      emit(PaymentLoading());
       log('worked this bloc');
       double convertedMoney = double.parse(event.amount);
       log(convertedMoney.toString());
       int amount = convertedMoney.toInt();
       await initPaymentSheet(amount: amount.toString());
       await Stripe.instance.presentPaymentSheet();
-      emit(PaymentSuccess(amount: amount.toString()));
+      log('successed');
+      emit(PaymentSuccess());
     } catch (e) {
       emit(PaymentFailed());
     }
@@ -37,21 +38,20 @@ Future<void> initPaymentSheet({required String amount}) async {
         amount: amount,
         address: "makkattu parambil");
     await Stripe.instance.initPaymentSheet(
-      paymentSheetParameters: SetupPaymentSheetParameters(
-        // Set to true for custom flow
-        customFlow: false,
-        // Main params
-        merchantDisplayName: 'Flutter Stripe Store Demo',
-        paymentIntentClientSecret: data['client_secret'],
-        // Customer keys
-        customerEphemeralKeySecret: data['ephemeralKey'],
-        customerId: data['id'],
-        style: ThemeMode.light,
-      ),
-    );
+        paymentSheetParameters: SetupPaymentSheetParameters(
+      // Set to true for custom flow
+      customFlow: false,
+      // Main params
+      merchantDisplayName: 'Flutter Stripe Store Demo',
+      paymentIntentClientSecret: data['client_secret'],
+      // Customer keys
+      customerEphemeralKeySecret: data['ephemeralKey'],
+      customerId: data['id'],
+      style: ThemeMode.light,
+    ));
+    log('data added');
   } catch (e) {
+    log('there is a error $e');
     rethrow;
   }
 }
-
-showSuccess(ShowSuccess event, Emitter<PaymentState> emit) async {}

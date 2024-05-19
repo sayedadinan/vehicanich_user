@@ -1,7 +1,4 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vehicanich/blocs/total_bill/bloc/total_bill_bloc.dart';
 import 'package:vehicanich/data/data_provider/keys.dart';
@@ -12,7 +9,6 @@ import 'package:vehicanich/utils/app_googlebutton.dart';
 import 'package:vehicanich/utils/app_sizedbox.dart';
 import 'package:vehicanich/utils/app_text.dart';
 import 'package:vehicanich/utils/app_theme.dart';
-
 import 'package:vehicanich/utils/mediaquery.dart';
 import 'package:vehicanich/utils/page_transition/page_fade_transition.dart';
 
@@ -31,9 +27,9 @@ class _TotalBillScreenState extends State<TotalBillScreen> {
         shopId: widget.bookings[ReferenceKeys.shopId],
         vehicleNumber: widget.bookings[ReferenceKeys.vehiclenumber],
         serviceName: widget.bookings[ReferenceKeys.servicename]));
-    log(widget.bookings[ReferenceKeys.shopId]);
-    log(widget.bookings[ReferenceKeys.vehiclenumber]);
-    log(widget.bookings[ReferenceKeys.servicename]);
+    // log(widget.bookings[ReferenceKeys.shopId]);
+    // log(widget.bookings[ReferenceKeys.vehiclenumber]);
+    // log(widget.bookings[ReferenceKeys.servicename]);
   }
 
   @override
@@ -145,6 +141,7 @@ class _TotalBillScreenState extends State<TotalBillScreen> {
                   function: () {
                     Navigator.of(context).push(FadeTransitionPageRoute(
                         child: PaymentScreen(
+                      shopId: widget.bookings[ReferenceKeys.shopId],
                       amount: state.totalAmount,
                     )));
                   },

@@ -6,20 +6,24 @@ sealed class TotalBillState {
   final dynamic extraFitting;
   final dynamic extraService;
   final dynamic totalAmount;
-
-  TotalBillState(
-      {required this.serviceName,
-      required this.vehicleNumber,
-      required this.extraFitting,
-      required this.extraService,
-      required this.totalAmount});
+  final dynamic bookingId;
+  TotalBillState({
+    required this.serviceName,
+    required this.vehicleNumber,
+    required this.extraFitting,
+    required this.extraService,
+    required this.totalAmount,
+    required this.bookingId,
+  });
 }
 
 final class TotalBillInitial extends TotalBillState {
-  TotalBillInitial(
-      {required super.serviceName,
-      required super.vehicleNumber,
-      required super.extraFitting,
-      required super.extraService,
-      required super.totalAmount});
+  TotalBillInitial({
+    required super.serviceName,
+    required super.vehicleNumber,
+    required super.extraFitting,
+    required super.extraService,
+    required super.totalAmount,
+    required super.bookingId,
+  });
 }

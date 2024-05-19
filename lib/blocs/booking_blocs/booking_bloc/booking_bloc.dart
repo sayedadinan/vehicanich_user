@@ -76,8 +76,6 @@ class BookingBloc extends Bloc<BookingEvent, BookingState> {
 
   bookingCancelledPressed(
       BookingCancelledPressed event, Emitter<BookingState> emit) async {
-    // print('worked');
-    // print('this is shopId${event.shopId}');
     final userEmail = await getUserEmail();
     final userId = await getUserId();
     final bookingIdInShop = await getBookingIdInShop(
@@ -113,7 +111,6 @@ class BookingBloc extends Bloc<BookingEvent, BookingState> {
           log('this worked pending $isPending');
           log('this worked completed $isCompleted');
           log('this worked started $isStarted');
-
           if (isCompleted == true) {
             emit(BookingInitial(
                 isStarted: true, isPending: true, isCompleted: true));
