@@ -1,11 +1,11 @@
 part of 'total_bill_bloc.dart';
 
 sealed class TotalBillState {
-  final String serviceName;
-  final String vehicleNumber;
-  final String extraFitting;
-  final String extraService;
-  final String totalAmount;
+  final dynamic serviceName;
+  final dynamic vehicleNumber;
+  final dynamic extraFitting;
+  final dynamic extraService;
+  final dynamic totalAmount;
 
   TotalBillState(
       {required this.serviceName,

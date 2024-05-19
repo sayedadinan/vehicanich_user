@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vehicanich/utils/app_colors.dart';
+import 'package:vehicanich/utils/app_text.dart';
 import 'package:vehicanich/utils/mediaquery.dart';
 
 class Rowforcontainer extends StatelessWidget {
@@ -33,13 +34,14 @@ class Rowforcontainer extends StatelessWidget {
             padding: EdgeInsets.only(
                 left: Mymediaquery().mediaquerywidth(0.04, context)),
             child: SizedBox(
-              width: Mymediaquery().mediaquerywidth(0.3, context),
-              child: Text(
-                valuetext,
-                style: TextStyle(
-                    color: Myappallcolor().colorwhite,
-                    fontSize: Mymediaquery().mediaquerywidth(0.03, context)),
-              ),
+              width: Mymediaquery().mediaquerywidth(0.4, context),
+              child: AppText(text: valuetext, size: 0.04),
+              // child: Text(
+              //   valuetext,
+              //   style: TextStyle(
+              //       color: Myappallcolor().colorwhite,
+              //       fontSize: Mymediaquery().mediaquerywidth(0.04, context)),
+              // ),
             )),
       ],
     );

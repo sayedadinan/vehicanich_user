@@ -1,4 +1,4 @@
-import 'dart:math';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -30,8 +30,10 @@ class _TotalBillScreenState extends State<TotalBillScreen> {
     context.read<TotalBillBloc>().add(FetchTotalBill(
         shopId: widget.bookings[ReferenceKeys.shopId],
         vehicleNumber: widget.bookings[ReferenceKeys.vehiclenumber],
-        serviceName: widget.bookings[ReferenceKeys.serviceName]));
+        serviceName: widget.bookings[ReferenceKeys.servicename]));
     log(widget.bookings[ReferenceKeys.shopId]);
+    log(widget.bookings[ReferenceKeys.vehiclenumber]);
+    log(widget.bookings[ReferenceKeys.servicename]);
   }
 
   @override
@@ -63,7 +65,7 @@ class _TotalBillScreenState extends State<TotalBillScreen> {
                         borderRadius: BorderRadius.circular(
                             MyAppTheme.borderRadiusValue)),
                     width: double.infinity,
-                    height: Mymediaquery().mediaqueryheight(0.33, context),
+                    // height: Mymediaquery().mediaqueryheight(0.33, context),
                     child: Column(
                       children: [
                         SizedBox(
@@ -91,12 +93,12 @@ class _TotalBillScreenState extends State<TotalBillScreen> {
                                       CustomSizedBoxHeight(0.01),
                                       totalDetailsRow(
                                         keytext: 'services',
-                                        valueText: 'state.serviceName',
+                                        valueText: state.serviceName,
                                       ),
                                       CustomSizedBoxHeight(0.01),
                                       totalDetailsRow(
                                         keytext: 'vehicle number',
-                                        valueText: 'state.vehicleNumber',
+                                        valueText: state.vehicleNumber,
                                       ),
                                       CustomSizedBoxHeight(0.02),
                                       totalDetailsRow(
@@ -108,14 +110,15 @@ class _TotalBillScreenState extends State<TotalBillScreen> {
                                         visible: state.extraService.isNotEmpty,
                                         child: totalDetailsRow(
                                           keytext: 'extra service',
-                                          valueText: 'state.extraService',
+                                          valueText: state.extraService,
                                         ),
                                       ),
                                       const CustomSizedBoxHeight(0.02),
                                       totalDetailsRow(
                                         keytext: 'Total amount',
-                                        valueText: 'state.totalAmount',
+                                        valueText: state.totalAmount,
                                       ),
+                                      const CustomSizedBoxHeight(0.02),
                                     ],
                                   ),
                                 ),
@@ -140,8 +143,10 @@ class _TotalBillScreenState extends State<TotalBillScreen> {
               CustomGoogleButton(
                   color: Myappallcolor().buttonforgroundcolor,
                   function: () {
-                    Navigator.of(context)
-                        .push(FadeTransitionPageRoute(child: PaymentScreen()));
+                    Navigator.of(context).push(FadeTransitionPageRoute(
+                        child: PaymentScreen(
+                      amount: state.totalAmount,
+                    )));
                   },
                   text: 'Ready to Pay',
                   fontSize: Mymediaquery().mediaquerywidth(0.04, context),

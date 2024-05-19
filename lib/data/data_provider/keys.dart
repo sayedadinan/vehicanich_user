@@ -15,4 +15,5 @@ class ReferenceKeys {
   static String extraServices = 'extraServices';
   static String serviceName = 'serviceName';
   static String totalAmount = 'totalAmount';
+  static String vehicleNumber = 'vehicleNumber';
 }

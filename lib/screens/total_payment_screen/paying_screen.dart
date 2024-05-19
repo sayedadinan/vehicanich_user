@@ -7,7 +7,8 @@ import 'package:vehicanich/utils/app_theme.dart';
 import 'package:vehicanich/utils/mediaquery.dart';
 
 class PaymentScreen extends StatelessWidget {
-  const PaymentScreen({key}) : super();
+  final String amount;
+  const PaymentScreen({key, required this.amount}) : super();
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +39,7 @@ class PaymentScreen extends StatelessWidget {
               const CustomSizedBoxHeight(0.05),
               const AppText(text: 'You are paying now', size: 0.04),
               const CustomSizedBoxHeight(0.02),
-              const AppText(text: '\$100', size: 0.1),
+              AppText(text: '₹$amount', size: 0.1),
               const CustomSizedBoxHeight(0.01),
               SizedBox(
                 width: Mymediaquery().mediaquerywidth(0.37, context),

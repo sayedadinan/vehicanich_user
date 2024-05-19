@@ -16,11 +16,9 @@ class My_booking_card extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: Container(
-        decoration: BoxDecoration(
-            color: Myappallcolor().bookingCardColor,
-            borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: Myappallcolor().colorwhite)),
+      elevation: 20,
+      color: Myappallcolor().bookingCardColor,
+      child: SizedBox(
         height: Mymediaquery().mediaqueryheight(0.12, context),
         child: Row(
           children: [

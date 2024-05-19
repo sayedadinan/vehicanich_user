@@ -24,13 +24,12 @@ class TotalBillBloc extends Bloc<TotalBillEvent, TotalBillState> {
           .shopCollectionReference()
           .doc(event.shopId)
           .collection(Shopkeys.totalBill)
-          .where(ReferenceKeys.vehiclenumber, isEqualTo: event.vehicleNumber)
-          .where(ReferenceKeys.servicename, isEqualTo: event.serviceName)
+          .where(ReferenceKeys.vehicleNumber, isEqualTo: event.vehicleNumber)
+          .where(ReferenceKeys.serviceName, isEqualTo: event.serviceName)
           .get();
       log(event.shopId);
       if (currentIdInShop.docs.isNotEmpty) {
         final bookingIdInShop = currentIdInShop.docs.first.id;
-        log('bloc 3 $bookingIdInShop');
         final shopBookingDetails = await ShopReference()
             .shopCollectionReference()
             .doc(event.shopId)
@@ -38,12 +37,14 @@ class TotalBillBloc extends Bloc<TotalBillEvent, TotalBillState> {
             .doc(bookingIdInShop)
             .get();
         if (shopBookingDetails.exists) {
+          log(shopBookingDetails[ReferenceKeys.serviceName]);
           emit(TotalBillInitial(
               serviceName: shopBookingDetails[ReferenceKeys.serviceName],
-              vehicleNumber: shopBookingDetails[ReferenceKeys.vehiclenumber],
+              vehicleNumber: shopBookingDetails[ReferenceKeys.vehicleNumber],
               extraFitting: shopBookingDetails[ReferenceKeys.extraFitting],
               extraService: shopBookingDetails[ReferenceKeys.extraServices],
               totalAmount: shopBookingDetails[ReferenceKeys.totalAmount]));
+          log('all fetched');
         } else {
           log('value not founded');
         }
