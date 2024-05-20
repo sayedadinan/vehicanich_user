@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:vehicanich/utils/app_colors.dart';
 import 'package:vehicanich/utils/mediaquery.dart';
-import 'package:vehicanich/widgets/my_bookings/completed_bookings.dart';
-import 'package:vehicanich/widgets/my_bookings/pending_bookings.dart';
+import 'package:vehicanich/widgets/my_bookings/completed_bookings/completed_bookings.dart';
+import 'package:vehicanich/widgets/my_bookings/pending_bookings/pending_bookings.dart';
 
 class UserBookingsPage extends StatelessWidget {
   const UserBookingsPage({super.key});

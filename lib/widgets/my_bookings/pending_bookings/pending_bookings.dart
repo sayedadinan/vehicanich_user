@@ -4,11 +4,12 @@ import 'package:vehicanich/utils/app_colors.dart';
 import 'package:vehicanich/utils/app_custom_loader.dart';
 import 'package:vehicanich/utils/app_sizedbox.dart';
 import 'package:vehicanich/utils/app_text.dart';
-import 'package:vehicanich/widgets/my_bookings/booking_card.dart';
-import 'package:vehicanich/widgets/my_bookings/rating_widget.dart';
+import 'package:vehicanich/widgets/my_bookings/pending_bookings/booking_paddings.dart';
 
-class CompletedBookings extends StatelessWidget {
-  const CompletedBookings({super.key});
+class PendingBookingTab extends StatelessWidget {
+  const PendingBookingTab({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class CompletedBookings extends StatelessWidget {
       color: Myappallcolor().appbackgroundcolor,
       child: Center(
           child: FutureBuilder<List<Map<String, dynamic>>>(
-        future: UserRepository().userCompletedBooking(),
+        future: UserRepository().userMybookings(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return loader;
@@ -29,24 +30,7 @@ class CompletedBookings extends StatelessWidget {
                 itemCount: snapshot.data!.length,
                 itemBuilder: (context, index) {
                   final bookings = snapshot.data![index];
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return RatingDialog(
-                              bookings: bookings,
-                            );
-                          },
-                        );
-                      },
-                      child: My_booking_card(
-                        bookings: bookings,
-                      ),
-                    ),
-                  );
+                  return PaddingsOfBookingCard(bookings: bookings);
                 },
               );
             } else {

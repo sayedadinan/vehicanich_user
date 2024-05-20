@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vehicanich/utils/mediaquery.dart';
 import 'package:vehicanich/utils/page_transition/page_fade_transition.dart';
-import 'package:vehicanich/widgets/my_bookings/booking_card.dart';
+import 'package:vehicanich/widgets/my_bookings/pending_bookings/booking_card.dart';
 import 'package:vehicanich/widgets/my_bookings/my_booking_details.dart';
 
 class PaddingsOfBookingCard extends StatelessWidget {

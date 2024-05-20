@@ -67,7 +67,7 @@ class RatingDialog extends StatelessWidget {
                 return const SizedBox();
               },
               onRatingUpdate: (rating) {
-                ratingCount = rating;
+                ratingController = rating;
                 log(ratingCount.toString());
               },
             ),
@@ -93,7 +93,7 @@ class RatingDialog extends StatelessWidget {
                   function: () {
                     context.read<RatingsBloc>().add(RatingAndReviewAdding(
                         feedback: feedbackController.text,
-                        ratingCount: ratingCount.toString(),
+                        ratingCount: ratingController.toString(),
                         shopId: bookings[ReferenceKeys.shopId]));
                     feedbackController.clear();
                     Navigator.of(context).pop();
