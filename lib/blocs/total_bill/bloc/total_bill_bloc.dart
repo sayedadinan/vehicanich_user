@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:vehicanich/data/data_provider/keys.dart';
 import 'package:vehicanich/data/data_provider/shop_data.dart';
 import 'package:vehicanich/data/data_provider/user_data.dart';
@@ -67,7 +68,14 @@ class TotalBillBloc extends Bloc<TotalBillEvent, TotalBillState> {
           .doc(event.shopId)
           .collection(ReferenceKeys.wallet)
           .doc();
-      reference.set({"money": event.amount});
+      DateTime now = DateTime.now();
+      String formattedDate = DateFormat('dd-MM-yyyy').format(now);
+      var userName = await UserDocId().getUserName();
+      reference.set({
+        "money": event.amount,
+        "userName": userName,
+        "todaysDate": formattedDate
+      });
       log('successfully money added to wallet');
     } catch (e) {
       log('there is a error in money adding to wallet $e');
@@ -77,21 +85,11 @@ class TotalBillBloc extends Bloc<TotalBillEvent, TotalBillState> {
   moneyaddedSucces(
       MoneyAddeddSuccess event, Emitter<TotalBillState> emit) async {
     try {
-      final userid = await UserDocId().getUserId();
-      final currentIdInShop = await ShopReference()
-          .shopCollectionReference()
-          .doc(event.shopId)
-          .collection(Shopkeys.newBooking)
-          .where(ReferenceKeys.vehiclenumber, isEqualTo: state.vehicleNumber)
-          .where(ReferenceKeys.servicename, isEqualTo: state.serviceName)
-          .get();
-      final bookingIdInShop = currentIdInShop.docs.first.id;
-      final userDocRef = UserDataReference()
-          .userCollectionReference()
-          .doc(userid)
-          .collection(ReferenceKeys.bookings)
-          .doc(bookingIdInShop);
-      userDocRef.update({ReferenceKeys.ordered: false});
+      final userId = await UserDocId().getUserId();
+      final bookingIdInUser =
+          await getBookingIdInUser(userId, state.serviceName);
+      updateBookingInUser(userId, bookingIdInUser);
+      log('successfully unlisted');
     } catch (e) {
       log('there is a error in money addedsuccess $e');
     }

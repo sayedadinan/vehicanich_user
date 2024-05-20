@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:vehicanich/data/repositories/user_repositery.dart';
 import 'package:vehicanich/utils/app_colors.dart';
 import 'package:vehicanich/utils/app_custom_loader.dart';
+import 'package:vehicanich/utils/app_sizedbox.dart';
+import 'package:vehicanich/utils/app_text.dart';
 import 'package:vehicanich/widgets/my_bookings/booking_paddings.dart';
 
 class PendingBookingTab extends StatelessWidget {
@@ -32,7 +34,15 @@ class PendingBookingTab extends StatelessWidget {
                 },
               );
             } else {
-              return const Text('No bookings available.');
+              return Center(
+                child: Column(
+                  children: [
+                    const CustomSizedBoxHeight(0.06),
+                    Image.asset('assets/images/urban-967.png'),
+                    const AppText(text: 'No bookings available', size: 0.07)
+                  ],
+                ),
+              );
             }
           }
         },

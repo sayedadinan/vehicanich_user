@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vehicanich/utils/app_colors.dart';
 import 'package:vehicanich/utils/mediaquery.dart';
+import 'package:vehicanich/widgets/my_bookings/completed_bookings.dart';
 import 'package:vehicanich/widgets/my_bookings/pending_bookings.dart';
 
 class UserBookingsPage extends StatelessWidget {
@@ -56,18 +57,10 @@ class _UserBookingsBody extends StatelessWidget {
               physics: const ClampingScrollPhysics(),
             ),
           ),
-          Expanded(
+          const Expanded(
             child: TabBarView(
-              physics: const BouncingScrollPhysics(),
-              children: [
-                const PendingBookingTab(),
-                Container(
-                  color: Myappallcolor().appbackgroundcolor,
-                  child: const Center(
-                    child: Text('Second Tab Content'),
-                  ),
-                ),
-              ],
+              physics: BouncingScrollPhysics(),
+              children: [PendingBookingTab(), CompletedBookings()],
             ),
           ),
         ],

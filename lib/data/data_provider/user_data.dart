@@ -18,7 +18,7 @@ class UserDocId {
     QuerySnapshot<Map<String, dynamic>> querysnapshot =
         await UserDataReference()
             .userCollectionReference()
-            .where('Email', isEqualTo: useremail)
+            .where(ReferenceKeys.email, isEqualTo: useremail)
             .get();
     return querysnapshot.docs.first.id;
   }
@@ -27,6 +27,21 @@ class UserDocId {
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       return user.email;
+    } else {
+      return null;
+    }
+  }
+
+  Future<String?> getUserName() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final useremail = prefs.getString('user_email');
+    QuerySnapshot<Map<String, dynamic>> querySnapshot =
+        await UserDataReference()
+            .userCollectionReference()
+            .where(ReferenceKeys.email, isEqualTo: useremail)
+            .get();
+    if (querySnapshot.docs.isNotEmpty) {
+      return querySnapshot.docs.first.get(ReferenceKeys.userName);
     } else {
       return null;
     }

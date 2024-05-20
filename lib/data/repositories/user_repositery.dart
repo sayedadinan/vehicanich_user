@@ -94,4 +94,24 @@ class UserRepository {
       rethrow; // Rethrow the error to handle it further up the call stack
     }
   }
+
+  Future<List<Map<String, dynamic>>> userCompletedBooking() async {
+    try {
+      final userId = await UserDocId().getUserId();
+      final userDocRef = UserDataReference()
+          .userCollectionReference()
+          .doc(userId)
+          .collection(ReferenceKeys.bookings)
+          .where(ReferenceKeys.ordered, isEqualTo: false);
+      final querySnapshot = await userDocRef.get();
+      final List<Map<String, dynamic>> bookings = querySnapshot.docs
+          .map((DocumentSnapshot doc) => doc.data() as Map<String, dynamic>)
+          .toList();
+      log('this all fetched$bookings');
+      return bookings;
+    } catch (e) {
+      log('Error fetching user bookings: $e');
+      rethrow; // Rethrow the error to handle it further up the call stack
+    }
+  }
 }
