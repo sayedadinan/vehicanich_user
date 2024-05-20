@@ -19,4 +19,5 @@ class ReferenceKeys {
   static String wallet = 'wallet';
   static String bookingId = 'customerId';
   static String userName = 'UserName';
+  static String rateAndReview = 'rateAndReview';
 }
