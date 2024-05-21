@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:vehicanich/blocs/image_bloc/bloc/image_bloc.dart';
 import 'package:vehicanich/blocs/user_updation_blocs/user_updation_bloc.dart';
 import 'package:vehicanich/data/models/user_model.dart';
 import 'package:vehicanich/utils/app_colors.dart';
@@ -72,16 +74,21 @@ class _ProfileEditingPageState extends State<ProfileEditingPage> {
                     Row(
                       children: [
                         const CustomSizedBoxWidth(0.25),
-                        SizedBox(
-                            width:
-                                Mymediaquery().mediaquerywidth(0.38, context),
-                            height:
-                                Mymediaquery().mediaqueryheight(0.17, context),
-                            child: ClipRRect(
-                                borderRadius: BorderRadius.circular(100),
-                                child: Image.asset(
-                                    'assets/images/user-profile 1.png',
-                                    fit: BoxFit.fill))),
+                        GestureDetector(
+                          onTap: () {
+                            context.read<ImageBloc>().add(ProfileImageAdding());
+                          },
+                          child: SizedBox(
+                              width:
+                                  Mymediaquery().mediaquerywidth(0.38, context),
+                              height: Mymediaquery()
+                                  .mediaqueryheight(0.17, context),
+                              child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(100),
+                                  child: Image.asset(
+                                      'assets/images/user-profile 1.png',
+                                      fit: BoxFit.fill))),
+                        ),
                       ],
                     ),
                     SizedBox(

@@ -96,9 +96,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                             child: const ProfileEditingPage()));
                       },
                       child: const ProfileList(
-                        text: 'edit or update',
-                        icon: Icons.edit,
-                      ),
+                          text: 'edit or update', icon: Icons.edit),
                     ),
                     const CustomSizedBoxHeight(0.01),
                     const ProfileList(
