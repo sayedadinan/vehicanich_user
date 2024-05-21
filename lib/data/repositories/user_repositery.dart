@@ -53,9 +53,10 @@ class UserRepository {
   /// Updates user data in Firestore.
   Future<void> updateuser(UserModel user) async {
     try {
+      final userId = await UserDocId().getUserId();
       await _db
           .collection(ReferenceKeys.users)
-          .doc(user.id)
+          .doc(userId)
           .update(user.toJson());
     } catch (e) {
       log('error is there for updation $e');

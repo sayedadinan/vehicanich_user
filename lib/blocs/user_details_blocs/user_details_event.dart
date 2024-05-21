@@ -6,10 +6,8 @@ class ProfilePictureAddButtonPressed extends UserDetailsEvent {}
 
 class EditingButtonPressed extends UserDetailsEvent {}
 
-class UserDataLoaded extends UserDetailsEvent {
-  final String email;
-
-  UserDataLoaded({required this.email});
+class UserDetailsFetching extends UserDetailsEvent {
+  UserDetailsFetching();
 }
 
 class UserDetailsEditingButtonClicked extends UserDetailsEvent {}

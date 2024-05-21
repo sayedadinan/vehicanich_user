@@ -56,7 +56,7 @@ class HomeScreen extends StatelessWidget {
                     },
                     child: Card(
                       elevation: 20,
-                      color: Myappallcolor().bookingCardColor,
+                      color: Myappallcolor().appbackgroundcolor,
                       child: SizedBox(
                         height: Mymediaquery().mediaqueryheight(0.12, context),
                         child: Row(

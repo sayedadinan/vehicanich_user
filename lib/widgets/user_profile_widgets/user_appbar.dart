@@ -17,7 +17,7 @@ class CustomAppbarForProfile extends StatelessWidget {
           text,
           style: TextStyle(
               color: Myappallcolor().colorwhite,
-              fontSize: Mymediaquery().mediaqueryheight(0.04, context)),
+              fontSize: Mymediaquery().mediaqueryheight(0.03, context)),
         ),
       ),
       toolbarHeight: Mymediaquery().mediaqueryheight(0.10, context),

@@ -5,6 +5,8 @@ import 'package:vehicanich/blocs/user_updation_blocs/user_updation_bloc.dart';
 import 'package:vehicanich/data/models/user_model.dart';
 import 'package:vehicanich/utils/app_colors.dart';
 import 'package:vehicanich/utils/app_custom_button.dart';
+import 'package:vehicanich/utils/app_custom_loader.dart';
+import 'package:vehicanich/utils/app_sizedbox.dart';
 import 'package:vehicanich/utils/app_textfields.dart';
 import 'package:vehicanich/utils/mediaquery.dart';
 import 'package:vehicanich/widgets/user_profile_widgets/user_appbar.dart';
@@ -43,9 +45,7 @@ class _ProfileEditingPageState extends State<ProfileEditingPage> {
         if (state is UserDetailsLoading) {
           return Scaffold(
             backgroundColor: Myappallcolor().appbackgroundcolor,
-            body: const Center(
-              child: CircularProgressIndicator(),
-            ),
+            body: Center(child: loader),
           );
         } else if (state is UserDetailsLoaded) {
           final user = state.user;
@@ -68,57 +68,64 @@ class _ProfileEditingPageState extends State<ProfileEditingPage> {
                 ),
                 child: Column(
                   children: [
-                    SizedBox(
-                        height: Mymediaquery().mediaqueryheight(0.04, context)),
+                    const CustomSizedBoxHeight(0.02),
                     Row(
                       children: [
+                        const CustomSizedBoxWidth(0.25),
                         SizedBox(
                             width:
-                                Mymediaquery().mediaquerywidth(0.11, context)),
-                        SizedBox(
-                            width:
-                                Mymediaquery().mediaquerywidth(0.18, context),
+                                Mymediaquery().mediaquerywidth(0.38, context),
                             height:
-                                Mymediaquery().mediaqueryheight(0.18, context),
-                            child: Image.asset(
-                                'assets/images/user-profile 1.png')),
+                                Mymediaquery().mediaqueryheight(0.17, context),
+                            child: ClipRRect(
+                                borderRadius: BorderRadius.circular(100),
+                                child: Image.asset(
+                                    'assets/images/user-profile 1.png',
+                                    fit: BoxFit.fill))),
                       ],
                     ),
                     SizedBox(
                         height: Mymediaquery().mediaqueryheight(0.04, context)),
                     Inputfield(
+                      icon: const Icon(Icons.edit),
                       hinttext: '',
                       controller: nameController,
                     ),
                     SizedBox(
                         height: Mymediaquery().mediaqueryheight(0.03, context)),
                     Inputfield(
+                      icon: const Icon(Icons.edit),
                       hinttext: '',
                       controller: emailController,
                     ),
                     SizedBox(
                         height: Mymediaquery().mediaqueryheight(0.03, context)),
                     Inputfield(
+                      icon: const Icon(Icons.edit),
                       hinttext: '',
                       controller: passwordController,
                     ),
                     SizedBox(
                         height: Mymediaquery().mediaqueryheight(0.03, context)),
-                    CustomButton(
-                        bordercolor: Colors.transparent,
-                        color: Myappallcolor().buttonforgroundcolor,
-                        function: () async {
-                          final usermodel = UserModel(
-                              userName: nameController.text.trim(),
-                              email: emailController.text.trim(),
-                              password: passwordController.text.trim());
-                          context
-                              .read<UserDetailsUpdationBloc>()
-                              .add(UserDetailsUpdateButton(user: usermodel));
-                        },
-                        text: 'Save user',
-                        fontSize: Mymediaquery().mediaquerywidth(0.02, context),
-                        buttontextcolor: Myappallcolor().colorblack)
+                    SizedBox(
+                      width: Mymediaquery().mediaquerywidth(0.83, context),
+                      child: CustomButton(
+                          bordercolor: Colors.transparent,
+                          color: Myappallcolor().buttonforgroundcolor,
+                          function: () async {
+                            final usermodel = UserModel(
+                                userName: nameController.text.trim(),
+                                email: emailController.text.trim(),
+                                password: passwordController.text.trim());
+                            context
+                                .read<UserDetailsUpdationBloc>()
+                                .add(UserDetailsUpdateButton(user: usermodel));
+                          },
+                          text: 'Update Details',
+                          fontSize:
+                              Mymediaquery().mediaquerywidth(0.05, context),
+                          buttontextcolor: Myappallcolor().colorblack),
+                    )
                   ],
                 ),
               ),

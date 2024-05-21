@@ -17,7 +17,7 @@ class My_booking_card extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 20,
-      color: Myappallcolor().bookingCardColor,
+      color: Myappallcolor().appbackgroundcolor,
       child: SizedBox(
         height: Mymediaquery().mediaqueryheight(0.12, context),
         child: Row(
