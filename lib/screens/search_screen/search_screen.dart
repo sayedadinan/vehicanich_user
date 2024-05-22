@@ -25,8 +25,8 @@ class SearchScreen extends StatelessWidget {
       backgroundColor: Myappallcolor().appbackgroundcolor,
       body: Column(
         children: [
-          CustomSizedBoxHeight(0.02),
-          CustomSearchField(),
+          const CustomSizedBoxHeight(0.02),
+          const CustomSearchField(),
           BlocBuilder<SearchBloc, SearchState>(
             builder: (context, state) {
               if (state is SearchInitial) {
@@ -42,7 +42,7 @@ class SearchScreen extends StatelessWidget {
                     } else if (snapshot.hasError) {
                       return Text('Error: ${snapshot.error}');
                     } else if (!snapshot.hasData) {
-                      return Text('No data available');
+                      return const Text('No data available');
                     } else {
                       var shops = snapshot.data!.docs;
                       if (state.query.isNotEmpty) {

@@ -22,15 +22,15 @@ class CustomBottomNavigationbar extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
             color: Myappallcolor().appbarbackgroundcolor,
-            borderRadius: BorderRadius.circular(37)),
+            borderRadius: BorderRadius.circular(49)),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 19.0, vertical: 15),
+          padding: const EdgeInsets.symmetric(horizontal: 39.0, vertical: 15),
           child: GNav(
               backgroundColor: Myappallcolor().appbarbackgroundcolor,
               color: Myappallcolor().colorwhite,
               activeColor: Myappallcolor().appbackgroundcolor,
               tabBackgroundColor: Myappallcolor().colorwhite,
-              curve: Curves.easeInOutQuad,
+              curve: Curves.easeInOut,
               hoverColor: Myappallcolor().buttonforgroundcolor,
               rippleColor: Myappallcolor().buttonforgroundcolor,
               tabActiveBorder: Border.all(
