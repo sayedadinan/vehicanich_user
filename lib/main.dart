@@ -14,6 +14,7 @@ import 'package:vehicanich/blocs/login_bloc/login_bloc.dart';
 import 'package:vehicanich/blocs/onboarding_blocs/onboarding_bloc.dart';
 import 'package:vehicanich/blocs/payment_blocs/bloc/payment_bloc.dart';
 import 'package:vehicanich/blocs/rating_and_review/bloc/ratings_bloc.dart';
+import 'package:vehicanich/blocs/search_bloc/bloc/search_bloc.dart';
 import 'package:vehicanich/blocs/sign_up_blocs/sign_up_bloc.dart';
 import 'package:vehicanich/blocs/total_bill/bloc/total_bill_bloc.dart';
 import 'package:vehicanich/blocs/user_details_blocs/user_detail_bloc.dart';
@@ -46,6 +47,7 @@ void main() async {
     BlocProvider(create: (context) => TotalBillBloc()),
     BlocProvider(create: (context) => RatingsBloc()),
     BlocProvider(create: (context) => ImageBloc()),
+    BlocProvider(create: (context) => SearchBloc()),
   ], child: const MyApp()));
 }
 
