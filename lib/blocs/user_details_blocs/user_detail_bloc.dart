@@ -6,16 +6,22 @@ part 'user_details_event.dart';
 part 'user_details_state.dart';
 
 class UserDetailsBloc extends Bloc<UserDetailsEvent, UserDetailsState> {
-  UserDetailsBloc() : super(InitialUserDetailsState(email: '', userName: '')) {
+  UserDetailsBloc()
+      : super(InitialUserDetailsState(
+            email: '', userName: '', profileImagePath: '')) {
     on<UserDetailsFetching>(userdetailsFetching);
     on<UserDetailsEditingButtonClicked>(userdetaileditingPage);
   }
   userdetailsFetching(
       UserDetailsFetching event, Emitter<UserDetailsState> emit) async {
-    emit(UserDetailsLoading(email: state.email, userName: state.userName));
+    emit(UserDetailsLoading(
+        email: state.email,
+        userName: state.userName,
+        profileImagePath: state.profileImagePath));
     try {
       final user = await UserRepository().getuserDetails();
       emit(InitialUserDetailsState(
+        profileImagePath: user.profileImagePath,
         userName: user.userName,
         email: user.email,
       ));
@@ -26,6 +32,9 @@ class UserDetailsBloc extends Bloc<UserDetailsEvent, UserDetailsState> {
 
   userdetaileditingPage(
       UserDetailsEditingButtonClicked event, Emitter<UserDetailsState> emit) {
-    emit(InitialUserDetailsState(userName: state.userName, email: state.email));
+    emit(InitialUserDetailsState(
+        userName: state.userName,
+        email: state.email,
+        profileImagePath: state.profileImagePath));
   }
 }

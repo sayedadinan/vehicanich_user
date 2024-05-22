@@ -115,4 +115,23 @@ class UserRepository {
       rethrow; // Rethrow the error to handle it further up the call stack
     }
   }
+
+  userProfileFetching() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String? email = prefs.getString('user_email');
+    log("Fetching user details for email: $email");
+    try {
+      final snapshot = await _db
+          .collection(ReferenceKeys.users)
+          .where('Email', isEqualTo: email)
+          .get();
+      if (snapshot.docs.isEmpty) {
+        throw Exception("No user found with email: $email");
+      }
+      String profileImagePath = snapshot.docs[0].data()['profileImagePath'];
+      return profileImagePath;
+    } catch (e) {
+      log('there is a error in profile image fetching area');
+    }
+  }
 }

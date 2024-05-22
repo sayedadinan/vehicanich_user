@@ -5,7 +5,9 @@ class UserModel {
   final String userName;
   final String email;
   final String password;
+  final String? profileImagePath;
   UserModel({
+    this.profileImagePath,
     this.id,
     required this.userName,
     required this.email,
@@ -24,8 +26,9 @@ class UserModel {
       DocumentSnapshot<Map<String, dynamic>> document) {
     final data = document.data()!;
     return UserModel(
-        userName: data['UserName'],
-        email: data['Email'],
-        password: data['Password']);
+      userName: data['UserName'],
+      email: data['Email'],
+      password: data['Password'],
+    );
   }
 }

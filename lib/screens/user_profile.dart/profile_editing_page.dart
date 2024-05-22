@@ -41,9 +41,6 @@ class _ProfileEditingPageState extends State<ProfileEditingPage> {
   Widget build(BuildContext context) {
     return BlocBuilder<UserDetailsUpdationBloc, UserDetailsUpdationState>(
       builder: (context, state) {
-        if (state is UserDetailsUpdationButton) {
-          Navigator.of(context).pop();
-        }
         if (state is UserDetailsLoading) {
           return Scaffold(
             backgroundColor: Myappallcolor().appbackgroundcolor,
@@ -71,25 +68,36 @@ class _ProfileEditingPageState extends State<ProfileEditingPage> {
                 child: Column(
                   children: [
                     const CustomSizedBoxHeight(0.02),
-                    Row(
-                      children: [
-                        const CustomSizedBoxWidth(0.25),
-                        GestureDetector(
-                          onTap: () {
-                            context.read<ImageBloc>().add(ProfileImageAdding());
-                          },
-                          child: SizedBox(
-                              width:
-                                  Mymediaquery().mediaquerywidth(0.38, context),
-                              height: Mymediaquery()
-                                  .mediaqueryheight(0.17, context),
-                              child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(100),
-                                  child: Image.asset(
-                                      'assets/images/user-profile 1.png',
-                                      fit: BoxFit.fill))),
-                        ),
-                      ],
+                    BlocBuilder<ImageBloc, ImageState>(
+                      builder: (context, state) {
+                        return Row(
+                          children: [
+                            const CustomSizedBoxWidth(0.25),
+                            GestureDetector(
+                              onTap: () {
+                                context
+                                    .read<ImageBloc>()
+                                    .add(ProfileImageAdding());
+                              },
+                              child: SizedBox(
+                                  width: Mymediaquery()
+                                      .mediaquerywidth(0.38, context),
+                                  height: Mymediaquery()
+                                      .mediaqueryheight(0.17, context),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(100),
+                                    child: state.imagePath.isEmpty
+                                        ? Image.asset(
+                                            'assets/images/user-profile 1.png')
+                                        : Image.memory(
+                                            state.profileImageUnit!,
+                                            fit: BoxFit.cover,
+                                          ),
+                                  )),
+                            ),
+                          ],
+                        );
+                      },
                     ),
                     SizedBox(
                         height: Mymediaquery().mediaqueryheight(0.04, context)),
@@ -127,6 +135,10 @@ class _ProfileEditingPageState extends State<ProfileEditingPage> {
                             context
                                 .read<UserDetailsUpdationBloc>()
                                 .add(UserDetailsUpdateButton(user: usermodel));
+                            context
+                                .read<ImageBloc>()
+                                .add(ProfileImageSaving(context: context));
+                            Navigator.of(context).pop();
                           },
                           text: 'Update Details',
                           fontSize:

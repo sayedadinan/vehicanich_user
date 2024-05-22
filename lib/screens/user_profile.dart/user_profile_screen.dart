@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:vehicanich/blocs/image_bloc/bloc/image_bloc.dart';
 import 'package:vehicanich/blocs/user_details_blocs/user_detail_bloc.dart';
 import 'package:vehicanich/screens/user_profile.dart/profile_editing_page.dart';
 import 'package:vehicanich/utils/app_colors.dart';
@@ -23,6 +23,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
   void initState() {
     super.initState();
     context.read<UserDetailsBloc>().add(UserDetailsFetching());
+    context.read<ImageBloc>().add(ProfileImageFetching());
   }
 
   @override
@@ -43,13 +44,23 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                   height: Mymediaquery().mediaqueryheight(0.17, context),
                   child: ClipRRect(
                       borderRadius: BorderRadius.circular(100),
-                      child: Image.asset('assets/images/user-profile 1.png',
-                          fit: BoxFit.fill))),
+                      child: BlocProvider.of<ImageBloc>(context)
+                              .state
+                              .storedImagePath
+                              .isEmpty
+                          ? Image.asset('assets/images/user-profile 1.png')
+                          : Image.network(
+                              BlocProvider.of<ImageBloc>(context)
+                                  .state
+                                  .storedImagePath,
+                              fit: BoxFit.cover,
+                            ))),
+              const CustomSizedBoxHeight(0.02),
               AppText(text: state.userName, size: 0.05),
               const Divider(
                 color: Colors.transparent,
               ),
-              const CustomSizedBoxHeight(0.03),
+              const CustomSizedBoxHeight(0.02),
               Container(
                 decoration: BoxDecoration(
                     color: Myappallcolor().appbackgroundcolor,
