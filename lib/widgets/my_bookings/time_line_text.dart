@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:vehicanich/utils/app_colors.dart';
 import 'package:vehicanich/utils/mediaquery.dart';
 
 class RightChild extends StatelessWidget {
@@ -27,9 +28,9 @@ class RightChild extends StatelessWidget {
             children: <Widget>[
               Text(
                 title,
-                style: GoogleFonts.yantramanav(
+                style: GoogleFonts.oswald(
                   color: disabled
-                      ? const Color(0xFFBABABA)
+                      ? Myappallcolor().colorwhite
                       : const Color(0xFF636564),
                   fontSize: Mymediaquery().mediaquerywidth(0.05, context),
                   fontWeight: FontWeight.w500,
@@ -38,9 +39,9 @@ class RightChild extends StatelessWidget {
               const SizedBox(height: 6),
               Text(
                 message,
-                style: GoogleFonts.yantramanav(
+                style: GoogleFonts.oswald(
                   color: disabled
-                      ? const Color(0xFFD5D5D5)
+                      ? Myappallcolor().colorwhite
                       : const Color(0xFF636564),
                   fontSize: Mymediaquery().mediaquerywidth(0.04, context),
                 ),

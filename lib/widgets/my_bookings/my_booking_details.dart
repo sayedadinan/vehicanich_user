@@ -77,7 +77,7 @@ class _BookingDetailsState extends State<BookingDetails> {
                     const CustomSizedBoxHeight(0.001),
                     RowforBookingsInside(
                         valuetext: widget.bookings[ReferenceKeys.shopphone],
-                        keytext: ''),
+                        keytext: 'shop phone'),
                     const CustomSizedBoxHeight(0.001),
                   ],
                 ),

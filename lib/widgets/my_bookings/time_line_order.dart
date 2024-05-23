@@ -22,6 +22,7 @@ class TimeLineOrder extends StatelessWidget {
               shrinkWrap: true,
               children: [
                 _buildTimelineTile(
+                  disabled: state.isPending,
                   afterColor: state.isPending
                       ? const Color(0xFF27AA69)
                       : const Color(0xFFDADADA),
@@ -38,6 +39,7 @@ class TimeLineOrder extends StatelessWidget {
                       : const Color(0xFFDADADA),
                 ),
                 _buildTimelineTile(
+                  disabled: state.isStarted,
                   afterColor: state.isStarted
                       ? const Color(0xFF27AA69)
                       : const Color(0xFFDADADA),
@@ -54,6 +56,7 @@ class TimeLineOrder extends StatelessWidget {
                       : const Color(0xFFDADADA),
                 ),
                 _buildTimelineTile(
+                  disabled: state.isCompleted,
                   afterColor: state.isCompleted
                       ? const Color(0xFF27AA69)
                       : const Color(0xFFDADADA),
@@ -70,6 +73,7 @@ class TimeLineOrder extends StatelessWidget {
                       : const Color(0xFFDADADA),
                 ),
                 _buildTimelineTile(
+                  disabled: state.isCompleted,
                   afterColor: state.isCompleted
                       ? const Color(0xFF27AA69)
                       : const Color(0xFFDADADA),
@@ -99,6 +103,7 @@ class TimeLineOrder extends StatelessWidget {
       required Color beforColor,
       required Color afterColor,
       required bool isLast,
+      required bool disabled,
       required BuildContext context}) {
     return TimelineTile(
       isFirst: isFirst,
@@ -111,6 +116,7 @@ class TimeLineOrder extends StatelessWidget {
         padding: const EdgeInsets.all(6),
       ),
       endChild: RightChild(
+        disabled: disabled,
         title: title,
         message: message,
       ),

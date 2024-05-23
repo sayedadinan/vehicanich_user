@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:vehicanich/data/repositories/shop_details/shop_details_keys.dart';
 import 'package:vehicanich/data/repositories/shop_details/shop_repositery.dart';
-// import 'package:vehicanich/screens/login_screen/login_screen.dart';
 import 'package:vehicanich/screens/shop_details_screen/details_page.dart';
 import 'package:vehicanich/utils/app_colors.dart';
-import 'package:vehicanich/utils/app_custom_appbar.dart';
 import 'package:vehicanich/utils/app_custom_loader.dart';
+import 'package:vehicanich/utils/app_sizedbox.dart';
 import 'package:vehicanich/utils/mediaquery.dart';
 import 'package:vehicanich/widgets/home_screen_widgets/home_image_widget.dart';
 import 'package:vehicanich/widgets/home_screen_widgets/home_listtile_text.dart';
+import 'package:vehicanich/widgets/home_screen_widgets/photo_slider_widget.dart';
+import 'package:vehicanich/widgets/search_widgets/search_bar.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key, Key});
@@ -16,15 +17,49 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size(
-            double.infinity, Mymediaquery().mediaqueryheight(0.103, context)),
-        child: const CustomAppbar(
-          appbartext: '',
+        appBar: AppBar(
+          title: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                '   VEHICANICH',
+                style: TextStyle(
+                    color: Myappallcolor().colorwhite,
+                    fontSize: Mymediaquery().mediaquerywidth(0.06, context)),
+              ),
+            ],
+          ),
+          backgroundColor: Colors.transparent,
+          toolbarHeight: 100.0,
         ),
-      ),
-      backgroundColor: Myappallcolor().appbackgroundcolor,
-      body: FutureBuilder<List<Map<String, dynamic>>>(
+        backgroundColor: Myappallcolor().appbackgroundcolor,
+        body: Column(
+          children: [
+            const CustomSearchFieldForHome(),
+            const CustomSizedBoxHeight(0.04),
+            PhotoSlider(),
+            const CustomSizedBoxHeight(0.02),
+            Text(
+              'your preffered work shops',
+              style: TextStyle(
+                  color: Myappallcolor().colorwhite,
+                  fontSize: Mymediaquery().mediaquerywidth(0.05, context)),
+            ),
+            const Homescreenlist(),
+          ],
+        ));
+  }
+}
+
+class Homescreenlist extends StatelessWidget {
+  const Homescreenlist({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: FutureBuilder<List<Map<String, dynamic>>>(
         future: ShopRepository().getShopDetails(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {

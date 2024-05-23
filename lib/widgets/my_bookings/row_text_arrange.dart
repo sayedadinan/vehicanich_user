@@ -16,11 +16,10 @@ class Rowforcontainer extends StatelessWidget {
         SizedBox(width: Mymediaquery().mediaquerywidth(0.08, context)),
         SizedBox(
           width: Mymediaquery().mediaquerywidth(0.32, context),
-          child: Text(
-            keytext,
-            style: TextStyle(
-                color: Myappallcolor().colorwhite,
-                fontSize: Mymediaquery().mediaquerywidth(0.04, context)),
+          child: AppText(
+            text: keytext,
+            size: 0.04,
+            weight: FontWeight.w500,
           ),
         ),
         Text(
@@ -35,7 +34,11 @@ class Rowforcontainer extends StatelessWidget {
                 left: Mymediaquery().mediaquerywidth(0.04, context)),
             child: SizedBox(
               width: Mymediaquery().mediaquerywidth(0.4, context),
-              child: AppText(text: valuetext, size: 0.04),
+              child: AppText(
+                text: valuetext,
+                size: 0.04,
+                weight: FontWeight.w500,
+              ),
               // child: Text(
               //   valuetext,
               //   style: TextStyle(
@@ -60,14 +63,12 @@ class RowforBookingsInside extends StatelessWidget {
       children: [
         SizedBox(width: Mymediaquery().mediaquerywidth(0.06, context)),
         SizedBox(
-          width: Mymediaquery().mediaquerywidth(0.43, context),
-          child: Text(
-            keytext,
-            style: TextStyle(
-                color: Myappallcolor().colorwhite,
-                fontSize: Mymediaquery().mediaquerywidth(0.04, context)),
-          ),
-        ),
+            width: Mymediaquery().mediaquerywidth(0.43, context),
+            child: AppText(
+              text: keytext,
+              size: 0.05,
+              weight: FontWeight.w500,
+            )),
         Text(
           ':',
           style: TextStyle(
@@ -78,11 +79,10 @@ class RowforBookingsInside extends StatelessWidget {
         Padding(
             padding: EdgeInsets.only(
                 left: Mymediaquery().mediaquerywidth(0.04, context)),
-            child: Text(
-              valuetext,
-              style: TextStyle(
-                  color: Myappallcolor().colorwhite,
-                  fontSize: Mymediaquery().mediaquerywidth(0.04, context)),
+            child: AppText(
+              text: valuetext,
+              size: 0.05,
+              weight: FontWeight.w500,
             )),
       ],
     );

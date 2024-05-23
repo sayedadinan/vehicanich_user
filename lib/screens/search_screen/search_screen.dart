@@ -25,7 +25,7 @@ class SearchScreen extends StatelessWidget {
       backgroundColor: Myappallcolor().appbackgroundcolor,
       body: Column(
         children: [
-          const CustomSizedBoxHeight(0.02),
+          const CustomSizedBoxHeight(0.03),
           const CustomSearchField(),
           BlocBuilder<SearchBloc, SearchState>(
             builder: (context, state) {

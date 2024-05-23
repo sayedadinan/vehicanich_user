@@ -5,20 +5,21 @@ import 'package:vehicanich/utils/mediaquery.dart';
 class AppText extends StatelessWidget {
   final double size;
   final String text;
-  // final String fontFamily; // New parameter for font family
+  final FontWeight? weight;
+
   const AppText({
     super.key,
     required this.text,
     required this.size,
-    // required this.fontFamily, // Required font family parameter
+    this.weight,
   });
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: GoogleFonts.aBeeZee().copyWith(
-        // Using GoogleFonts.getFont to dynamically get the font
+      style: GoogleFonts.oswald().copyWith(
+        fontWeight: weight,
         fontSize: Mymediaquery().mediaquerywidth(size, context),
         color: Colors.white,
       ),

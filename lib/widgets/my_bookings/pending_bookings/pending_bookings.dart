@@ -39,7 +39,11 @@ class PendingBookingTab extends StatelessWidget {
                   children: [
                     const CustomSizedBoxHeight(0.06),
                     Image.asset('assets/images/urban-967.png'),
-                    const AppText(text: 'No bookings available', size: 0.07)
+                    const AppText(
+                      text: 'No bookings available',
+                      size: 0.07,
+                      weight: FontWeight.w800,
+                    )
                   ],
                 ),
               );

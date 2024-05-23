@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:vehicanich/utils/app_colors.dart';
 import 'package:vehicanich/utils/app_text.dart';
@@ -35,7 +36,11 @@ class ProfileList extends StatelessWidget {
                 color: Myappallcolor().textcolor,
               ),
             ),
-            title: AppText(text: text, size: 0.04),
+            title: AppText(
+              text: text,
+              size: 0.04,
+              weight: FontWeight.w500,
+            ),
             trailing: Container(
               decoration: BoxDecoration(
                   color: Myappallcolor().textcolor.withOpacity(0.1),
