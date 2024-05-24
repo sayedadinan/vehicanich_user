@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:vehicanich/data/services/connectivity/internet_connection.dart';
 import 'package:vehicanich/utils/app_colors.dart';
+import 'package:vehicanich/utils/app_text.dart';
 import 'package:vehicanich/utils/mediaquery.dart';
+import 'package:vehicanich/widgets/connectivity_widget/connectivity_widget.dart';
 import 'package:vehicanich/widgets/my_bookings/completed_bookings/completed_bookings.dart';
 import 'package:vehicanich/widgets/my_bookings/pending_bookings/pending_bookings.dart';
 
@@ -10,15 +13,22 @@ class UserBookingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Myappallcolor().appbackgroundcolor,
       appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: Myappallcolor().appbarbackgroundcolor,
-        title: const Text(
-          'My bookings',
-          style: TextStyle(color: Colors.white),
-        ),
-      ),
-      body: const _UserBookingsBody(),
+          centerTitle: true,
+          backgroundColor: Myappallcolor().appbarbackgroundcolor,
+          title: AppText(text: 'My bookings', size: 0.06)),
+      body: StreamBuilder(
+          stream: checkInternetConnection(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            if (!snapshot.hasData || !snapshot.data!) {
+              return const ConnectivityWidget();
+            }
+            return const _UserBookingsBody();
+          }),
     );
   }
 }
@@ -29,7 +39,7 @@ class _UserBookingsBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2, // Number of tabs
+      length: 2,
       child: Column(
         children: [
           Container(

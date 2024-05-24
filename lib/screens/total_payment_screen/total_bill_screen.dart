@@ -27,9 +27,6 @@ class _TotalBillScreenState extends State<TotalBillScreen> {
         shopId: widget.bookings[ReferenceKeys.shopId],
         vehicleNumber: widget.bookings[ReferenceKeys.vehiclenumber],
         serviceName: widget.bookings[ReferenceKeys.servicename]));
-    // log(widget.bookings[ReferenceKeys.shopId]);
-    // log(widget.bookings[ReferenceKeys.vehiclenumber]);
-    // log(widget.bookings[ReferenceKeys.servicename]);
   }
 
   @override
@@ -73,7 +70,7 @@ class _TotalBillScreenState extends State<TotalBillScreen> {
                                 decoration: BoxDecoration(
                                     border: Border.all(
                                         color: Myappallcolor().colorwhite)),
-                                child: Center(
+                                child: const Center(
                                   child: AppText(
                                       text: 'total details', size: 0.05),
                                 ),
@@ -86,17 +83,17 @@ class _TotalBillScreenState extends State<TotalBillScreen> {
                                   color: Colors.transparent,
                                   child: Column(
                                     children: [
-                                      CustomSizedBoxHeight(0.01),
+                                      const CustomSizedBoxHeight(0.01),
                                       totalDetailsRow(
                                         keytext: 'services',
                                         valueText: state.serviceName,
                                       ),
-                                      CustomSizedBoxHeight(0.01),
+                                      const CustomSizedBoxHeight(0.01),
                                       totalDetailsRow(
                                         keytext: 'vehicle number',
                                         valueText: state.vehicleNumber,
                                       ),
-                                      CustomSizedBoxHeight(0.02),
+                                      const CustomSizedBoxHeight(0.02),
                                       totalDetailsRow(
                                         keytext: 'booked date',
                                         valueText: state.vehicleNumber,
@@ -146,7 +143,7 @@ class _TotalBillScreenState extends State<TotalBillScreen> {
                     )));
                   },
                   text: 'Ready to Pay',
-                  fontSize: Mymediaquery().mediaquerywidth(0.04, context),
+                  fontSize: 0.04,
                   buttontextcolor: Myappallcolor().colorwhite,
                   bordercolor: Colors.transparent)
             ],

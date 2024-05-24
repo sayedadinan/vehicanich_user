@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vehicanich/utils/app_text.dart';
 import 'package:vehicanich/utils/mediaquery.dart';
 
 class CustomGoogleButton extends StatelessWidget {
@@ -35,15 +36,7 @@ class CustomGoogleButton extends StatelessWidget {
         child: InkWell(
           borderRadius: BorderRadius.circular(10.0),
           onTap: function,
-          child: Center(
-            child: Text(
-              text,
-              style: TextStyle(
-                color: buttontextcolor,
-                fontSize: fontSize,
-              ),
-            ),
-          ),
+          child: Center(child: AppText(text: text, size: fontSize)),
         ),
       ),
     );

@@ -4,6 +4,7 @@ import 'package:vehicanich/utils/app_colors.dart';
 import 'package:vehicanich/utils/app_sizedbox.dart';
 import 'package:vehicanich/utils/app_text.dart';
 import 'package:vehicanich/utils/mediaquery.dart';
+import 'package:vehicanich/widgets/connectivity_widget/connectivity_widget.dart';
 import 'package:vehicanich/widgets/home_screen_widgets/photo_slider_widget.dart';
 import 'package:vehicanich/widgets/home_screen_widgets/shop_list.dart';
 import 'package:vehicanich/widgets/search_widgets/search_bar.dart';
@@ -41,9 +42,7 @@ class HomeScreen extends StatelessWidget {
             return const Center(child: CircularProgressIndicator());
           }
           if (!snapshot.hasData || !snapshot.data!) {
-            return const Center(
-              child: AppText(text: 'no internet connection', size: 0.04),
-            );
+            return const ConnectivityWidget();
           }
           return Column(
             children: [

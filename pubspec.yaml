@@ -74,6 +74,8 @@ flutter:
     - assets/images/urban-967.png
     - assets/images/add photo.jpg
     - assets/images/ad photo.jpg
+    - assets/images/icons8-no-internet-connection-78.png
+    - assets/images/nonetworkImage.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
