@@ -6,7 +6,6 @@ import 'package:vehicanich/data/data_provider/keys.dart';
 import 'package:vehicanich/screens/login_screen/login_screen.dart';
 import 'package:vehicanich/screens/onboarding/login_or_sign.dart';
 import 'package:vehicanich/utils/bottom_navigation/bottom_navigation.dart';
-import 'package:vehicanich/utils/page_transition/page_fade_transition.dart';
 
 Future<void> checkingforsplash(context) async {
   log('worked');
@@ -30,6 +29,9 @@ Future<void> checkingforsplash(context) async {
     );
   }
   if (data.isNotEmpty) {
-    Navigator.of(context).push(FadeTransitionPageRoute(child: BottomBar()));
+    Navigator.of(context).pushAndRemoveUntil(
+      MaterialPageRoute(builder: (context) => BottomBar()),
+      (Route<dynamic> route) => false,
+    );
   }
 }

@@ -98,19 +98,19 @@ class _ShopDetailsPageState extends State<ShopDetailsPage> {
                       const CustomSizedBoxHeight(0.02),
                       const RowTexts(text: 'Our services'),
                       const CustomSizedBoxHeight(0.02),
-                      buildServiceButton(
+                      buildServiceButtonBody(
                           'Body Maintaince and Repair',
                           Shopkeys.bodyservicemap,
                           context,
                           widget.shopdetails[Shopkeys.phone]),
                       const CustomSizedBoxHeight(0.02),
-                      buildServiceButton(
+                      buildServiceButtonInterior(
                           'Interior Services',
                           Shopkeys.interiorservicemap,
                           context,
                           widget.shopdetails[Shopkeys.phone]),
                       const CustomSizedBoxHeight(0.02),
-                      buildServiceButton(
+                      buildServiceButtonEngine(
                           'Engine and Mechanical Services',
                           Shopkeys.enginservicemap,
                           context,

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:vehicanich/blocs/booking_blocs/body_main_bloc/body_maintaince_bloc.dart';
 import 'package:vehicanich/screens/body_maintaince_screens/body_maintains_category.dart';
@@ -11,12 +13,14 @@ void navigateBasedOnState(BuildContext context, dynamic state) {
     )));
   }
   if (state is InteriorServiceeButtonNavigation) {
+    log('worked interior');
     Navigator.of(context).push(SlideTransitionPageRoute(
         child: const ServiceDetails(
-      textforappbar: '       Interior Services',
+      textforappbar: 'Interior Services',
     )));
   }
   if (state is EngineServiceeButtonNavigation) {
+    log('worked engine');
     Navigator.of(context).push(SlideTransitionPageRoute(
         child: const ServiceDetails(
       textforappbar: 'Engine and Mechanical Services',

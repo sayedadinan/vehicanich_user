@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:vehicanich/utils/app_colors.dart';
+import 'package:vehicanich/utils/app_sizedbox.dart';
+import 'package:vehicanich/utils/app_text.dart';
 import 'package:vehicanich/utils/mediaquery.dart';
 
 class ListtileText extends StatelessWidget {
@@ -22,52 +23,30 @@ class ListtileText extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          shopname,
-          style: TextStyle(
-              // fontFamily: 'Cormorant_Garamond',
-              color: Myappallcolor().colorwhite,
-              fontWeight: FontWeight.w300,
-              fontSize: Mymediaquery().mediaquerywidth(0.05, context)),
+        const CustomSizedBoxHeight(0.01),
+        AppText(
+          text: shopname,
+          size: 0.06,
+          weight: FontWeight.w600,
         ),
+        const CustomSizedBoxHeight(0.003),
         Row(
           children: [
-            Text(
-              shoplocation,
-              style: TextStyle(
-                // fontFamily: 'Cormorant_Garamond',
-                color: Myappallcolor().colorwhite,
-                fontWeight: FontWeight.w300,
-              ),
+            AppText(
+              text: shoplocation,
+              size: 0.04,
+              weight: FontWeight.w100,
             )
           ],
         ),
-        SizedBox(height: Mymediaquery().mediaqueryheight(0.01, context)),
+        const CustomSizedBoxHeight(0.01),
         Row(
           children: [
-            Text(
-              startingtime,
-              style: TextStyle(
-                  color: Myappallcolor().colorwhite,
-                  fontWeight: FontWeight.w300,
-                  fontSize: Mymediaquery().mediaquerywidth(0.03, context)),
-            ),
+            AppText(text: startingtime, size: 0.03),
             SizedBox(width: Mymediaquery().mediaquerywidth(0.01, context)),
-            Text(
-              'to',
-              style: TextStyle(
-                  color: Myappallcolor().colorwhite,
-                  fontWeight: FontWeight.w400,
-                  fontSize: Mymediaquery().mediaquerywidth(0.02, context)),
-            ),
+            const AppText(text: 'to', size: 0.03),
             SizedBox(width: Mymediaquery().mediaquerywidth(0.01, context)),
-            Text(
-              closingtime,
-              style: TextStyle(
-                  color: Myappallcolor().colorwhite,
-                  fontWeight: FontWeight.w300,
-                  fontSize: Mymediaquery().mediaquerywidth(0.03, context)),
-            ),
+            AppText(text: closingtime, size: 0.03),
           ],
         ),
       ],

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:vehicanich/data/repositories/shop_details/shop_repositery.dart';
 part 'body_maintaince_event.dart';
@@ -16,6 +18,7 @@ class BodyMaintainceBloc
   }
   bodymaintaincebuttonpressed(BodyMaintainceButtonPressed event,
       Emitter<BodyMaintainceState> emit) async {
+    log('worked bod');
     emit(BodyMaintaincebuttonNavigation(
         phonenumber: event.shopphone, services: state.services));
     emit(Bodymaintainceloading(
@@ -35,6 +38,7 @@ class BodyMaintainceBloc
 
   interiorbuttonpressed(
       InteriorButtonPressed event, Emitter<BodyMaintainceState> emit) async {
+    log('worked intee');
     emit(InteriorServiceeButtonNavigation(
         phonenumber: event.shopphone, services: state.services));
     emit(InteriorServiceloading(

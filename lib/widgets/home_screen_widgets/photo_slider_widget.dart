@@ -15,7 +15,7 @@ class PhotoSlider extends StatelessWidget {
         options: CarouselOptions(
           height: Mymediaquery().mediaqueryheight(0.23, context),
           autoPlay: true,
-          autoPlayInterval: Duration(seconds: 4),
+          autoPlayInterval: const Duration(seconds: 4),
           enlargeCenterPage: true,
         ),
         items: imageList.map((imagePath) {
@@ -23,9 +23,9 @@ class PhotoSlider extends StatelessWidget {
             builder: (BuildContext context) {
               return Container(
                 width: MediaQuery.of(context).size.width,
-                margin: EdgeInsets.symmetric(horizontal: 5.0),
-                decoration: BoxDecoration(
-                  color: Colors.amber,
+                margin: const EdgeInsets.symmetric(horizontal: 5.0),
+                decoration: const BoxDecoration(
+                  color: Color.fromARGB(255, 6, 17, 65),
                 ),
                 child: Image.asset(
                   imagePath,
