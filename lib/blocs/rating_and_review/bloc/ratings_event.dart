@@ -12,3 +12,5 @@ class RatingAndReviewAdding extends RatingsEvent {
     required this.shopId,
   });
 }
+
+class RatingsTotal extends RatingsEvent {}

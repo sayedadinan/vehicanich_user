@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:vehicanich/data/data_provider/keys.dart';
 import 'package:vehicanich/data/data_provider/shop_data.dart';
@@ -17,20 +16,10 @@ class ShopRepository {
           .map((DocumentSnapshot doc) => doc.data() as Map<String, dynamic>)
           .toList();
 
-      print('Successfully fetched data: $shopDetailsList');
-      // print(shopDetailsList.first[Shopkeys().bodyservicemap]);
-      // Map<String, dynamic> map = shopDetailsList.first[Shopkeys.bodyservicemap];
-      // List<String> m = [];
-      // List<int> p = [];
-      // map.forEach((key, value) {
-      //   m.add(key);
-      //   p.add(value);
-      // });
-      // print(m);
-      // print(p.toString());
+      log('Successfully fetched data: $shopDetailsList');
       return shopDetailsList;
     } catch (e) {
-      print('Error fetching data: $e');
+      log('Error fetching data: $e');
       rethrow;
     }
   }
@@ -41,7 +30,7 @@ class ShopRepository {
         .where(Shopkeys.phone, isEqualTo: phone)
         .get();
     final docid = querySnapshot.docs.first.id;
-    print('this is shop id $docid');
+    log('this is shop id $docid');
     return docid;
   }
 
@@ -68,7 +57,7 @@ class ShopRepository {
       }).toList();
       return filteredList;
     } catch (e) {
-      print('Error fetching data s: $e');
+      log('Error fetching data s: $e');
       rethrow;
     }
   }
@@ -85,6 +74,36 @@ class ShopRepository {
       return shopData;
     } catch (e) {
       log('current status taking area error$e');
+    }
+  }
+
+  Future getTotalRatingCounts() async {
+    // Reference to the shop collection
+    final shopCollection = FirebaseFirestore.instance.collection('shops');
+
+    // Get all shop documents
+    QuerySnapshot shopSnapshot = await shopCollection.get();
+
+    // Iterate through each shop document
+    for (QueryDocumentSnapshot shopDoc in shopSnapshot.docs) {
+      dynamic totalRatingCount = 0;
+
+      // Reference to the rateAndReview sub-collection
+      CollectionReference rateAndReviewCollection =
+          shopDoc.reference.collection('rateAndReview');
+
+      // Get all rateAndReview documents
+      QuerySnapshot rateAndReviewSnapshot = await rateAndReviewCollection.get();
+
+      // Sum the ratingCount fields
+      for (QueryDocumentSnapshot rateAndReviewDoc
+          in rateAndReviewSnapshot.docs) {
+        totalRatingCount += rateAndReviewDoc['ratinCount'] ?? 0;
+      }
+
+      // Display or use the totalRatingCount as needed
+      log('Total rating count for shop ${shopDoc.id}: $totalRatingCount');
+      return shopDoc.id;
     }
   }
 }
