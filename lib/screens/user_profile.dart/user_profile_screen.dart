@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vehicanich/blocs/image_bloc/bloc/image_bloc.dart';
 import 'package:vehicanich/blocs/user_details_blocs/user_detail_bloc.dart';
+import 'package:vehicanich/screens/splash_screen/splash_screen.dart';
 import 'package:vehicanich/screens/user_profile.dart/profile_editing_page.dart';
 import 'package:vehicanich/utils/app_colors.dart';
 import 'package:vehicanich/utils/app_sizedbox.dart';
@@ -125,9 +127,15 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                       icon: Icons.abc,
                     ),
                     const CustomSizedBoxHeight(0.01),
-                    const ProfileList(
-                      text: 'log out',
-                      icon: Icons.logout,
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(
+                            FadeTransitionPageRoute(child: SplashScreen()));
+                      },
+                      child: const ProfileList(
+                        text: 'log out',
+                        icon: Icons.logout,
+                      ),
                     ),
                   ],
                 ),

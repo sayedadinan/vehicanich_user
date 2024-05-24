@@ -20,4 +20,5 @@ class ReferenceKeys {
   static String bookingId = 'customerId';
   static String userName = 'UserName';
   static String rateAndReview = 'rateAndReview';
+  static String sharedPrefEmail = 'user_email';
 }

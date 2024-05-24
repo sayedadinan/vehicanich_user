@@ -9,8 +9,8 @@ import 'package:vehicanich/widgets/onboarding_widgets/onboarding_image.dart';
 import 'package:vehicanich/widgets/onboarding_widgets/onboarding_texts.dart';
 import 'package:vehicanich/widgets/onboarding_widgets/smoothindicator.dart';
 
-class Splashscreen extends StatelessWidget {
-  Splashscreen({super.key});
+class OnBoardingScreen extends StatelessWidget {
+  OnBoardingScreen({super.key});
   final controller = OnboardingItems();
   final pageController = PageController();
   @override

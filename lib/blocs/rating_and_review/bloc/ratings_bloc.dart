@@ -8,7 +8,7 @@ part 'ratings_state.dart';
 class RatingsBloc extends Bloc<RatingsEvent, RatingsState> {
   RatingsBloc() : super(RatingsInitial()) {
     on<RatingAndReviewAdding>(ratingAndReviewadding);
-    on<RatingsTotal>(ratingTotal);
+    // on<RatingsTotal>(ratingTotal);
   }
   ratingAndReviewadding(
       RatingAndReviewAdding event, Emitter<RatingsState> emit) async {
@@ -28,14 +28,14 @@ class RatingsBloc extends Bloc<RatingsEvent, RatingsState> {
     }
   }
 
-  ratingTotal(RatingsTotal event, Emitter<RatingsState> emit) async {
-    try {
-      final shopReference = await ShopReference()
-          .shopCollectionReference()
-          .doc()
-          .collection(ReferenceKeys.rateAndReview)
-          .doc()
-          .get();
-    } catch (e) {}
-  }
+  // ratingTotal(RatingsTotal event, Emitter<RatingsState> emit) async {
+  //   try {
+  //     final shopReference = await ShopReference()
+  //         .shopCollectionReference()
+  //         .doc()
+  //         .collection(ReferenceKeys.rateAndReview)
+  //         .doc()
+  //         .get();
+  //   } catch (e) {}
+  // }
 }
