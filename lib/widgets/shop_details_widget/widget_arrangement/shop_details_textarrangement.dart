@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vehicanich/data/services/details_services/map_view.dart';
 import 'package:vehicanich/utils/app_colors.dart';
+import 'package:vehicanich/utils/app_text.dart';
 import 'package:vehicanich/utils/mediaquery.dart';
 
 class ShopTextArrange extends StatelessWidget {
@@ -18,12 +19,10 @@ class ShopTextArrange extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Text(
-          shopname,
-          style: TextStyle(
-              color: Myappallcolor().colorwhite,
-              fontWeight: FontWeight.w300,
-              fontSize: Mymediaquery().mediaquerywidth(0.06, context)),
+        AppText(
+          text: shopname,
+          size: 0.07,
+          weight: FontWeight.w700,
         ),
         SizedBox(
           width: Mymediaquery().mediaquerywidth(0.05, context),
@@ -41,12 +40,10 @@ class ShopTextArrange extends StatelessWidget {
               onTap: () {
                 MapViews().launchMap(latitude, longitude);
               },
-              child: Text(
-                'Map View',
-                style: TextStyle(
-                    color: Myappallcolor().colorwhite,
-                    fontWeight: FontWeight.w400,
-                    fontSize: Mymediaquery().mediaquerywidth(0.04, context)),
+              child: const AppText(
+                text: 'view shop',
+                size: 0.05,
+                weight: FontWeight.w600,
               ),
             ),
           ],
@@ -76,34 +73,27 @@ class ShopTimeText extends StatelessWidget {
             SizedBox(
               width: Mymediaquery().mediaquerywidth(0.02, context),
             ),
-            Text(
-              'working time',
-              style: TextStyle(
-                  color: Myappallcolor().colorwhite,
-                  fontSize: Mymediaquery().mediaquerywidth(0.03, context)),
-            ),
+            const AppText(text: 'Working time', size: 0.04),
             SizedBox(
               width: Mymediaquery().mediaquerywidth(0.03, context),
             ),
-            Text(
-              startingtime,
-              style: TextStyle(
-                color: Myappallcolor().colorwhite,
-              ),
+            AppText(
+              text: startingtime,
+              size: 0.04,
             ),
             SizedBox(
               width: Mymediaquery().mediaquerywidth(0.01, context),
             ),
-            Text(
-              'to',
-              style: TextStyle(color: Myappallcolor().colorwhite),
+            AppText(
+              text: 'to',
+              size: 0.04,
             ),
             SizedBox(
               width: Mymediaquery().mediaquerywidth(0.01, context),
             ),
-            Text(
-              closingtime,
-              style: TextStyle(color: Myappallcolor().colorwhite),
+            AppText(
+              text: closingtime,
+              size: 0.04,
             ),
           ],
         ),
@@ -147,12 +137,8 @@ class DetailsPageDescription extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: Mymediaquery().mediaquerywidth(0.8, context),
-      child: Text(
-        text,
-        style: TextStyle(color: Myappallcolor().colorwhite),
-      ),
-    );
+        width: Mymediaquery().mediaquerywidth(0.8, context),
+        child: AppText(text: text, size: 0.04));
   }
 }
 
@@ -162,12 +148,10 @@ class DetailsPageTitleText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      titletext,
-      style: TextStyle(
-          color: Myappallcolor().colorwhite,
-          fontWeight: FontWeight.w400,
-          fontSize: Mymediaquery().mediaquerywidth(0.04, context)),
+    return AppText(
+      text: titletext,
+      size: 0.06,
+      weight: FontWeight.w400,
     );
   }
 }

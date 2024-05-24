@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vehicanich/utils/app_text.dart';
 import 'package:vehicanich/utils/mediaquery.dart';
 
 class CustomButton extends StatelessWidget {
@@ -33,15 +34,7 @@ class CustomButton extends StatelessWidget {
         onTap: () {
           function(); // Invoke the function here
         },
-        child: Center(
-          child: Text(
-            text,
-            style: TextStyle(
-              color: buttontextcolor,
-              fontSize: fontSize,
-            ),
-          ),
-        ),
+        child: Center(child: AppText(text: text, size: fontSize)),
       ),
     );
   }

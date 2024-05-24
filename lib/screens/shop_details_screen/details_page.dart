@@ -62,7 +62,6 @@ class _ShopDetailsPageState extends State<ShopDetailsPage> {
                 const CustomSizedBoxHeight(0.04),
                 Container(
                   width: double.infinity,
-                  height: Mymediaquery().mediaqueryheight(1, context),
                   decoration: BoxDecoration(
                       color: Myappallcolor().appbarbackgroundcolor,
                       borderRadius: const BorderRadius.only(
@@ -94,8 +93,7 @@ class _ShopDetailsPageState extends State<ShopDetailsPage> {
                           color: Myappallcolor().emergencybuttoncolor,
                           function: () {},
                           text: 'Emergency service',
-                          fontSize:
-                              Mymediaquery().mediaquerywidth(0.03, context),
+                          fontSize: 0.04,
                           buttontextcolor: Myappallcolor().colorwhite),
                       const CustomSizedBoxHeight(0.02),
                       const RowTexts(text: 'Our services'),
@@ -117,6 +115,7 @@ class _ShopDetailsPageState extends State<ShopDetailsPage> {
                           Shopkeys.enginservicemap,
                           context,
                           widget.shopdetails[Shopkeys.phone]),
+                      const CustomSizedBoxHeight(0.04),
                     ],
                   ),
                 )
