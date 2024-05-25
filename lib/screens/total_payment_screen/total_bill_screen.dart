@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vehicanich/blocs/total_bill/bloc/total_bill_bloc.dart';
 import 'package:vehicanich/data/data_provider/keys.dart';
 import 'package:vehicanich/screens/total_payment_screen/paying_screen.dart';
+import 'package:vehicanich/screens/total_payment_screen/total_details_row.dart';
 import 'package:vehicanich/utils/app_colors.dart';
 import 'package:vehicanich/utils/app_custom_appbar.dart';
 import 'package:vehicanich/utils/app_googlebutton.dart';
@@ -58,7 +59,6 @@ class _TotalBillScreenState extends State<TotalBillScreen> {
                         borderRadius: BorderRadius.circular(
                             MyAppTheme.borderRadiusValue)),
                     width: double.infinity,
-                    // height: Mymediaquery().mediaqueryheight(0.33, context),
                     child: Column(
                       children: [
                         SizedBox(
@@ -150,32 +150,6 @@ class _TotalBillScreenState extends State<TotalBillScreen> {
           );
         },
       ),
-    );
-  }
-}
-
-class totalDetailsRow extends StatelessWidget {
-  final String keytext;
-  final String valueText;
-  const totalDetailsRow({
-    super.key,
-    required this.keytext,
-    required this.valueText,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        const CustomSizedBoxHeight(0.03),
-        SizedBox(
-            width: Mymediaquery().mediaquerywidth(0.33, context),
-            child: AppText(text: keytext, size: 0.05)),
-        const CustomSizedBoxWidth(0.06),
-        SizedBox(
-            width: Mymediaquery().mediaquerywidth(0.4, context),
-            child: AppText(text: valueText, size: 0.05)),
-      ],
     );
   }
 }

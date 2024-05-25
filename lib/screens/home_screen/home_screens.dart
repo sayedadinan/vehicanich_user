@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vehicanich/data/repositories/shop_details/shop_repositery.dart';
 import 'package:vehicanich/data/services/connectivity/internet_connection.dart';
 import 'package:vehicanich/utils/app_colors.dart';
 import 'package:vehicanich/utils/app_sizedbox.dart';
@@ -9,8 +10,20 @@ import 'package:vehicanich/widgets/home_screen_widgets/photo_slider_widget.dart'
 import 'package:vehicanich/widgets/home_screen_widgets/shop_list.dart';
 import 'package:vehicanich/widgets/search_widgets/search_bar.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  Future<Map<dynamic, dynamic>>? ratingCountsFuture;
+  @override
+  void initState() {
+    super.initState();
+    ratingCountsFuture = ShopRepository().getAverageRatings();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +33,7 @@ class HomeScreen extends StatelessWidget {
         actions: [
           Padding(
             padding: EdgeInsets.only(
-                right: Mymediaquery().mediaquerywidth(
-                    0.56, context)), // Adjust padding as needed
+                right: Mymediaquery().mediaquerywidth(0.56, context)),
             child: const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -51,7 +63,10 @@ class HomeScreen extends StatelessWidget {
               PhotoSlider(),
               const CustomSizedBoxHeight(0.02),
               const AppText(text: 'your preferred workshops', size: 0.06),
-              const Expanded(child: Homescreenlist()),
+              Expanded(
+                  child: Homescreenlist(
+                ratingCounts: ratingCountsFuture,
+              )),
             ],
           );
         },

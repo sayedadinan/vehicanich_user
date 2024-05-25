@@ -11,106 +11,138 @@ import 'package:vehicanich/widgets/home_screen_widgets/home_image_widget.dart';
 import 'package:vehicanich/widgets/home_screen_widgets/home_listtile_text.dart';
 
 class Homescreenlist extends StatelessWidget {
+  final Future<Map<dynamic, dynamic>>? ratingCounts;
   const Homescreenlist({
     super.key,
+    required this.ratingCounts,
   });
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<bool>(
-      stream: checkInternetConnection(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: loader);
-        }
-        if (!snapshot.hasData || !snapshot.data!) {
-          return const Center(
-              child: AppText(text: 'no internet connection', size: 0.04));
-        }
+        stream: checkInternetConnection(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: loader);
+          }
+          if (!snapshot.hasData || !snapshot.data!) {
+            return const Center(
+                child: AppText(text: 'no internet connection', size: 0.04));
+          }
+          return FutureBuilder<Map<dynamic, dynamic>>(
+            future: ratingCounts,
+            builder: (context, ratingSnapshot) {
+              if (ratingSnapshot.connectionState == ConnectionState.waiting) {
+                return Center(child: loader);
+              } else if (ratingSnapshot.hasError) {
+                return Center(
+                    child: Text(
+                  'Error: ${ratingSnapshot.error}',
+                  style: TextStyle(color: Colors.white),
+                ));
+              } else if (!ratingSnapshot.hasData ||
+                  ratingSnapshot.data!.isEmpty) {
+                return const Center(
+                    child: AppText(text: 'no ratings available', size: 0.03));
+              }
 
-        return FutureBuilder<List<Map<String, dynamic>>>(
-          future: ShopRepository().getShopDetails(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(child: loader);
-            } else if (snapshot.hasError) {
-              return Center(child: Text('Error: ${snapshot.error}'));
-            } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-              return const Center(child: Text('No shops available'));
-            }
+              final ratings = ratingSnapshot.data!;
 
-            return ListView.builder(
-              physics: const BouncingScrollPhysics(),
-              itemCount: snapshot.data!.length,
-              itemBuilder: (context, index) {
-                final shopDetails = snapshot.data![index];
-                return Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: Mymediaquery().mediaquerywidth(0.03, context),
-                    vertical: Mymediaquery().mediaqueryheight(0.003, context),
-                  ),
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => ShopDetailsPage(
-                          shopdetails: shopDetails,
-                          tag: shopDetails[Shopkeys.licenceimagepath],
+              return FutureBuilder<List<Map<String, dynamic>>>(
+                future: ShopRepository().getShopDetails(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(child: loader);
+                  } else if (snapshot.hasError) {
+                    return Center(child: Text('Error: ${snapshot.error}'));
+                  } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                    return const Center(child: Text('No shops available'));
+                  }
+
+                  return ListView.builder(
+                    physics: const BouncingScrollPhysics(),
+                    itemCount: snapshot.data!.length,
+                    itemBuilder: (context, index) {
+                      final shopDetails = snapshot.data![index];
+                      final shopId = shopDetails['id'];
+                      final totalRatingCount = ratings[shopId] ?? 0;
+                      return Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal:
+                              Mymediaquery().mediaquerywidth(0.03, context),
+                          vertical:
+                              Mymediaquery().mediaqueryheight(0.003, context),
                         ),
-                      ));
-                    },
-                    child: Card(
-                      elevation: 20,
-                      color: Myappallcolor().appbackgroundcolor,
-                      child: SizedBox(
-                        height: Mymediaquery().mediaqueryheight(0.12, context),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              width:
-                                  Mymediaquery().mediaquerywidth(0.02, context),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                top: Mymediaquery()
-                                    .mediaqueryheight(0.01, context),
-                              ),
-                              child: ImageContainer(
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => ShopDetailsPage(
+                                shopdetails: shopDetails,
                                 tag: shopDetails[Shopkeys.licenceimagepath],
-                                imagepath:
-                                    shopDetails[Shopkeys.bannerimagepath],
+                              ),
+                            ));
+                          },
+                          child: Card(
+                            elevation: 20,
+                            color: Myappallcolor().appbackgroundcolor,
+                            child: SizedBox(
+                              height: Mymediaquery()
+                                  .mediaqueryheight(0.12, context),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    width: Mymediaquery()
+                                        .mediaquerywidth(0.02, context),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                      top: Mymediaquery()
+                                          .mediaqueryheight(0.01, context),
+                                    ),
+                                    child: ImageContainer(
+                                      tag: shopDetails[
+                                          Shopkeys.licenceimagepath],
+                                      imagepath:
+                                          shopDetails[Shopkeys.bannerimagepath],
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: Mymediaquery()
+                                        .mediaquerywidth(0.04, context),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                      top: Mymediaquery()
+                                          .mediaqueryheight(0.00, context),
+                                    ),
+                                    child: ListtileText(
+                                      shoplocation:
+                                          shopDetails[Shopkeys.locationaddress],
+                                      shopname: shopDetails[Shopkeys.shopname],
+                                      phone: shopDetails[Shopkeys.phone],
+                                      startingtime:
+                                          shopDetails[Shopkeys.startingtime],
+                                      closingtime:
+                                          shopDetails[Shopkeys.closingtime],
+                                    ),
+                                  ),
+                                  AppText(
+                                    text: 'Total Ratings: $totalRatingCount',
+                                    size: 0.02,
+                                  ),
+                                ],
                               ),
                             ),
-                            SizedBox(
-                              width:
-                                  Mymediaquery().mediaquerywidth(0.04, context),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                top: Mymediaquery()
-                                    .mediaqueryheight(0.00, context),
-                              ),
-                              child: ListtileText(
-                                shoplocation:
-                                    shopDetails[Shopkeys.locationaddress],
-                                shopname: shopDetails[Shopkeys.shopname],
-                                phone: shopDetails[Shopkeys.phone],
-                                startingtime:
-                                    shopDetails[Shopkeys.startingtime],
-                                closingtime: shopDetails[Shopkeys.closingtime],
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
-                  ),
-                );
-              },
-            );
-          },
-        );
-      },
-    );
+                      );
+                    },
+                  );
+                },
+              );
+            },
+          );
+        });
   }
 }
