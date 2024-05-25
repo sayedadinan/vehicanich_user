@@ -110,40 +110,32 @@ class SearchScreen extends StatelessWidget {
               child: Card(
                 elevation: 20,
                 color: Myappallcolor().appbackgroundcolor,
-                child: SizedBox(
-                  height: Mymediaquery().mediaqueryheight(0.12, context),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        width: Mymediaquery().mediaquerywidth(0.02, context),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      width: Mymediaquery().mediaquerywidth(0.02, context),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(
+                        top: Mymediaquery().mediaqueryheight(0.01, context),
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(
-                          top: Mymediaquery().mediaqueryheight(0.01, context),
-                        ),
-                        child: ImageContainer(
-                          tag: shopDetails[Shopkeys.licenceimagepath],
-                          imagepath: shopDetails[Shopkeys.bannerimagepath],
-                        ),
+                      child: ImageContainer(
+                        tag: shopDetails[Shopkeys.licenceimagepath],
+                        imagepath: shopDetails[Shopkeys.bannerimagepath],
                       ),
-                      SizedBox(
-                        width: Mymediaquery().mediaquerywidth(0.04, context),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(
-                          top: Mymediaquery().mediaqueryheight(0.01, context),
-                        ),
-                        child: ListtileText(
-                          shoplocation: shopDetails[Shopkeys.locationaddress],
-                          shopname: shopDetails[Shopkeys.shopname],
-                          phone: shopDetails[Shopkeys.phone],
-                          startingtime: shopDetails[Shopkeys.startingtime],
-                          closingtime: shopDetails[Shopkeys.closingtime],
-                        ),
-                      )
-                    ],
-                  ),
+                    ),
+                    SizedBox(
+                      width: Mymediaquery().mediaquerywidth(0.04, context),
+                    ),
+                    ListtileText(
+                      shoplocation: shopDetails[Shopkeys.locationaddress],
+                      shopname: shopDetails[Shopkeys.shopname],
+                      phone: shopDetails[Shopkeys.phone],
+                      startingtime: shopDetails[Shopkeys.startingtime],
+                      closingtime: shopDetails[Shopkeys.closingtime],
+                    )
+                  ],
                 ),
               ),
             ),

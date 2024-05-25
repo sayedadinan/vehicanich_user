@@ -81,7 +81,6 @@ class ShopRepository {
 
   Future<Map<dynamic, dynamic>> getAverageRatings() async {
     try {
-      // Reference to the shop collection
       final shopCollection =
           FirebaseFirestore.instance.collection(ReferenceKeys.shopdetails);
 
@@ -90,17 +89,12 @@ class ShopRepository {
 
       // Create a map to store average ratings for each shop
       Map<dynamic, dynamic> averageRatings = {};
-
-      // Iterate through each shop document
       for (QueryDocumentSnapshot shopDoc in shopSnapshot.docs) {
         dynamic totalRatingSum = 0;
         dynamic ratingCount = 0;
-
         try {
-          // Reference to the rateAndReview sub-collection
           CollectionReference rateAndReviewCollection =
               shopDoc.reference.collection('rateAndReview');
-
           QuerySnapshot rateAndReviewSnapshot =
               await rateAndReviewCollection.get();
           for (QueryDocumentSnapshot rateAndReviewDoc
@@ -114,8 +108,9 @@ class ShopRepository {
               ratingCount++;
             }
           }
-          dynamic averageRating =
-              (ratingCount > 0) ? (totalRatingSum / ratingCount) : 0;
+          dynamic averageRating = (ratingCount > 0)
+              ? (totalRatingSum / ratingCount)
+              : 0.0; // set default rating to 0.1
           averageRatings[shopDoc.id] = averageRating;
         } catch (e) {
           log('Error fetching rateAndReview data for shop ${shopDoc.id}: $e');

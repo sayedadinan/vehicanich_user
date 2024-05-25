@@ -86,8 +86,8 @@ class Homescreenlist extends StatelessWidget {
                             elevation: 20,
                             color: Myappallcolor().appbackgroundcolor,
                             child: SizedBox(
-                              height: Mymediaquery()
-                                  .mediaqueryheight(0.12, context),
+                              // height: Mymediaquery()
+                              //     .mediaqueryheight(0.12, context),
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -111,12 +111,7 @@ class Homescreenlist extends StatelessWidget {
                                     width: Mymediaquery()
                                         .mediaquerywidth(0.04, context),
                                   ),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                      top: Mymediaquery()
-                                          .mediaqueryheight(0.00, context),
-                                    ),
-                                    child: ListtileText(
+                                  ListtileText(
                                       shoplocation:
                                           shopDetails[Shopkeys.locationaddress],
                                       shopname: shopDetails[Shopkeys.shopname],
@@ -124,12 +119,39 @@ class Homescreenlist extends StatelessWidget {
                                       startingtime:
                                           shopDetails[Shopkeys.startingtime],
                                       closingtime:
-                                          shopDetails[Shopkeys.closingtime],
+                                          shopDetails[Shopkeys.closingtime]),
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                        top: Mymediaquery()
+                                            .mediaqueryheight(0.009, context)),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.end,
+                                      children: [
+                                        const Icon(
+                                          Icons.star,
+                                          color: Colors.amber,
+                                          size: 20,
+                                        ),
+                                        Container(
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
+                                              color: Myappallcolor().colorwhite,
+                                            ),
+                                            height: Mymediaquery()
+                                                .mediaqueryheight(
+                                                    0.02, context),
+                                            width: Mymediaquery()
+                                                .mediaquerywidth(0.06, context),
+                                            child: Center(
+                                                child: Text(
+                                              totalRatingCount.toString(),
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.w600),
+                                            ))),
+                                      ],
                                     ),
-                                  ),
-                                  AppText(
-                                    text: 'Total Ratings: $totalRatingCount',
-                                    size: 0.02,
                                   ),
                                 ],
                               ),

@@ -23,11 +23,13 @@ class ListtileText extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const CustomSizedBoxHeight(0.01),
-        AppText(
-          text: shopname,
-          size: 0.06,
-          weight: FontWeight.w600,
+        SizedBox(
+          width: Mymediaquery().mediaquerywidth(0.49, context),
+          child: AppText(
+            text: shopname,
+            size: 0.06,
+            weight: FontWeight.w600,
+          ),
         ),
         const CustomSizedBoxHeight(0.003),
         Row(
@@ -49,6 +51,7 @@ class ListtileText extends StatelessWidget {
             AppText(text: closingtime, size: 0.03),
           ],
         ),
+        const CustomSizedBoxHeight(0.02),
       ],
     );
   }
