@@ -4,11 +4,11 @@ import 'package:vehicanich/data/repositories/shop_details/shop_repositery.dart';
 import 'package:vehicanich/data/services/connectivity/internet_connection.dart';
 import 'package:vehicanich/screens/shop_details_screen/details_page.dart';
 import 'package:vehicanich/utils/app_colors.dart';
-import 'package:vehicanich/utils/app_custom_loader.dart';
 import 'package:vehicanich/utils/app_text.dart';
 import 'package:vehicanich/utils/mediaquery.dart';
 import 'package:vehicanich/widgets/home_screen_widgets/home_image_widget.dart';
 import 'package:vehicanich/widgets/home_screen_widgets/home_listtile_text.dart';
+import 'package:vehicanich/widgets/home_screen_widgets/shimmer_effect.dart';
 
 class Homescreenlist extends StatelessWidget {
   final Future<Map<dynamic, dynamic>>? ratingCounts;
@@ -23,7 +23,7 @@ class Homescreenlist extends StatelessWidget {
         stream: checkInternetConnection(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: loader);
+            return const HomeScreenPlaceholder();
           }
           if (!snapshot.hasData || !snapshot.data!) {
             return const Center(
@@ -33,32 +33,29 @@ class Homescreenlist extends StatelessWidget {
             future: ratingCounts,
             builder: (context, ratingSnapshot) {
               if (ratingSnapshot.connectionState == ConnectionState.waiting) {
-                return Center(child: loader);
+                return const HomeScreenPlaceholder();
               } else if (ratingSnapshot.hasError) {
                 return Center(
                     child: Text(
                   'Error: ${ratingSnapshot.error}',
-                  style: TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Colors.white),
                 ));
               } else if (!ratingSnapshot.hasData ||
                   ratingSnapshot.data!.isEmpty) {
                 return const Center(
                     child: AppText(text: 'no ratings available', size: 0.03));
               }
-
               final ratings = ratingSnapshot.data!;
-
               return FutureBuilder<List<Map<String, dynamic>>>(
                 future: ShopRepository().getShopDetails(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Center(child: loader);
+                    return const HomeScreenPlaceholder();
                   } else if (snapshot.hasError) {
                     return Center(child: Text('Error: ${snapshot.error}'));
                   } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
                     return const Center(child: Text('No shops available'));
                   }
-
                   return ListView.builder(
                     physics: const BouncingScrollPhysics(),
                     itemCount: snapshot.data!.length,
@@ -86,8 +83,6 @@ class Homescreenlist extends StatelessWidget {
                             elevation: 20,
                             color: Myappallcolor().appbackgroundcolor,
                             child: SizedBox(
-                              // height: Mymediaquery()
-                              //     .mediaqueryheight(0.12, context),
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -147,7 +142,7 @@ class Homescreenlist extends StatelessWidget {
                                             child: Center(
                                                 child: Text(
                                               totalRatingCount.toString(),
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                   fontWeight: FontWeight.w600),
                                             ))),
                                       ],

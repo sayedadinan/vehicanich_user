@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:vehicanich/data/repositories/user_repositery.dart';
 import 'package:vehicanich/utils/app_colors.dart';
-import 'package:vehicanich/utils/app_custom_loader.dart';
 import 'package:vehicanich/utils/app_sizedbox.dart';
 import 'package:vehicanich/utils/app_text.dart';
+import 'package:vehicanich/widgets/home_screen_widgets/shimmer_effect.dart';
 import 'package:vehicanich/widgets/my_bookings/pending_bookings/booking_paddings.dart';
 
 class PendingBookingTab extends StatelessWidget {
@@ -20,7 +20,12 @@ class PendingBookingTab extends StatelessWidget {
         future: UserRepository().userMybookings(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return loader;
+            return const Column(
+              children: [
+                CustomSizedBoxHeight(0.02),
+                HomeScreenPlaceholder(),
+              ],
+            );
           } else if (snapshot.hasError) {
             return Text('Error: ${snapshot.error}');
           } else {

@@ -83,11 +83,7 @@ class ShopRepository {
     try {
       final shopCollection =
           FirebaseFirestore.instance.collection(ReferenceKeys.shopdetails);
-
-      // Get all shop documents
       QuerySnapshot shopSnapshot = await shopCollection.get();
-
-      // Create a map to store average ratings for each shop
       Map<dynamic, dynamic> averageRatings = {};
       for (QueryDocumentSnapshot shopDoc in shopSnapshot.docs) {
         dynamic totalRatingSum = 0;

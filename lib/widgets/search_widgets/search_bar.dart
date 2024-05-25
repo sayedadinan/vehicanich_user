@@ -60,7 +60,7 @@ class CustomSearchFieldForHome extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Navigator.of(context).push(
-          FadeTransitionPageRoute(child: SearchScreen()),
+          FadeTransitionPageRoute(child: const SearchScreen()),
         );
       },
       child: Padding(

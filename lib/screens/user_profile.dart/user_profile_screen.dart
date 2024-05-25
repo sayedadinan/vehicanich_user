@@ -7,6 +7,7 @@ import 'package:vehicanich/data/services/connectivity/internet_connection.dart';
 import 'package:vehicanich/screens/splash_screen/splash_screen.dart';
 import 'package:vehicanich/screens/user_profile.dart/profile_editing_page.dart';
 import 'package:vehicanich/utils/app_colors.dart';
+import 'package:vehicanich/utils/app_custom_loader.dart';
 import 'package:vehicanich/utils/app_sizedbox.dart';
 import 'package:vehicanich/utils/app_text.dart';
 import 'package:vehicanich/utils/mediaquery.dart';
@@ -45,7 +46,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                 stream: checkInternetConnection(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const Center(child: CircularProgressIndicator());
+                    return loader;
                   }
                   if (!snapshot.hasData || !snapshot.data!) {
                     return const ConnectivityWidget();
