@@ -94,7 +94,7 @@ class _BookingDetailsState extends State<BookingDetails> {
                     bordercolor: Myappallcolor().colorwhite,
                     buttontextcolor: Myappallcolor().colorwhite,
                     color: Colors.transparent,
-                    fontSize: Mymediaquery().mediaquerywidth(0.03, context),
+                    fontSize: 0.06,
                     function: () {
                       Navigator.of(context).push(FadeTransitionPageRoute(
                           child: TotalBillScreen(

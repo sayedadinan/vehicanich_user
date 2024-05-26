@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vehicanich/blocs/login_bloc/login_bloc.dart';
 import 'package:vehicanich/screens/login_screen/login_screen.dart';
 import 'package:vehicanich/utils/bottom_navigation/bottom_navigation.dart'; // Import material.dart for using Navigator
@@ -74,7 +75,8 @@ Future<void> signInWithGoogle(BuildContext context) async {
 Future<void> signOut(BuildContext context) async {
   try {
     await GoogleSignIn().signOut();
-    // Navigate to the login screen and remove all existing routes
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.clear();
     Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(builder: (context) => Loginscreen()),
       (route) => false,

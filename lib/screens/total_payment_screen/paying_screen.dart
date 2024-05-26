@@ -77,7 +77,7 @@ class PaymentScreen extends StatelessWidget {
                             AddMoneyToWallet(amount: amount, shopId: shopId));
                       },
                       text: "pay",
-                      fontSize: Mymediaquery().mediaquerywidth(0.07, context),
+                      fontSize: 0.07,
                       buttontextcolor: Myappallcolor().colorwhite,
                       bordercolor: Colors.transparent,
                     ),

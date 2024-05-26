@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vehicanich/blocs/image_bloc/bloc/image_bloc.dart';
 import 'package:vehicanich/blocs/user_details_blocs/user_detail_bloc.dart';
 import 'package:vehicanich/data/services/connectivity/internet_connection.dart';
-import 'package:vehicanich/screens/splash_screen/splash_screen.dart';
+import 'package:vehicanich/data/services/firebase_auth_implementation/firebase_auth_service.dart';
 import 'package:vehicanich/screens/user_profile.dart/profile_editing_page.dart';
 import 'package:vehicanich/utils/app_colors.dart';
 import 'package:vehicanich/utils/app_custom_loader.dart';
@@ -96,7 +95,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                             child: Card(
                               elevation: 10,
                               color: Myappallcolor().appbackgroundcolor,
-                              child: Container(
+                              child: SizedBox(
                                 width: double.infinity,
                                 child: Column(
                                   children: [
@@ -145,9 +144,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                           const CustomSizedBoxHeight(0.01),
                           GestureDetector(
                             onTap: () {
-                              Navigator.of(context).push(
-                                  FadeTransitionPageRoute(
-                                      child: SplashScreen()));
+                              signOut(context);
                             },
                             child: const ProfileList(
                               text: 'log out',
