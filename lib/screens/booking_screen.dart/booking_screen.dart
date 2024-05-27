@@ -102,7 +102,7 @@ class BookingScreen extends StatelessWidget {
                         );
                       },
                       text: 'Proceed to pay',
-                      fontSize: Mymediaquery().mediaquerywidth(0.04, context),
+                      fontSize: 0.05,
                       buttontextcolor: Myappallcolor().colorwhite,
                       bordercolor: Colors.transparent),
                   SizedBox(

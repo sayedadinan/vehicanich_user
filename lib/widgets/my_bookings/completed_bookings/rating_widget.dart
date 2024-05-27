@@ -100,7 +100,7 @@ class RatingDialog extends StatelessWidget {
                     Navigator.of(context).pop();
                   },
                   text: 'Submit',
-                  fontSize: Mymediaquery().mediaquerywidth(0.03, context),
+                  fontSize: 0.03,
                   buttontextcolor: Myappallcolor().colorwhite,
                   bordercolor: Colors.transparent),
             ),
@@ -111,7 +111,7 @@ class RatingDialog extends StatelessWidget {
                   color: Myappallcolor().textcolor,
                   function: () {},
                   text: 'Cancel',
-                  fontSize: Mymediaquery().mediaquerywidth(0.03, context),
+                  fontSize: 0.03,
                   buttontextcolor: Myappallcolor().colorwhite,
                   bordercolor: Colors.transparent),
             ),

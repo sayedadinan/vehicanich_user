@@ -2,8 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:vehicanich/data/repositories/shop_details/shop_repositery.dart';
 import 'package:vehicanich/utils/app_colors.dart';
-import 'package:vehicanich/utils/app_custom_loader.dart';
+import 'package:vehicanich/utils/app_sizedbox.dart';
 import 'package:vehicanich/utils/app_text.dart';
+import 'package:vehicanich/widgets/home_screen_widgets/shimmer_effect.dart';
 import 'package:vehicanich/widgets/rating_widgets/rating_card.dart';
 
 class RatingScreen extends StatelessWidget {
@@ -25,7 +26,12 @@ class RatingScreen extends StatelessWidget {
         future: ShopRepository().ratingsAndReview(phone),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: loader);
+            return const Column(
+              children: [
+                CustomSizedBoxHeight(0.03),
+                HomeScreenPlaceholder(),
+              ],
+            );
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
