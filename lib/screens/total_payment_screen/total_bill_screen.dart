@@ -89,16 +89,25 @@ class _TotalBillScreenState extends State<TotalBillScreen> {
                                         valueText: state.serviceName,
                                       ),
                                       const CustomSizedBoxHeight(0.01),
+                                      const Divider(
+                                        endIndent: 30,
+                                      ),
                                       totalDetailsRow(
                                         keytext: 'vehicle number',
                                         valueText: state.vehicleNumber,
                                       ),
-                                      const CustomSizedBoxHeight(0.02),
+                                      const CustomSizedBoxHeight(0.01),
+                                      const Divider(
+                                        endIndent: 30,
+                                      ),
                                       totalDetailsRow(
                                         keytext: 'booked date',
                                         valueText: state.vehicleNumber,
                                       ),
-                                      const CustomSizedBoxHeight(0.02),
+                                      const CustomSizedBoxHeight(0.01),
+                                      const Divider(
+                                        endIndent: 30,
+                                      ),
                                       Visibility(
                                         visible: state.extraService.isNotEmpty,
                                         child: totalDetailsRow(
@@ -106,10 +115,13 @@ class _TotalBillScreenState extends State<TotalBillScreen> {
                                           valueText: state.extraService,
                                         ),
                                       ),
-                                      const CustomSizedBoxHeight(0.02),
+                                      const CustomSizedBoxHeight(0.01),
                                       totalDetailsRow(
                                         keytext: 'Total amount',
                                         valueText: state.totalAmount,
+                                      ),
+                                      const Divider(
+                                        endIndent: 30,
                                       ),
                                       const CustomSizedBoxHeight(0.02),
                                     ],

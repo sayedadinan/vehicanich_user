@@ -50,9 +50,6 @@ class _HomeScreenState extends State<HomeScreen> {
       body: StreamBuilder<bool>(
         stream: checkInternetConnection(),
         builder: (context, snapshot) {
-          // if (snapshot.connectionState == ConnectionState.waiting) {
-          //   return const HomeSreenShimmerEffect();
-          // }
           if (!snapshot.hasData || !snapshot.data!) {
             return const ConnectivityWidget();
           }

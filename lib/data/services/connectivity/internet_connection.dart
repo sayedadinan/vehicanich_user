@@ -1,9 +1,3 @@
-// class ConnectivityService {
-//   final Connectivity _connectivity = Connectivity();
-//   Stream<List<ConnectivityResult>> get connectivityStream =>
-//       _connectivity.onConnectivityChanged;
-// }
-
 import 'package:connectivity_plus/connectivity_plus.dart';
 
 Stream<bool> checkInternetConnection() async* {
