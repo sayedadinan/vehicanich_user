@@ -1,5 +1,7 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:top_snackbar_flutter/tap_bounce_container.dart';
 import 'package:vehicanich/blocs/image_bloc/bloc/image_bloc.dart';
 import 'package:vehicanich/blocs/user_details_blocs/user_detail_bloc.dart';
 import 'package:vehicanich/data/services/connectivity/internet_connection.dart';
@@ -7,6 +9,7 @@ import 'package:vehicanich/data/services/firebase_auth_implementation/firebase_a
 import 'package:vehicanich/screens/user_profile.dart/profile_editing_page.dart';
 import 'package:vehicanich/utils/app_colors.dart';
 import 'package:vehicanich/utils/app_custom_loader.dart';
+import 'package:vehicanich/utils/app_showdialogue.dart';
 import 'package:vehicanich/utils/app_sizedbox.dart';
 import 'package:vehicanich/utils/app_text.dart';
 import 'package:vehicanich/utils/mediaquery.dart';
@@ -142,9 +145,42 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                             icon: Icons.abc,
                           ),
                           const CustomSizedBoxHeight(0.01),
-                          GestureDetector(
+                          TapBounceContainer(
                             onTap: () {
-                              signOut(context);
+                              // showTopSnackBar(
+                              //   dismissType: DismissType.onSwipe,
+                              //   animationDuration: Duration(seconds: 2),
+                              //   displayDuration: Duration(seconds: 1),
+                              //   Overlay.of(context),
+                              //   CustomSnackBar.error(
+                              //     message: 'persistent snackbar',
+                              //   ),
+                              //   // persistent: true,
+                              // );
+
+                              CustomShowdialogue.showCustomDialog(context,
+                                  title: 'Warning',
+                                  message: 'Are you sure for logout',
+                                  type: DialogType.error,
+                                  secondButtonText: 'logout',
+                                  showSecondButton: true,
+                                  onSecondButtonPressed: () {
+                                signOut(context);
+                                final snackBar = SnackBar(
+                                  padding: const EdgeInsets.all(26),
+                                  elevation: 0,
+                                  behavior: SnackBarBehavior.floating,
+                                  backgroundColor: Colors.transparent,
+                                  content: AwesomeSnackbarContent(
+                                    title: 'On logout',
+                                    message: 'you logouted from your account',
+                                    contentType: ContentType.warning,
+                                  ),
+                                );
+                                ScaffoldMessenger.of(context)
+                                  ..hideCurrentSnackBar()
+                                  ..showSnackBar(snackBar);
+                              });
                             },
                             child: const ProfileList(
                               text: 'log out',

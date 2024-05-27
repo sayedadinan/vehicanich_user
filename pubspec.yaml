@@ -46,6 +46,8 @@ dependencies:
   image_picker: ^1.1.0
   carousel_slider: ^4.2.1
   shimmer: ^3.0.0
+  top_snackbar_flutter: ^3.1.0
+  awesome_snackbar_content: ^0.1.1
 
 dev_dependencies:
   flutter_test:

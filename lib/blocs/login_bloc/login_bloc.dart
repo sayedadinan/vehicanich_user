@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -33,15 +34,32 @@ class LoginBloc extends Bloc<LoginBlocEvent, LoginBlocState> {
       LoginScreenButtonPressed event, Emitter<LoginBlocState> emit) async {
     emit(LoginLoading());
     try {
-      User? user = await auth.sighInWIthEmailAndPassword(
-          event.email.text, event.password.text);
-      print('this user $user');
-      if (user != null) {
-        print('user login successful');
-        emit(NavigateToHome());
-        UserRepository().saveUserEmailToSharedPreferences(event.email.text);
-      } else {
-        print('something went wrong');
+      if (event.formkey.currentState!.validate()) {
+        User? user = await auth.sighInWIthEmailAndPassword(
+            event.email.text, event.password.text);
+        log('this user $user');
+        if (user != null) {
+          log('user login successful');
+          emit(NavigateToHome());
+          UserRepository().saveUserEmailToSharedPreferences(event.email.text);
+          // final snackBar = SnackBar(
+          //   padding: const EdgeInsets.all(26),
+          //   elevation: 0,
+          //   behavior: SnackBarBehavior.floating,
+          //   backgroundColor: Colors.transparent,
+          //   content: AwesomeSnackbarContent(
+          //     title: 'On logout',
+          //     message: 'you logouted from your account',
+          //     contentType: ContentType.warning,
+          //   ),
+          // );
+          // ScaffoldMessenger.of(event.context)
+          //   ..hideCurrentSnackBar()
+          //   ..showSnackBar(snackBar);
+        } else {
+          emit(LoginErrorHappened(error: 'some thing went wrong'));
+          log('something went wrong');
+        }
       }
     } catch (e) {
       emit(LoginErrorHappened(error: e.toString()));
