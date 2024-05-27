@@ -112,12 +112,26 @@ class ShopRepository {
           log('Error fetching rateAndReview data for shop ${shopDoc.id}: $e');
         }
       }
-
       log('Successfully fetched average ratings: $averageRatings');
       return averageRatings;
     } catch (e) {
       log('Error fetching shop data: $e');
       throw Exception('Error fetching shop data: $e');
+    }
+  }
+
+  Future<QuerySnapshot?> ratingsAndReview(String phone) async {
+    try {
+      final shopId = await shopidgettingwithphone(phone);
+      final ratings = await ShopReference()
+          .shopCollectionReference()
+          .doc(shopId)
+          .collection(ReferenceKeys.rateAndReview)
+          .get();
+      return ratings;
+    } catch (e) {
+      log('There is an error in ratingsFetching area: $e');
+      return null; // Return null in case of an error
     }
   }
 }

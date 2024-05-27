@@ -56,7 +56,7 @@ class BookingScreen extends StatelessWidget {
                         left: Mymediaquery().mediaquerywidth(0.04, context),
                         right: Mymediaquery().mediaquerywidth(0.04, context)),
                     child: EasyDateTimeLine(
-                      disabledDates: [DateTime.utc(2024, 05, 05)],
+                      disabledDates: [DateTime.utc(2024, 05, 27)],
                       initialDate: DateTime.now(),
                       onDateChange: (selectedDate) {
                         selectingdate = selectedDate;

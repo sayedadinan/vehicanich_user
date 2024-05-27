@@ -42,20 +42,6 @@ class LoginBloc extends Bloc<LoginBlocEvent, LoginBlocState> {
           log('user login successful');
           emit(NavigateToHome());
           UserRepository().saveUserEmailToSharedPreferences(event.email.text);
-          // final snackBar = SnackBar(
-          //   padding: const EdgeInsets.all(26),
-          //   elevation: 0,
-          //   behavior: SnackBarBehavior.floating,
-          //   backgroundColor: Colors.transparent,
-          //   content: AwesomeSnackbarContent(
-          //     title: 'On logout',
-          //     message: 'you logouted from your account',
-          //     contentType: ContentType.warning,
-          //   ),
-          // );
-          // ScaffoldMessenger.of(event.context)
-          //   ..hideCurrentSnackBar()
-          //   ..showSnackBar(snackBar);
         } else {
           emit(LoginErrorHappened(error: 'some thing went wrong'));
           log('something went wrong');

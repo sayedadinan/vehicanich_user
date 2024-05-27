@@ -76,7 +76,9 @@ class _ShopDetailsPageState extends State<ShopDetailsPage> {
                         text: widget.shopdetails[Shopkeys.description],
                       ),
                       const CustomSizedBoxHeight(0.02),
-                      const DetailsPageCrButton(),
+                      DetailsPageCrButton(
+                        shopPhone: widget.shopdetails[Shopkeys.phone],
+                      ),
                       const CustomSizedBoxHeight(0.02),
                       Padding(
                           padding: EdgeInsets.only(

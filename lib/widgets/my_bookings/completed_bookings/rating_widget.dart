@@ -92,6 +92,7 @@ class RatingDialog extends StatelessWidget {
                   color: Myappallcolor().buttonforgroundcolor,
                   function: () {
                     context.read<RatingsBloc>().add(RatingAndReviewAdding(
+                        userName: bookings[ReferenceKeys.userName],
                         feedback: feedbackController.text,
                         ratingCount: ratingController.toString(),
                         shopId: bookings[ReferenceKeys.shopId]));

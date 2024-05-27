@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:vehicanich/utils/mediaquery.dart';
 
 class AppText extends StatelessWidget {
@@ -18,7 +17,8 @@ class AppText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: GoogleFonts.oswald().copyWith(
+      style: TextStyle(
+        fontFamily: 'Oswald',
         fontWeight: weight,
         fontSize: Mymediaquery().mediaquerywidth(size, context),
         color: Colors.white,

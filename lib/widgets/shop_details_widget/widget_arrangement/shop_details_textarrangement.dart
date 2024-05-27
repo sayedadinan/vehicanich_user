@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:vehicanich/data/services/details_services/map_view.dart';
+import 'package:vehicanich/screens/shop_ratings_showing/rating_screen.dart';
 import 'package:vehicanich/utils/app_colors.dart';
 import 'package:vehicanich/utils/app_text.dart';
 import 'package:vehicanich/utils/mediaquery.dart';
+import 'package:vehicanich/utils/page_transition/page_fade_transition.dart';
 
 class ShopTextArrange extends StatelessWidget {
   final String shopname;
@@ -103,7 +106,8 @@ class ShopTimeText extends StatelessWidget {
 }
 
 class DetailsPageCrButton extends StatelessWidget {
-  const DetailsPageCrButton({super.key});
+  final String shopPhone;
+  const DetailsPageCrButton({super.key, required this.shopPhone});
 
   @override
   Widget build(BuildContext context) {
@@ -112,17 +116,21 @@ class DetailsPageCrButton extends StatelessWidget {
         SizedBox(
           width: Mymediaquery().mediaquerywidth(0.10, context),
         ),
-        Container(
-          decoration: BoxDecoration(
-              border: Border.all(color: Myappallcolor().colorwhite),
-              borderRadius: BorderRadius.circular(8)),
-          width: Mymediaquery().mediaqueryheight(0.1, context),
-          height: Mymediaquery().mediaqueryheight(0.02, context),
-          child: Center(
-            child: Text('CR & BOARD',
-                style: TextStyle(
-                    color: Myappallcolor().colorwhite,
-                    fontSize: Mymediaquery().mediaquerywidth(0.02, context))),
+        GestureDetector(
+          onTap: () {
+            Navigator.of(context).push(FadeTransitionPageRoute(
+                child: RatingScreen(
+              phone: shopPhone,
+            )));
+          },
+          child: Container(
+            decoration: BoxDecoration(
+                border: Border.all(color: Myappallcolor().colorwhite),
+                borderRadius: BorderRadius.circular(8)),
+            width: Mymediaquery().mediaqueryheight(0.12, context),
+            // height: Mymediaquery().mediaqueryheight(0.02, context),
+            child: const Center(
+                child: AppText(text: 'Review and Rating', size: 0.03)),
           ),
         ),
       ],
