@@ -134,4 +134,24 @@ class ShopRepository {
       return null; // Return null in case of an error
     }
   }
+
+  fetchOffDays(String phone) async {
+    try {
+      final shopId = await shopidgettingwithphone(phone);
+      final QuerySnapshot offDaysSnapshot = await ShopReference()
+          .shopCollectionReference()
+          .doc(shopId)
+          .collection(ReferenceKeys.offDay)
+          .get();
+
+      List<DateTime> offDays = offDaysSnapshot.docs.map((doc) {
+        return (doc['offDate'] as Timestamp).toDate();
+      }).toList();
+
+      return offDays;
+    } catch (e) {
+      log('There is an error in fetching off days: $e');
+      return 'error';
+    }
+  }
 }

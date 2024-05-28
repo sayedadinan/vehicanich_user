@@ -9,13 +9,14 @@ class BookingbuttonPressed extends BookingEvent {
   final DateTime datepicked;
   final String shopphonenumber;
   final String servicename;
-
+  final GlobalKey bookingKey;
   BookingbuttonPressed({
     required this.servicename,
     required this.vehiclenumbercontroller,
     required this.datepicked,
     required this.userphonenumbercontroller,
     required this.shopphonenumber,
+    required this.bookingKey,
   });
 }
 

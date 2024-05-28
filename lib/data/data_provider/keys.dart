@@ -21,4 +21,5 @@ class ReferenceKeys {
   static String userName = 'UserName';
   static String rateAndReview = 'rateAndReview';
   static String sharedPrefEmail = 'user_email';
+  static String offDay = 'offDay';
 }

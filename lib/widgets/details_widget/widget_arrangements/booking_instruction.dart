@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:vehicanich/utils/app_colors.dart';
-import 'package:vehicanich/utils/app_text.dart';
 import 'package:vehicanich/utils/mediaquery.dart';
 import 'package:vehicanich/widgets/details_widget/details_text.dart';
 
@@ -30,13 +29,13 @@ class BookingInstructions extends StatelessWidget {
               )
             ],
           ),
-          SizedBox(height: Mymediaquery().mediaqueryheight(0.02, context)),
-          const Row(
+          SizedBox(height: Mymediaquery().mediaqueryheight(0.01, context)),
+          Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              AppText(
-                text: detailscontainerdescriptiontext,
-                size: 0.03,
+              Text(
+                detailscontainerdescriptiontext,
+                style: TextStyle(color: Myappallcolor().colorwhite),
               )
             ],
           ),
