@@ -59,7 +59,17 @@ class _HomeScreenState extends State<HomeScreen> {
               const CustomSizedBoxHeight(0.03),
               PhotoSlider(),
               const CustomSizedBoxHeight(0.02),
-              const AppText(text: 'your preferred workshops', size: 0.06),
+              const Row(
+                children: [
+                  CustomSizedBoxWidth(0.06),
+                  AppText(
+                    text: 'your preferred workshops',
+                    size: 0.06,
+                    weight: FontWeight.w100,
+                  ),
+                ],
+              ),
+              const CustomSizedBoxHeight(0.02),
               Expanded(
                   child: Homescreenlist(
                 ratingCounts: ratingCountsFuture,

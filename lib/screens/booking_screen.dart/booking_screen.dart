@@ -93,6 +93,7 @@ class _BookingScreenState extends State<BookingScreen> {
                         initialDate: DateTime.now(),
                         onDateChange: (selectedDate) {
                           selectingdate = selectedDate;
+                          print(selectedDate);
                         },
                       ),
                     ),
@@ -118,32 +119,29 @@ class _BookingScreenState extends State<BookingScreen> {
                     CustomButton(
                         color: Myappallcolor().buttonforgroundcolor,
                         function: () {
-                          if (selectingdate == null) {
-                            return;
-                          } else {
-                            if (bookingKey.currentState!.validate()) {
-                              context
-                                  .read<PaymentBloc>()
-                                  .add(PaymentButtonPressed(amount: '100.0'));
-                              context
-                                  .read<BookingBloc>()
-                                  .add(BookingbuttonPressed(
-                                    bookingKey: bookingKey,
-                                    shopphonenumber: widget.phonenumber,
-                                    datepicked: selectingdate,
-                                    vehiclenumbercontroller:
-                                        vehiclenumberController.text,
-                                    userphonenumbercontroller:
-                                        userbookingphoneController.text,
-                                    servicename: widget.servicename,
-                                  ));
-                              Navigator.of(context).pushAndRemoveUntil(
-                                MaterialPageRoute(
-                                    builder: (context) => BottomBar()),
-                                (Route<dynamic> route) => false,
-                              );
-                            }
-                          }
+                          // ignore: unnecessary_null_comparison
+
+                          // if (bookingKey.currentState.validate()) {
+                          context
+                              .read<PaymentBloc>()
+                              .add(PaymentButtonPressed(amount: '100.0'));
+                          context.read<BookingBloc>().add(BookingbuttonPressed(
+                                context: context,
+                                bookingKey: bookingKey,
+                                shopphonenumber: widget.phonenumber,
+                                datepicked: selectingdate,
+                                vehiclenumbercontroller:
+                                    vehiclenumberController.text,
+                                userphonenumbercontroller:
+                                    userbookingphoneController.text,
+                                servicename: widget.servicename,
+                              ));
+                          Navigator.of(context).pushAndRemoveUntil(
+                            MaterialPageRoute(
+                                builder: (context) => BottomBar()),
+                            (Route<dynamic> route) => false,
+                          );
+                          // }
                         },
                         text: 'Proceed to pay',
                         fontSize: 0.05,

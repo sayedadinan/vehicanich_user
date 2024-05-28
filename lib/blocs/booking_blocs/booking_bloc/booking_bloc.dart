@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_print, unused_local_variable
 import 'dart:developer';
 
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:bloc/bloc.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -69,6 +70,20 @@ class BookingBloc extends Bloc<BookingEvent, BookingState> {
         "ordered": true,
         "shopId": shopid,
       });
+      final snackBar = SnackBar(
+        padding: const EdgeInsets.all(26),
+        elevation: 0,
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: Colors.transparent,
+        content: AwesomeSnackbarContent(
+          title: 'On logout',
+          message: 'now you logout from vehicanich',
+          contentType: ContentType.warning,
+        ),
+      );
+      ScaffoldMessenger.of(event.context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(snackBar);
     } catch (e) {
       // Handle errors
     }

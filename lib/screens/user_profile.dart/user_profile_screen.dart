@@ -173,7 +173,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                   backgroundColor: Colors.transparent,
                                   content: AwesomeSnackbarContent(
                                     title: 'On logout',
-                                    message: 'you logouted from your account',
+                                    message: 'now you logout from vehicanich',
                                     contentType: ContentType.warning,
                                   ),
                                 );
