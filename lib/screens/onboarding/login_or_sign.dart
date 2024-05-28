@@ -65,7 +65,7 @@ class Loginorsign extends StatelessWidget {
                       function: () => context
                           .read<OnboardingBloc>()
                           .add(LoginButtonPressed()),
-                      fontSize: 0.02,
+                      fontSize: 0.05,
                       color: Myappallcolor().buttonforgroundcolor,
                     ),
                     SizedBox(
@@ -78,7 +78,7 @@ class Loginorsign extends StatelessWidget {
                       function: () => context
                           .read<OnboardingBloc>()
                           .add((Signinbuttonpressed())),
-                      fontSize: 0.02,
+                      fontSize: 0.05,
                       color: Colors.transparent,
                     ),
                   ],

@@ -5,7 +5,6 @@ import 'package:vehicanich/blocs/login_bloc/login_bloc.dart';
 import 'package:vehicanich/screens/forgot_password/forgot_password.dart';
 import 'package:vehicanich/data/services/firebase_auth_implementation/firebase_auth_service.dart';
 import 'package:vehicanich/utils/app_custom_loader.dart';
-import 'package:vehicanich/utils/app_showdialogue.dart';
 import 'package:vehicanich/utils/app_textvalidators.dart';
 import 'package:vehicanich/utils/bottom_navigation/bottom_navigation.dart';
 import 'package:vehicanich/utils/app_colors.dart';
@@ -40,8 +39,8 @@ class Loginscreen extends StatelessWidget {
       if (state is LoginErrorHappened) {
         log('worked');
 
-        CustomShowdialogue.showCustomDialog(context,
-            title: 'Error', message: state.error, type: DialogType.error);
+        // CustomShowdialogue.showCustomDialog(context,
+        //     title: 'Error', message: state.error, type: DialogType.error);
         // CustomSnackBar(
         //     message: state.error,
         //     backgroundColor: Myappallcolor().emergencybuttoncolor);
@@ -94,7 +93,7 @@ class Loginscreen extends StatelessWidget {
                             formkey: loginKey,
                             email: emailController,
                             password: passwordController)),
-                    fontSize: Mymediaquery().mediaqueryheight(0.02, context),
+                    fontSize: 0.05,
                     color: Myappallcolor().buttonforgroundcolor,
                   ),
                   SizedBox(
@@ -109,7 +108,7 @@ class Loginscreen extends StatelessWidget {
                         signInWithGoogle(context);
                       },
                       text: 'Login with google',
-                      fontSize: Mymediaquery().mediaqueryheight(0.02, context),
+                      fontSize: 0.05,
                       buttontextcolor: Myappallcolor().colorwhite),
                   SizedBox(
                       height: Mymediaquery().mediaqueryheight(0.03, context)),

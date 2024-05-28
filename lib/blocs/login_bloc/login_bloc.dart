@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,8 +33,8 @@ class LoginBloc extends Bloc<LoginBlocEvent, LoginBlocState> {
 
   loginScreenButtonPressed(
       LoginScreenButtonPressed event, Emitter<LoginBlocState> emit) async {
-    emit(LoginLoading());
     try {
+      emit(LoginLoading());
       if (event.formkey.currentState!.validate()) {
         User? user = await auth.sighInWIthEmailAndPassword(
             event.email.text, event.password.text);
@@ -43,6 +44,20 @@ class LoginBloc extends Bloc<LoginBlocEvent, LoginBlocState> {
           emit(NavigateToHome());
           UserRepository().saveUserEmailToSharedPreferences(event.email.text);
         } else {
+          final snackBar = SnackBar(
+            padding: const EdgeInsets.all(26),
+            elevation: 0,
+            behavior: SnackBarBehavior.floating,
+            backgroundColor: Colors.transparent,
+            content: AwesomeSnackbarContent(
+              title: 'Oops!',
+              message: 'something went wrong',
+              contentType: ContentType.failure,
+            ),
+          );
+          ScaffoldMessenger.of(event.context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(snackBar);
           emit(LoginErrorHappened(error: 'some thing went wrong'));
           log('something went wrong');
         }

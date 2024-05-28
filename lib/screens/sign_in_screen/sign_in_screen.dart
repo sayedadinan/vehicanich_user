@@ -101,7 +101,7 @@ class SigninScreen extends StatelessWidget {
                               .add(SignUpButtonPressed(user: user));
                         }
                       },
-                      fontSize: Mymediaquery().mediaqueryheight(0.02, context),
+                      fontSize: 0.05,
                       color: Myappallcolor().buttonforgroundcolor,
                     ),
                     SizedBox(

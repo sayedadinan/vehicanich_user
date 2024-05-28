@@ -56,7 +56,16 @@ class BookingScreen extends StatelessWidget {
                         left: Mymediaquery().mediaquerywidth(0.04, context),
                         right: Mymediaquery().mediaquerywidth(0.04, context)),
                     child: EasyDateTimeLine(
-                      disabledDates: [DateTime.utc(2024, 05, 27)],
+                      headerProps: EasyHeaderProps(
+                          monthStyle:
+                              TextStyle(color: Myappallcolor().colorwhite),
+                          showSelectedDate: true,
+                          selectedDateStyle:
+                              TextStyle(color: Myappallcolor().colorwhite)),
+                      disabledDates: [
+                        DateTime.utc(2024, 05, 27),
+                        DateTime.utc(2024, 05, 28),
+                      ],
                       initialDate: DateTime.now(),
                       onDateChange: (selectedDate) {
                         selectingdate = selectedDate;
