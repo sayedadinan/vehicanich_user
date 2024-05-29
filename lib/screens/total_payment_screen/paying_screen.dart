@@ -16,7 +16,14 @@ import 'package:vehicanich/utils/mediaquery.dart';
 class PaymentScreen extends StatelessWidget {
   final String amount;
   final String shopId;
-  const PaymentScreen({key, required this.amount, required this.shopId})
+  final String serviceName;
+  final String vehicleNumber;
+  const PaymentScreen(
+      {key,
+      required this.amount,
+      required this.shopId,
+      required this.serviceName,
+      required this.vehicleNumber})
       : super();
 
   @override
@@ -27,9 +34,14 @@ class PaymentScreen extends StatelessWidget {
           return loader;
         }
         if (state is PaymentSuccess) {
-          context.read<TotalBillBloc>().add(MoneyAddeddSuccess(shopId: shopId));
+          context.read<TotalBillBloc>().add(MoneyAddeddSuccess(
+              shopId: shopId,
+              serviceName: serviceName,
+              vehicleNumber: vehicleNumber));
           log('success state ');
           return SuccessScreen(
+            serviceName: serviceName,
+            vehicleNumber: vehicleNumber,
             shopId: shopId,
           );
         }

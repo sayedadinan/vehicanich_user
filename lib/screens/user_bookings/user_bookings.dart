@@ -51,8 +51,8 @@ class _UserBookingsBody extends StatelessWidget {
             color: Myappallcolor().appbackgroundcolor,
             child: TabBar(
               tabs: const [
-                Tab(text: 'Pending bookings'),
-                Tab(text: 'Completed bookings'),
+                Tab(text: 'Current Bookings'),
+                Tab(text: 'Completed Bookings'),
               ],
               indicator: BoxDecoration(
                 borderRadius: BorderRadius.circular(28.0),

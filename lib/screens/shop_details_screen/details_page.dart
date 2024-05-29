@@ -3,10 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vehicanich/blocs/booking_blocs/body_main_bloc/body_maintaince_bloc.dart';
 import 'package:vehicanich/blocs/chat_bloc/bloc/chating_bloc.dart';
 import 'package:vehicanich/data/repositories/shop_details/shop_details_keys.dart';
+import 'package:vehicanich/screens/shop_ratings_showing/rating_screen.dart';
 import 'package:vehicanich/utils/app_colors.dart';
 import 'package:vehicanich/utils/app_custom_button.dart';
 import 'package:vehicanich/utils/app_sizedbox.dart';
 import 'package:vehicanich/utils/mediaquery.dart';
+import 'package:vehicanich/utils/page_transition/page_fade_transition.dart';
 import 'package:vehicanich/widgets/shop_details_widget/funtions/buttons.dart';
 import 'package:vehicanich/widgets/shop_details_widget/funtions/navigation_logic.dart';
 import 'package:vehicanich/widgets/shop_details_widget/widget_arrangement/row_text.dart';
@@ -76,9 +78,9 @@ class _ShopDetailsPageState extends State<ShopDetailsPage> {
                         text: widget.shopdetails[Shopkeys.description],
                       ),
                       const CustomSizedBoxHeight(0.02),
-                      DetailsPageCrButton(
-                        shopPhone: widget.shopdetails[Shopkeys.phone],
-                      ),
+                      // DetailsPageCrButton(
+                      //   shopPhone: widget.shopdetails[Shopkeys.phone],
+                      // ),
                       const CustomSizedBoxHeight(0.02),
                       Padding(
                           padding: EdgeInsets.only(
@@ -88,15 +90,20 @@ class _ShopDetailsPageState extends State<ShopDetailsPage> {
                               shopdetails: widget.shopdetails,
                               shopPhone: widget.shopdetails[Shopkeys.phone])),
                       const CustomSizedBoxHeight(0.02),
-                      const RowTexts(text: 'for emergency'),
+                      const RowTexts(text: 'Our feedbacks'),
                       const CustomSizedBoxHeight(0.02),
                       CustomButton(
                           bordercolor: Myappallcolor().buttonforgroundcolor,
-                          color: Myappallcolor().emergencybuttoncolor,
-                          function: () {},
-                          text: 'Emergency service',
+                          color: Myappallcolor().textcolor,
+                          function: () {
+                            Navigator.of(context).push(FadeTransitionPageRoute(
+                                child: RatingScreen(
+                              phone: widget.shopdetails[Shopkeys.phone],
+                            )));
+                          },
+                          text: 'What Clients Say',
                           fontSize: 0.04,
-                          buttontextcolor: Myappallcolor().colorwhite),
+                          buttontextcolor: Colors.black),
                       const CustomSizedBoxHeight(0.02),
                       const RowTexts(text: 'Our services'),
                       const CustomSizedBoxHeight(0.02),

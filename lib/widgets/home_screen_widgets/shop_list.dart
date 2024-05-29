@@ -120,8 +120,8 @@ class Homescreenlist extends StatelessWidget {
                                         top: Mymediaquery()
                                             .mediaqueryheight(0.009, context)),
                                     child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.end,
+                                      // crossAxisAlignment:
+                                      //     CrossAxisAlignment.end,
                                       children: [
                                         const Icon(
                                           Icons.star,
@@ -138,7 +138,7 @@ class Homescreenlist extends StatelessWidget {
                                                 .mediaqueryheight(
                                                     0.02, context),
                                             width: Mymediaquery()
-                                                .mediaquerywidth(0.06, context),
+                                                .mediaquerywidth(0.07, context),
                                             child: Center(
                                                 child: Text(
                                               totalRatingCount.toString(),

@@ -86,8 +86,11 @@ class TotalBillBloc extends Bloc<TotalBillEvent, TotalBillState> {
       MoneyAddeddSuccess event, Emitter<TotalBillState> emit) async {
     try {
       final userId = await UserDocId().getUserId();
+      final bookingIdInShop = await getBookingIdInShop(
+          event.shopId, event.vehicleNumber, event.serviceName);
       final bookingIdInUser =
           await getBookingIdInUser(userId, state.serviceName);
+      updateInShopCompletedToHistory(event.shopId, bookingIdInShop);
       updateBookingInUser(userId, bookingIdInUser);
       log('successfully unlisted');
     } catch (e) {

@@ -51,6 +51,15 @@ void updateBookingInUser(String userId, String bookingId) {
   userDocRef.update({ReferenceKeys.ordered: false});
 }
 
+void updateInShopCompletedToHistory(String shopId, String bookingId) {
+  final reference = ShopReference()
+      .shopCollectionReference()
+      .doc(shopId)
+      .collection(Shopkeys.newBooking)
+      .doc(bookingId);
+  reference.update({Shopkeys.isCompleted: false});
+}
+
 Future<String> getUserId() async {
   return await UserDocId().getUserId();
 }

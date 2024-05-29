@@ -100,14 +100,14 @@ class _TotalBillScreenState extends State<TotalBillScreen> {
                                       const Divider(
                                         endIndent: 30,
                                       ),
-                                      totalDetailsRow(
-                                        keytext: 'booked date',
-                                        valueText: state.vehicleNumber,
-                                      ),
-                                      const CustomSizedBoxHeight(0.01),
-                                      const Divider(
-                                        endIndent: 30,
-                                      ),
+                                      // totalDetailsRow(
+                                      //   keytext: 'booked date',
+                                      //   valueText: state.,
+                                      // ),
+                                      // const CustomSizedBoxHeight(0.01),
+                                      // const Divider(
+                                      //   endIndent: 30,
+                                      // ),
                                       Visibility(
                                         visible: state.extraService.isNotEmpty,
                                         child: totalDetailsRow(
@@ -115,10 +115,13 @@ class _TotalBillScreenState extends State<TotalBillScreen> {
                                           valueText: state.extraService,
                                         ),
                                       ),
+                                      const Divider(
+                                        endIndent: 30,
+                                      ),
                                       const CustomSizedBoxHeight(0.01),
                                       totalDetailsRow(
                                         keytext: 'Total amount',
-                                        valueText: state.totalAmount,
+                                        valueText: '₹ ${state.totalAmount}',
                                       ),
                                       const Divider(
                                         endIndent: 30,
@@ -150,9 +153,12 @@ class _TotalBillScreenState extends State<TotalBillScreen> {
                   function: () {
                     Navigator.of(context).push(FadeTransitionPageRoute(
                         child: PaymentScreen(
-                      shopId: widget.bookings[ReferenceKeys.shopId],
-                      amount: state.totalAmount,
-                    )));
+                            shopId: widget.bookings[ReferenceKeys.shopId],
+                            amount: state.totalAmount,
+                            vehicleNumber:
+                                widget.bookings[ReferenceKeys.vehiclenumber],
+                            serviceName:
+                                widget.bookings[ReferenceKeys.servicename])));
                   },
                   text: 'Ready to Pay',
                   fontSize: 0.04,
