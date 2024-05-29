@@ -3,19 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vehicanich/blocs/booking_blocs/booking_bloc/booking_bloc.dart';
 import 'package:vehicanich/blocs/offDay_bloc/bloc/offday_bloc.dart';
-import 'package:vehicanich/blocs/payment_blocs/bloc/payment_bloc.dart';
 import 'package:vehicanich/utils/app_colors.dart';
 import 'package:vehicanich/utils/app_custom_appbar.dart';
 import 'package:vehicanich/utils/app_custom_button.dart';
 import 'package:vehicanich/utils/app_sizedbox.dart';
 import 'package:vehicanich/utils/app_textfields.dart';
 import 'package:vehicanich/utils/app_textvalidators.dart';
-import 'package:vehicanich/utils/bottom_navigation/bottom_navigation.dart';
 import 'package:vehicanich/utils/mediaquery.dart';
 import 'package:vehicanich/widgets/details_widget/widget_arrangements/additional_text.dart';
 import 'package:vehicanich/widgets/details_widget/widget_arrangements/booking_instruction.dart';
 import 'package:vehicanich/widgets/details_widget/widget_arrangements/custom_text.dart';
 import 'package:vehicanich/widgets/details_widget/details_text.dart';
+import 'package:vehicanich/widgets/my_bookings/booking_snack_bar.dart';
 
 // ignore: must_be_immutable
 class BookingScreen extends StatefulWidget {
@@ -42,7 +41,7 @@ class _BookingScreenState extends State<BookingScreen> {
   TextEditingController vehiclenumberController = TextEditingController();
   TextEditingController userbookingphoneController = TextEditingController();
   final GlobalKey<FormState> bookingKey = GlobalKey<FormState>();
-  late DateTime selectingdate;
+  DateTime? selectingdate;
 
   @override
   Widget build(BuildContext context) {
@@ -55,13 +54,21 @@ class _BookingScreenState extends State<BookingScreen> {
           appbartext: widget.servicename,
         ),
       ),
-      body: BlocProvider(
-        create: (context) => PaymentBloc(),
-        child: BlocBuilder<PaymentBloc, PaymentState>(
+      body: BlocListener<BookingBloc, BookingState>(
+        listener: (context, state) {
+          if (state is BookingError) {
+            showErrorSnackBar(
+                context, 'something went wrong, please try again');
+          }
+          if (state is BookingSuccess) {
+            showSuccessSnackBar(context, 'Booking successful');
+          }
+        },
+        child: BlocBuilder<BookingBloc, BookingState>(
           builder: (context, state) {
-            if (state is PaymentSuccess) {}
             return SingleChildScrollView(
               child: Form(
+                key: bookingKey,
                 child: Column(
                   children: [
                     const CustomSizedBoxHeight(0.05),
@@ -119,29 +126,26 @@ class _BookingScreenState extends State<BookingScreen> {
                     CustomButton(
                         color: Myappallcolor().buttonforgroundcolor,
                         function: () {
-                          // ignore: unnecessary_null_comparison
-
-                          // if (bookingKey.currentState.validate()) {
-                          context
-                              .read<PaymentBloc>()
-                              .add(PaymentButtonPressed(amount: '100.0'));
-                          context.read<BookingBloc>().add(BookingbuttonPressed(
-                                context: context,
-                                bookingKey: bookingKey,
-                                shopphonenumber: widget.phonenumber,
-                                datepicked: selectingdate,
-                                vehiclenumbercontroller:
-                                    vehiclenumberController.text,
-                                userphonenumbercontroller:
-                                    userbookingphoneController.text,
-                                servicename: widget.servicename,
-                              ));
-                          Navigator.of(context).pushAndRemoveUntil(
-                            MaterialPageRoute(
-                                builder: (context) => BottomBar()),
-                            (Route<dynamic> route) => false,
-                          );
-                          // }
+                          if (selectingdate != null) {
+                            if (bookingKey.currentState!.validate()) {
+                              context
+                                  .read<BookingBloc>()
+                                  .add(BookingbuttonPressed(
+                                    context: context,
+                                    bookingKey: bookingKey,
+                                    shopphonenumber: widget.phonenumber,
+                                    datepicked: selectingdate!,
+                                    vehiclenumbercontroller:
+                                        vehiclenumberController.text,
+                                    userphonenumbercontroller:
+                                        userbookingphoneController.text,
+                                    servicename: widget.servicename,
+                                  ));
+                            }
+                          } else {
+                            showErrorSnackBar(context,
+                                'please give us every booking details');
+                          }
                         },
                         text: 'Proceed to pay',
                         fontSize: 0.05,

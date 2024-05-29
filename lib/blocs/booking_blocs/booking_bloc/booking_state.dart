@@ -16,3 +16,17 @@ final class BookingInitial extends BookingState {
       required super.isPending,
       required super.isCompleted});
 }
+
+class BookingError extends BookingState {
+  BookingError(
+      {required super.isStarted,
+      required super.isPending,
+      required super.isCompleted});
+}
+
+class BookingSuccess extends BookingState {
+  BookingSuccess(
+      {required super.isStarted,
+      required super.isPending,
+      required super.isCompleted});
+}

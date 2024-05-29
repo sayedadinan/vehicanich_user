@@ -135,9 +135,12 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                             icon: Icons.phone,
                           ),
                           const CustomSizedBoxHeight(0.01),
-                          const ProfileList(
-                            text: 'Privacy Policy',
-                            icon: Icons.privacy_tip,
+                          GestureDetector(
+                            onTap: () {},
+                            child: const ProfileList(
+                              text: 'Privacy Policy',
+                              icon: Icons.privacy_tip,
+                            ),
                           ),
                           const CustomSizedBoxHeight(0.01),
                           const ProfileList(
@@ -147,17 +150,6 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                           const CustomSizedBoxHeight(0.01),
                           TapBounceContainer(
                             onTap: () {
-                              // showTopSnackBar(
-                              //   dismissType: DismissType.onSwipe,
-                              //   animationDuration: Duration(seconds: 2),
-                              //   displayDuration: Duration(seconds: 1),
-                              //   Overlay.of(context),
-                              //   CustomSnackBar.error(
-                              //     message: 'persistent snackbar',
-                              //   ),
-                              //   // persistent: true,
-                              // );
-
                               CustomShowdialogue.showCustomDialog(context,
                                   title: 'Warning',
                                   message: 'Are you sure for logout',

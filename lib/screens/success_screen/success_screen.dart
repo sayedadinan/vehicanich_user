@@ -23,7 +23,7 @@ class SuccessScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Myappallcolor().appbackgroundcolor,
       body: const Center(
-        child: AppText(text: 'Success', size: 0.09),
+        child: AppText(text: 'Your payment Successfull', size: 0.09),
       ),
     );
   }

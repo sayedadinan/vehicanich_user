@@ -1,9 +1,5 @@
-// ignore_for_file: avoid_print, unused_local_variable
 import 'dart:developer';
-
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:bloc/bloc.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vehicanich/data/data_provider/keys.dart';
@@ -12,6 +8,7 @@ import 'package:vehicanich/data/data_provider/user_data.dart';
 import 'package:intl/intl.dart';
 import 'package:vehicanich/data/repositories/shop_details/shop_details_keys.dart';
 import 'package:vehicanich/data/repositories/shop_details/shop_repositery.dart';
+import 'package:vehicanich/utils/bottom_navigation/bottom_navigation.dart';
 part 'booking_event.dart';
 part 'booking_state.dart';
 
@@ -29,11 +26,8 @@ class BookingBloc extends Bloc<BookingEvent, BookingState> {
     final userEmail = await UserDocId().getUserEmail();
     List<dynamic> carrying = [];
     List<dynamic> forchanging = [];
-    print(event.userphonenumbercontroller);
-    print(event.vehiclenumbercontroller);
     DateTime dateTime = DateTime.parse(event.datepicked.toString());
     String formattedDate = DateFormat('dd MM yyyy').format(dateTime);
-    print(formattedDate);
     carrying.add(event.userphonenumbercontroller);
     carrying.add(formattedDate);
     carrying.add(event.vehiclenumbercontroller);
@@ -56,6 +50,10 @@ class BookingBloc extends Bloc<BookingEvent, BookingState> {
       "userEmail": userEmail,
       "ordered": true,
     });
+    emit(BookingSuccess(
+        isStarted: state.isStarted,
+        isPending: state.isPending,
+        isCompleted: state.isCompleted));
     final userDocRef = UserDataReference()
         .userCollectionReference()
         .doc(userid)
@@ -70,28 +68,26 @@ class BookingBloc extends Bloc<BookingEvent, BookingState> {
         "ordered": true,
         "shopId": shopid,
       });
-      final snackBar = SnackBar(
-        padding: const EdgeInsets.all(26),
-        elevation: 0,
-        behavior: SnackBarBehavior.floating,
-        backgroundColor: Colors.transparent,
-        content: AwesomeSnackbarContent(
-          title: 'On logout',
-          message: 'now you logout from vehicanich',
-          contentType: ContentType.warning,
-        ),
+      emit(BookingSuccess(
+          isStarted: state.isStarted,
+          isPending: state.isPending,
+          isCompleted: state.isCompleted));
+      Navigator.of(event.context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) => BottomBar()),
+        (Route<dynamic> route) => false,
       );
-      ScaffoldMessenger.of(event.context)
-        ..hideCurrentSnackBar()
-        ..showSnackBar(snackBar);
     } catch (e) {
+      emit(BookingError(
+          isStarted: state.isStarted,
+          isPending: state.isPending,
+          isCompleted: state.isCompleted));
       // Handle errors
     }
   }
 
   bookingCancelledPressed(
       BookingCancelledPressed event, Emitter<BookingState> emit) async {
-    final userEmail = await getUserEmail();
+    // final userEmail = await getUserEmail();
     final userId = await getUserId();
     final bookingIdInShop = await getBookingIdInShop(
         event.shopId, event.vehicleNumber, event.serviceName);
