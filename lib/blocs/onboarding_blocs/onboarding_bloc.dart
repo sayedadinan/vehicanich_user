@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:vehicanich/utils/splash_funtions.dart';
 part 'onboarding_event.dart';
 part 'onboarding_state.dart';
 
@@ -13,6 +14,7 @@ class OnboardingBloc extends Bloc<OnboardingblocEvent, OnboardingBlocState> {
     if (event.page == 0) {
       emit(NavigatetosecondOnboardingPage());
     } else if (event.page == 1) {
+      userFirstTimeOrNot(true);
       emit(NavigatetoLoginorSignPage());
     }
   }

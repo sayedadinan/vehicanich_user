@@ -25,4 +25,5 @@ class ReferenceKeys {
   static String ratingCount = 'ratingCount';
   static String feedback = 'feedback';
   static String offDate = 'offDate';
+  static String initialEntry = 'initialEntry';
 }

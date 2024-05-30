@@ -1,11 +1,13 @@
 // import 'package:cloud_firestore/cloud_firestore.dart';
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vehicanich/blocs/login_bloc/login_bloc.dart';
-import 'package:vehicanich/screens/login_screen/login_screen.dart';
+import 'package:vehicanich/screens/onboarding/login_or_sign.dart';
 import 'package:vehicanich/utils/bottom_navigation/bottom_navigation.dart'; // Import material.dart for using Navigator
 
 class FirebaseAuthService {
@@ -18,7 +20,7 @@ class FirebaseAuthService {
           email: email, password: password);
       return credential.user;
     } catch (e) {
-      print('this is that error$e');
+      log('this is that error$e');
     }
     return null;
   }
@@ -78,7 +80,7 @@ Future<void> signOut(BuildContext context) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.clear();
     Navigator.of(context).pushAndRemoveUntil(
-      MaterialPageRoute(builder: (context) => Loginscreen()),
+      MaterialPageRoute(builder: (context) => const Loginorsign()),
       (route) => false,
     );
   } catch (e) {
