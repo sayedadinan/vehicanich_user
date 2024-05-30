@@ -55,7 +55,8 @@ class ShopRepository {
         }
       }
       List<Map<String, dynamic>> filteredList = shopDetailsList.where((shop) {
-        return shop['phone'] == shopIdentifier || shop['id'] == shopIdentifier;
+        return shop[Shopkeys.phone] == shopIdentifier ||
+            shop['id'] == shopIdentifier;
       }).toList();
       return filteredList;
     } catch (e) {
@@ -90,12 +91,12 @@ class ShopRepository {
         dynamic ratingCount = 0;
         try {
           CollectionReference rateAndReviewCollection =
-              shopDoc.reference.collection('rateAndReview');
+              shopDoc.reference.collection(ReferenceKeys.rateAndReview);
           QuerySnapshot rateAndReviewSnapshot =
               await rateAndReviewCollection.get();
           for (QueryDocumentSnapshot rateAndReviewDoc
               in rateAndReviewSnapshot.docs) {
-            var rating = rateAndReviewDoc['ratinCount'];
+            var rating = rateAndReviewDoc[ReferenceKeys.ratingCount];
             if (rating is String) {
               rating = num.tryParse(rating) ?? 0;
             }
@@ -104,9 +105,8 @@ class ShopRepository {
               ratingCount++;
             }
           }
-          dynamic averageRating = (ratingCount > 0)
-              ? (totalRatingSum / ratingCount)
-              : 0.0; // set default rating to 0.1
+          dynamic averageRating =
+              (ratingCount > 0) ? (totalRatingSum / ratingCount) : 0.0;
           averageRatings[shopDoc.id] = averageRating;
         } catch (e) {
           log('Error fetching rateAndReview data for shop ${shopDoc.id}: $e');
@@ -145,7 +145,7 @@ class ShopRepository {
           .get();
 
       List<DateTime> offDays = offDaysSnapshot.docs.map((doc) {
-        return (doc['offDate'] as Timestamp).toDate();
+        return (doc[ReferenceKeys.offDate] as Timestamp).toDate();
       }).toList();
 
       return offDays;

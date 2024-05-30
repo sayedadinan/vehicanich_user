@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:vehicanich/data/data_provider/keys.dart';
 import 'package:vehicanich/utils/app_colors.dart';
 import 'package:vehicanich/utils/app_sizedbox.dart';
 import 'package:vehicanich/utils/app_text.dart';
@@ -22,7 +23,8 @@ class ReviewShowingCard extends StatelessWidget {
       itemCount: bookingDetails.length,
       itemBuilder: (context, index) {
         final bookingDetail = bookingDetails[index];
-        final starCount = double.parse(bookingDetail['ratinCount']);
+        final starCount =
+            double.parse(bookingDetail[ReferenceKeys.ratingCount]);
         return Padding(
           padding: const EdgeInsets.all(8.0),
           child: Card(
@@ -37,7 +39,7 @@ class ReviewShowingCard extends StatelessWidget {
                     padding: EdgeInsets.only(
                         left: Mymediaquery().mediaquerywidth(0.05, context)),
                     child: AppText(
-                      text: bookingDetail['feedback'],
+                      text: bookingDetail[ReferenceKeys.userName],
                       size: 0.03,
                     ),
                   ),
@@ -63,7 +65,7 @@ class ReviewShowingCard extends StatelessWidget {
                       },
                     ),
                   ),
-                  CustomSizedBoxHeight(0.01),
+                  const CustomSizedBoxHeight(0.01),
                   const Divider(
                     endIndent: 20,
                     indent: 20,
@@ -73,13 +75,12 @@ class ReviewShowingCard extends StatelessWidget {
                         left: Mymediaquery().mediaquerywidth(0.05, context)),
                     child: SizedBox(
                       width: Mymediaquery().mediaquerywidth(0.80, context),
-                      child: const AppText(
+                      child: AppText(
                           size: 0.03,
-                          text:
-                              'Excellent service! The staff was incredibly helpful and knowledgeable. I was pleasantly surprised by the efficiency and professionalism. Definitely recommend it to everyone!'),
+                          text: bookingDetail[ReferenceKeys.feedback]),
                     ),
                   ),
-                  CustomSizedBoxHeight(0.02),
+                  const CustomSizedBoxHeight(0.02),
                 ],
               ),
             ),

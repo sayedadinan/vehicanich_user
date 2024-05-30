@@ -18,8 +18,11 @@ class ReferenceKeys {
   static String vehicleNumber = 'vehicleNumber';
   static String wallet = 'wallet';
   static String bookingId = 'customerId';
-  static String userName = 'UserName';
+  static String userName = 'userName';
   static String rateAndReview = 'rateAndReview';
   static String sharedPrefEmail = 'user_email';
   static String offDay = 'offDay';
+  static String ratingCount = 'ratingCount';
+  static String feedback = 'feedback';
+  static String offDate = 'offDate';
 }

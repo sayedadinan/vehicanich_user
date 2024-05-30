@@ -21,7 +21,7 @@ class RatingsBloc extends Bloc<RatingsEvent, RatingsState> {
       final user = await UserRepository().getuserDetails();
       shopReference.set({
         "userName": user.userName,
-        "ratinCount": event.ratingCount,
+        "ratingCount": event.ratingCount,
         "feedback": event.feedback,
       });
       log('succes');
