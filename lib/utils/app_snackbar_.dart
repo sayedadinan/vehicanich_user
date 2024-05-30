@@ -34,3 +34,20 @@ void showSuccessSnackBar(BuildContext context, String message) {
     ..hideCurrentSnackBar()
     ..showSnackBar(snackBar);
 }
+
+void showWarningSnackBar(BuildContext context, String message) {
+  final snackBar = SnackBar(
+    padding: const EdgeInsets.all(26),
+    elevation: 0,
+    behavior: SnackBarBehavior.floating,
+    backgroundColor: Colors.transparent,
+    content: AwesomeSnackbarContent(
+      title: 'attention',
+      message: message,
+      contentType: ContentType.warning,
+    ),
+  );
+  ScaffoldMessenger.of(context)
+    ..hideCurrentSnackBar()
+    ..showSnackBar(snackBar);
+}

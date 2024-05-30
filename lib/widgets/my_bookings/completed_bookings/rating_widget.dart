@@ -81,7 +81,7 @@ class RatingDialog extends StatelessWidget {
                 ))
           ],
         ),
-        CustomSizedBoxHeight(0.03),
+        const CustomSizedBoxHeight(0.03),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -92,14 +92,14 @@ class RatingDialog extends StatelessWidget {
                   color: Myappallcolor().buttonforgroundcolor,
                   function: () {
                     context.read<RatingsBloc>().add(RatingAndReviewAdding(
-                        userName: bookings[ReferenceKeys.userName],
                         feedback: feedbackController.text,
                         ratingCount: ratingController.toString(),
                         shopId: bookings[ReferenceKeys.shopId]));
                     feedbackController.clear();
                     Navigator.of(context).pop();
+                    log('worked');
                   },
-                  text: 'Submit',
+                  text: 'Submits',
                   fontSize: 0.03,
                   buttontextcolor: Myappallcolor().colorwhite,
                   bordercolor: Colors.transparent),
@@ -109,7 +109,9 @@ class RatingDialog extends StatelessWidget {
               width: Mymediaquery().mediaquerywidth(0.22, context),
               child: CustomButton(
                   color: Myappallcolor().textcolor,
-                  function: () {},
+                  function: () {
+                    Navigator.of(context).pop();
+                  },
                   text: 'Cancel',
                   fontSize: 0.03,
                   buttontextcolor: Myappallcolor().colorwhite,

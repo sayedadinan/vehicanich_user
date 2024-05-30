@@ -6,6 +6,7 @@ import 'package:vehicanich/utils/app_colors.dart';
 import 'package:vehicanich/utils/app_textfields.dart';
 import 'package:vehicanich/utils/mediaquery.dart';
 import 'package:vehicanich/widgets/chat_room/chat_bubble.dart';
+import 'package:intl/intl.dart';
 
 class ChatPage extends StatelessWidget {
   final String receiverUserPhone;
@@ -73,12 +74,18 @@ class ChatPage extends StatelessWidget {
     var alignment = (data['senderId'] == firebaseAuth.currentUser!.uid)
         ? Alignment.centerRight
         : Alignment.centerLeft;
+
+    Timestamp timestamp = data['timestamp'] as Timestamp;
+    DateTime dateTime = timestamp.toDate();
+    String formattedTime = DateFormat.jm().format(dateTime);
+
     return Container(
       alignment: alignment,
       child: Column(
         children: [
-          // Text(data['sendEmail']),
           ChatBubble(
+            isCurrentUser: (data['senderId'] == firebaseAuth.currentUser!.uid),
+            time: formattedTime,
             message: data['message'],
           )
         ],

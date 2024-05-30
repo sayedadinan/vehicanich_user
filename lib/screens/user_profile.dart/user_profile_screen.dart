@@ -1,4 +1,3 @@
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:top_snackbar_flutter/tap_bounce_container.dart';
@@ -11,6 +10,7 @@ import 'package:vehicanich/utils/app_colors.dart';
 import 'package:vehicanich/utils/app_custom_loader.dart';
 import 'package:vehicanich/utils/app_showdialogue.dart';
 import 'package:vehicanich/utils/app_sizedbox.dart';
+import 'package:vehicanich/utils/app_snackbar_.dart';
 import 'package:vehicanich/utils/app_text.dart';
 import 'package:vehicanich/utils/mediaquery.dart';
 import 'package:vehicanich/utils/page_transition/page_fade_transition.dart';
@@ -158,20 +158,8 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                   showSecondButton: true,
                                   onSecondButtonPressed: () {
                                 signOut(context);
-                                final snackBar = SnackBar(
-                                  padding: const EdgeInsets.all(26),
-                                  elevation: 0,
-                                  behavior: SnackBarBehavior.floating,
-                                  backgroundColor: Colors.transparent,
-                                  content: AwesomeSnackbarContent(
-                                    title: 'On logout',
-                                    message: 'now you logout from vehicanich',
-                                    contentType: ContentType.warning,
-                                  ),
-                                );
-                                ScaffoldMessenger.of(context)
-                                  ..hideCurrentSnackBar()
-                                  ..showSnackBar(snackBar);
+                                showWarningSnackBar(
+                                    context, 'you logout from vehicanich');
                               });
                             },
                             child: const ProfileList(
@@ -179,6 +167,8 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                               icon: Icons.logout,
                             ),
                           ),
+                          const CustomSizedBoxHeight(0.01),
+                          const AppText(text: 'Version 1.0.1', size: 0.03)
                         ],
                       ),
                     ),

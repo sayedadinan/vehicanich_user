@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:vehicanich/data/data_provider/keys.dart';
 import 'package:vehicanich/data/data_provider/shop_data.dart';
+import 'package:vehicanich/data/repositories/user_repositery.dart';
 part 'ratings_event.dart';
 part 'ratings_state.dart';
 
@@ -17,8 +18,9 @@ class RatingsBloc extends Bloc<RatingsEvent, RatingsState> {
           .doc(event.shopId)
           .collection(ReferenceKeys.rateAndReview)
           .doc();
+      final user = await UserRepository().getuserDetails();
       shopReference.set({
-        "userName": event.userName,
+        "userName": user.userName,
         "ratinCount": event.ratingCount,
         "feedback": event.feedback,
       });

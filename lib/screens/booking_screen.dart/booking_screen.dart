@@ -14,7 +14,7 @@ import 'package:vehicanich/widgets/details_widget/widget_arrangements/additional
 import 'package:vehicanich/widgets/details_widget/widget_arrangements/booking_instruction.dart';
 import 'package:vehicanich/widgets/details_widget/widget_arrangements/custom_text.dart';
 import 'package:vehicanich/widgets/details_widget/details_text.dart';
-import 'package:vehicanich/widgets/my_bookings/booking_snack_bar.dart';
+import 'package:vehicanich/utils/app_snackbar_.dart';
 
 // ignore: must_be_immutable
 class BookingScreen extends StatefulWidget {
