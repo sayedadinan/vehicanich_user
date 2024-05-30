@@ -34,7 +34,7 @@ class ReviewShowingCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CustomSizedBoxHeight(0.01),
+                  const CustomSizedBoxHeight(0.01),
                   Padding(
                     padding: EdgeInsets.only(
                         left: Mymediaquery().mediaquerywidth(0.05, context)),
@@ -43,7 +43,7 @@ class ReviewShowingCard extends StatelessWidget {
                       size: 0.03,
                     ),
                   ),
-                  CustomSizedBoxHeight(0.008),
+                  const CustomSizedBoxHeight(0.008),
                   Padding(
                     padding: EdgeInsets.only(
                         left: Mymediaquery().mediaquerywidth(0.04, context)),

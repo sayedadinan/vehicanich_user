@@ -17,7 +17,7 @@ class UserBookingsPage extends StatelessWidget {
       appBar: AppBar(
           centerTitle: true,
           backgroundColor: Myappallcolor().appbarbackgroundcolor,
-          title: AppText(text: 'My bookings', size: 0.06)),
+          title: const AppText(text: 'My bookings', size: 0.06)),
       body: StreamBuilder(
           stream: checkInternetConnection(),
           builder: (context, snapshot) {

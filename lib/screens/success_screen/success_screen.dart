@@ -10,7 +10,7 @@ class SuccessScreen extends StatelessWidget {
   final String vehicleNumber;
   final String serviceName;
   const SuccessScreen(
-      {Key? key,
+      {super.key,
       required this.shopId,
       required this.vehicleNumber,
       required this.serviceName});

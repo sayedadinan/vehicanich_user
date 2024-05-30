@@ -39,11 +39,11 @@ class ImageBloc extends Bloc<ImageEvent, ImageState> {
 
   profileImagesaving(ProfileImageSaving event, Emitter<ImageState> emit) async {
     try {
-      final FirebaseFirestore _db = FirebaseFirestore.instance;
+      final FirebaseFirestore db = FirebaseFirestore.instance;
       final userId = await UserDocId().getUserId();
       final profileImage = await ImageChanging()
           .profileImageChanging(state.imagePath, state.profileImageUnit!);
-      await _db
+      await db
           .collection(ReferenceKeys.users)
           .doc(userId)
           .update({"profileImagePath": profileImage});

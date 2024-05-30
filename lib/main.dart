@@ -62,7 +62,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(
               seedColor: Myappallcolor().buttonforgroundcolor),
           useMaterial3: true),
-      home: SplashScreen(),
+      home: const SplashScreen(),
       // home: StreamBuilder<User?>(
       //   stream: FirebaseAuth.instance.authStateChanges(),
       //   builder: (context, snapshot) {

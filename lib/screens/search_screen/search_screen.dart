@@ -16,7 +16,9 @@ import 'package:vehicanich/widgets/home_screen_widgets/shimmer_effect.dart';
 import 'package:vehicanich/widgets/search_widgets/search_bar.dart';
 
 class SearchScreen extends StatelessWidget {
-  const SearchScreen({Key? key});
+  const SearchScreen({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

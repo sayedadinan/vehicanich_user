@@ -19,12 +19,11 @@ class PaymentScreen extends StatelessWidget {
   final String serviceName;
   final String vehicleNumber;
   const PaymentScreen(
-      {key,
+      {super.key,
       required this.amount,
       required this.shopId,
       required this.serviceName,
-      required this.vehicleNumber})
-      : super();
+      required this.vehicleNumber});
 
   @override
   Widget build(BuildContext context) {

@@ -85,7 +85,7 @@ class ShopTimeText extends StatelessWidget {
             SizedBox(
               width: Mymediaquery().mediaquerywidth(0.01, context),
             ),
-            AppText(
+            const AppText(
               text: 'to',
               size: 0.04,
             ),

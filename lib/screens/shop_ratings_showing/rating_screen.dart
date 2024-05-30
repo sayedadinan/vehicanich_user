@@ -9,7 +9,7 @@ import 'package:vehicanich/widgets/rating_widgets/rating_card.dart';
 
 class RatingScreen extends StatelessWidget {
   final String phone;
-  const RatingScreen({Key? key, required this.phone}) : super(key: key);
+  const RatingScreen({super.key, required this.phone});
 
   @override
   Widget build(BuildContext context) {

@@ -21,7 +21,7 @@ class BookingScreen extends StatefulWidget {
   final String servicename;
   final String phonenumber;
 
-  BookingScreen({
+  const BookingScreen({
     super.key,
     required this.servicename,
     required this.phonenumber,

@@ -7,11 +7,11 @@ class ChatBubble extends StatelessWidget {
   final bool isCurrentUser;
 
   const ChatBubble({
-    Key? key,
+    super.key,
     required this.message,
     required this.time,
     required this.isCurrentUser,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class ChatBubble extends StatelessWidget {
           const SizedBox(height: 4),
           Text(
             time,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 12,
               color: Colors.grey,
             ),

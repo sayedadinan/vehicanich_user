@@ -8,6 +8,8 @@ class PhotoSlider extends StatelessWidget {
     'assets/images/add photo.jpg',
   ];
 
+  PhotoSlider({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Center(
