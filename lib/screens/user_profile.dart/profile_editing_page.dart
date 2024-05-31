@@ -140,8 +140,7 @@ class _ProfileEditingPageState extends State<ProfileEditingPage> {
                             Navigator.of(context).pop();
                           },
                           text: 'Update Details',
-                          fontSize:
-                              Mymediaquery().mediaquerywidth(0.05, context),
+                          fontSize: 0.04,
                           buttontextcolor: Myappallcolor().colorblack),
                     )
                   ],

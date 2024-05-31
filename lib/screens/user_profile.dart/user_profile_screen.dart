@@ -1,13 +1,17 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:top_snackbar_flutter/tap_bounce_container.dart';
 import 'package:vehicanich/blocs/image_bloc/bloc/image_bloc.dart';
 import 'package:vehicanich/blocs/user_details_blocs/user_detail_bloc.dart';
 import 'package:vehicanich/data/services/connectivity/internet_connection.dart';
+import 'package:vehicanich/data/services/details_services/call_services.dart';
 import 'package:vehicanich/data/services/firebase_auth_implementation/firebase_auth_service.dart';
+import 'package:vehicanich/screens/privacy_policy/privacy_policy.dart';
+import 'package:vehicanich/screens/terms_and_conditions/terms_conditions.dart';
 import 'package:vehicanich/screens/user_profile.dart/profile_editing_page.dart';
 import 'package:vehicanich/utils/app_colors.dart';
-import 'package:vehicanich/utils/app_custom_loader.dart';
 import 'package:vehicanich/utils/app_showdialogue.dart';
 import 'package:vehicanich/utils/app_sizedbox.dart';
 import 'package:vehicanich/utils/app_snackbar_.dart';
@@ -48,7 +52,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                 stream: checkInternetConnection(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return loader;
+                    return const Center(child: CircularProgressIndicator());
                   }
                   if (!snapshot.hasData || !snapshot.data!) {
                     return const ConnectivityWidget();
@@ -130,22 +134,38 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                 text: 'edit or update', icon: Icons.edit),
                           ),
                           const CustomSizedBoxHeight(0.01),
-                          const ProfileList(
-                            text: 'contact us',
-                            icon: Icons.phone,
+                          GestureDetector(
+                            onTap: () {
+                              CallService().makePhoneCall('8111857749');
+                            },
+                            child: const ProfileList(
+                              text: 'contact us',
+                              icon: Icons.phone,
+                            ),
                           ),
                           const CustomSizedBoxHeight(0.01),
                           GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.of(context).push(
+                                  FadeTransitionPageRoute(
+                                      child: const PrivacyPolicy()));
+                            },
                             child: const ProfileList(
                               text: 'Privacy Policy',
                               icon: Icons.privacy_tip,
                             ),
                           ),
                           const CustomSizedBoxHeight(0.01),
-                          const ProfileList(
-                            text: 'About',
-                            icon: Icons.abc,
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).push(
+                                  FadeTransitionPageRoute(
+                                      child: const TermsAndConditions()));
+                            },
+                            child: const ProfileList(
+                              text: 'terms and conditions',
+                              icon: Icons.abc,
+                            ),
                           ),
                           const CustomSizedBoxHeight(0.01),
                           TapBounceContainer(

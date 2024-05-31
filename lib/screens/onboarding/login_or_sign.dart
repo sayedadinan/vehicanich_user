@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vehicanich/blocs/onboarding_blocs/onboarding_bloc.dart';
 import 'package:vehicanich/screens/login_screen/login_screen.dart';
@@ -7,9 +6,9 @@ import 'package:vehicanich/screens/sign_in_screen/sign_in_screen.dart';
 import 'package:vehicanich/utils/app_colors.dart';
 import 'package:vehicanich/utils/app_custom_button.dart';
 import 'package:vehicanich/utils/app_sizedbox.dart';
+import 'package:vehicanich/utils/app_text.dart';
 import 'package:vehicanich/utils/mediaquery.dart';
 import 'package:vehicanich/widgets/onboarding_widgets/onboarding_texts.dart';
-import 'package:lottie/lottie.dart';
 
 class Loginorsign extends StatelessWidget {
   const Loginorsign({super.key});
@@ -48,21 +47,10 @@ class Loginorsign extends StatelessWidget {
                     ),
                   ],
                 ),
-                const CustomSizedBoxHeight(0.08),
-                Center(
-                    child: Lottie.asset(
-                        'D:/sayed/Documents/vehicanich_user/assets/images/48kkhJxVqu.json',
-                        height: 170)),
-                // Transform.scale(
-                //   scale: 2.10,
-                //   // child: (
-                //   //   'assets/images/Animation - 1714891020642.gif',
-                //   //   // width: 500, // Adjust the width to your desired size
-                //   //   // height: 100, // Adjust the height to your desired size
-                //   // ),
-                // ),
-                SizedBox(
-                  height: 220,
+                const CustomSizedBoxHeight(0.45),
+                const AppText(
+                  text: 'make your choice perfect',
+                  size: 0.07,
                 ),
                 Column(
                   children: [

@@ -68,9 +68,7 @@ Future<void> signInWithGoogle(BuildContext context) async {
       MaterialPageRoute(builder: (context) => BottomBar()),
     );
   } catch (e) {
-    // Handle sign-in errors here
-    print("Error signing in with Google: $e");
-    // Display an error message or take appropriate action
+    log("Error signing in with Google: $e");
   }
 }
 

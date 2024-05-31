@@ -50,7 +50,9 @@ class _HomeScreenState extends State<HomeScreen> {
       body: StreamBuilder<bool>(
         stream: checkInternetConnection(),
         builder: (context, snapshot) {
-          if (!snapshot.hasData || !snapshot.data!) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (!snapshot.hasData || !snapshot.data!) {
             return const ConnectivityWidget();
           }
           return Column(

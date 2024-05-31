@@ -5,7 +5,6 @@ import 'package:vehicanich/data/data_provider/keys.dart';
 import 'package:vehicanich/screens/user_bookings/user_bookings.dart';
 import 'package:vehicanich/utils/app_colors.dart';
 import 'package:vehicanich/utils/app_googlebutton.dart';
-import 'package:vehicanich/utils/mediaquery.dart';
 import 'package:vehicanich/widgets/my_bookings/my_booking_details.dart';
 
 class Cancel_button extends StatelessWidget {
@@ -31,7 +30,7 @@ class Cancel_button extends StatelessWidget {
           );
         },
         text: 'Cancel the booking',
-        fontSize: Mymediaquery().mediaquerywidth(0.05, context),
+        fontSize: 0.04,
         buttontextcolor: Myappallcolor().colorwhite,
         bordercolor: Colors.white);
   }

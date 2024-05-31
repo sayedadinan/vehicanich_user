@@ -70,7 +70,6 @@ class Loginscreen extends StatelessWidget {
                   SizedBox(
                       height: Mymediaquery().mediaqueryheight(0.02, context)),
                   Inputfield(
-                      icon: const Icon(Icons.remove_red_eye_outlined),
                       hinttext: 'Enter your password',
                       controller: passwordController,
                       validator: (value) =>
