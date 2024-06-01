@@ -14,10 +14,9 @@ class SuccessScreen extends StatelessWidget {
       required this.shopId,
       required this.vehicleNumber,
       required this.serviceName});
-
+    
   @override
   Widget build(BuildContext context) {
-    // Navigate to home screen after a delay
     Future.delayed(const Duration(seconds: 5), () {
       context.read<TotalBillBloc>().add(MoneyAddeddSuccess(
           shopId: shopId,
