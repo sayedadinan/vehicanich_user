@@ -45,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
         backgroundColor: Myappallcolor().appbackgroundcolor,
-        toolbarHeight: 100.0,
+        toolbarHeight: 99.0,
       ),
       body: StreamBuilder<bool>(
         stream: checkInternetConnection(),
@@ -64,14 +64,13 @@ class _HomeScreenState extends State<HomeScreen> {
               const Row(
                 children: [
                   CustomSizedBoxWidth(0.06),
-                  AppText(
-                    text: 'your preferred workshops',
-                    size: 0.06,
-                    weight: FontWeight.w100,
-                  ),
+                  AppSemiText(
+                    text: 'best workshops for you',
+                    size: 0.05,
+                  )
                 ],
               ),
-              const CustomSizedBoxHeight(0.02),
+              const CustomSizedBoxHeight(0.01),
               Expanded(
                   child: Homescreenlist(
                 ratingCounts: ratingCountsFuture,

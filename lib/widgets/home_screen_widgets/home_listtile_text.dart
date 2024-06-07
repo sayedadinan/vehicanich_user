@@ -23,32 +23,32 @@ class ListtileText extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        const CustomSizedBoxHeight(0.008),
         SizedBox(
           width: Mymediaquery().mediaquerywidth(0.49, context),
           child: AppText(
             text: shopname,
-            size: 0.06,
-            weight: FontWeight.w600,
+            size: 0.056,
           ),
         ),
         const CustomSizedBoxHeight(0.003),
         Row(
           children: [
-            AppText(
+            AppSemiText(
               text: shoplocation,
-              size: 0.04,
-              weight: FontWeight.w100,
+              size: 0.034,
+              // weight: FontWeight.w100,
             )
           ],
         ),
-        const CustomSizedBoxHeight(0.01),
+        const CustomSizedBoxHeight(0.009),
         Row(
           children: [
-            AppText(text: startingtime, size: 0.03),
+            AppSemiText(text: startingtime, size: 0.03),
             SizedBox(width: Mymediaquery().mediaquerywidth(0.01, context)),
-            const AppText(text: 'to', size: 0.03),
+            const AppSemiText(text: 'to', size: 0.03),
             SizedBox(width: Mymediaquery().mediaquerywidth(0.01, context)),
-            AppText(text: closingtime, size: 0.03),
+            AppSemiText(text: closingtime, size: 0.03),
           ],
         ),
         const CustomSizedBoxHeight(0.02),

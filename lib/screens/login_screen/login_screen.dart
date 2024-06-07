@@ -33,8 +33,11 @@ class Loginscreen extends StatelessWidget {
                 builder: (context) => const Forgotpasswordscreen()));
       }
       if (state is NavigateToHome) {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => BottomBar()));
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => BottomBar()),
+          (Route<dynamic> route) => false,
+        );
       }
       if (state is LoginErrorHappened) {
         log('worked');

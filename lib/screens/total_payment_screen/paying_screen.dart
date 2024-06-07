@@ -33,6 +33,9 @@ class PaymentScreen extends StatelessWidget {
           return loader;
         }
         if (state is PaymentSuccess) {
+          context
+              .read<TotalBillBloc>()
+              .add(AddMoneyToWallet(amount: amount, shopId: shopId));
           context.read<TotalBillBloc>().add(MoneyAddeddSuccess(
               shopId: shopId,
               serviceName: serviceName,
@@ -84,8 +87,6 @@ class PaymentScreen extends StatelessWidget {
                             .read<PaymentBloc>()
                             .add(PaymentButtonPressed(amount: amount));
                         log('worked');
-                        context.read<TotalBillBloc>().add(
-                            AddMoneyToWallet(amount: amount, shopId: shopId));
                       },
                       text: "pay",
                       fontSize: 0.07,

@@ -16,9 +16,9 @@ class PhotoSlider extends StatelessWidget {
       child: CarouselSlider(
         options: CarouselOptions(
           autoPlayCurve: Curves.easeInBack,
-          height: Mymediaquery().mediaqueryheight(0.23, context),
+          height: Mymediaquery().mediaqueryheight(0.20, context),
           autoPlay: true,
-          autoPlayInterval: const Duration(seconds: 4),
+          autoPlayInterval: const Duration(seconds: 3),
           enlargeCenterPage: true,
         ),
         items: imageList.map((imagePath) {

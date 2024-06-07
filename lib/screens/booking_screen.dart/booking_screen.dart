@@ -100,7 +100,6 @@ class _BookingScreenState extends State<BookingScreen> {
                         initialDate: DateTime.now(),
                         onDateChange: (selectedDate) {
                           selectingdate = selectedDate;
-                          print(selectedDate);
                         },
                       ),
                     ),
@@ -147,7 +146,7 @@ class _BookingScreenState extends State<BookingScreen> {
                                 'please give us every booking details');
                           }
                         },
-                        text: 'Proceed to pay',
+                        text: 'Place the order',
                         fontSize: 0.05,
                         buttontextcolor: Myappallcolor().colorwhite,
                         bordercolor: Colors.transparent),
