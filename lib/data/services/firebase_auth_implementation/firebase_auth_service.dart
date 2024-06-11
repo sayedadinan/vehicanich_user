@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vehicanich/blocs/login_bloc/login_bloc.dart';
+import 'package:vehicanich/data/repositories/user_repositery.dart';
 import 'package:vehicanich/screens/onboarding/login_or_sign.dart';
 import 'package:vehicanich/utils/bottom_navigation/bottom_navigation.dart'; // Import material.dart for using Navigator
 
@@ -53,8 +54,10 @@ Future<void> sendEmailVerification() async {
 Future<void> signInWithGoogle(BuildContext context) async {
   context.read<LoginBloc>().add(LoginWithGoogleButtonPressed());
   final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
   final GoogleSignInAuthentication? googleAuth =
       await googleUser?.authentication;
+  await UserRepository().saveUserEmailToSharedPreferences(googleUser!.email);
   final credential = GoogleAuthProvider.credential(
     accessToken: googleAuth?.accessToken,
     idToken: googleAuth?.idToken,

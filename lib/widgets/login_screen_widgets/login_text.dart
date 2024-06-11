@@ -41,15 +41,35 @@ class LoginScreenMainText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        const Myonboardingsmalltext(
-          subtitle: 'Welcome back!',
-        ),
-        SizedBox(
-          width: Mymediaquery().mediaquerywidth(0.1, context),
-        )
-      ],
+    return Padding(
+      padding:
+          EdgeInsets.only(left: Mymediaquery().mediaquerywidth(0.05, context)),
+      child: const Row(
+        children: [
+          Myonboardingsmalltext(
+            subtitle: ' Welcome back! \n Glad to see you',
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class SignInText extends StatelessWidget {
+  const SignInText({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding:
+          EdgeInsets.only(left: Mymediaquery().mediaquerywidth(0.05, context)),
+      child: const Row(
+        children: [
+          Myonboardingsmalltext(
+            subtitle: ' Create an account \n And Care your car',
+          ),
+        ],
+      ),
     );
   }
 }

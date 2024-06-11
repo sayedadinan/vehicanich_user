@@ -38,7 +38,7 @@ class Myonboardingsmalltext extends StatelessWidget {
           color: Myappallcolor().textcolor,
           fontSize: MediaQuery.of(context).size.width * 0.08,
         ),
-        textAlign: TextAlign.center,
+        // textAlign: TextAlign.center,
       ),
     );
   }

@@ -10,7 +10,7 @@ import 'package:vehicanich/utils/bottom_navigation/bottom_navigation.dart';
 Future<void> checkingforsplash(context) async {
   SharedPreferences preferences = await SharedPreferences.getInstance();
   final initialUser = preferences.getBool(ReferenceKeys.initialEntry);
-  log('this $initialUser');
+  log('this data $initialUser');
   if (initialUser == null) {
     Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(builder: (context) => OnBoardingScreen()),

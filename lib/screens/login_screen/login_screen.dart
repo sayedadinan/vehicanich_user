@@ -41,12 +41,6 @@ class Loginscreen extends StatelessWidget {
       }
       if (state is LoginErrorHappened) {
         log('worked');
-
-        // CustomShowdialogue.showCustomDialog(context,
-        //     title: 'Error', message: state.error, type: DialogType.error);
-        // CustomSnackBar(
-        //     message: state.error,
-        //     backgroundColor: Myappallcolor().emergencybuttoncolor);
       }
     }, child: BlocBuilder<LoginBloc, LoginBlocState>(
       builder: (context, state) {
@@ -89,12 +83,13 @@ class Loginscreen extends StatelessWidget {
                     bordercolor: Colors.transparent,
                     buttontextcolor: Myappallcolor().colorwhite,
                     text: 'Login',
-                    function: () => context.read<LoginBloc>().add(
-                        LoginScreenButtonPressed(
-                            context: context,
-                            formkey: loginKey,
-                            email: emailController,
-                            password: passwordController)),
+                    function: () {
+                      context.read<LoginBloc>().add(LoginScreenButtonPressed(
+                          context: context,
+                          formkey: loginKey,
+                          email: emailController,
+                          password: passwordController));
+                    },
                     fontSize: 0.05,
                     color: Myappallcolor().buttonforgroundcolor,
                   ),

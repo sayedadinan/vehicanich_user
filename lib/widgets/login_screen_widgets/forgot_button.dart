@@ -8,19 +8,23 @@ class Forgetbutton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        SizedBox(
-          width: Mymediaquery().mediaquerywidth(0.3, context),
-        ),
-        GestureDetector(
-          onTap: function,
-          child: Text(
-            'Forgot Password?',
-            style: TextStyle(color: Myappallcolor().textcolor),
+    return Padding(
+      padding:
+          EdgeInsets.only(right: Mymediaquery().mediaquerywidth(0.05, context)),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          GestureDetector(
+            onTap: function,
+            child: Text(
+              'Forgot Password?',
+              style: TextStyle(
+                  color: Myappallcolor().textcolor,
+                  fontSize: Mymediaquery().mediaquerywidth(0.03, context)),
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

@@ -17,7 +17,8 @@ class ImageContainer extends StatelessWidget {
           child: CachedNetworkImage(
             fit: BoxFit.cover,
             imageUrl: imagepath,
-            placeholder: (context, url) => const CircularProgressIndicator(),
+            placeholder: (context, url) =>
+                const Center(child: CircularProgressIndicator()),
             errorWidget: (context, url, error) => const Icon(Icons.error),
           )),
     );

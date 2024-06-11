@@ -1,9 +1,9 @@
 import 'dart:async';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:vehicanich/data/services/firebase_auth_implementation/firebase_auth_service.dart';
 import 'package:vehicanich/utils/app_colors.dart';
+import 'package:vehicanich/utils/app_custom_button.dart';
 import 'package:vehicanich/utils/app_snackbar.dart';
 import 'package:vehicanich/utils/bottom_navigation/bottom_navigation.dart';
 import 'package:vehicanich/utils/mediaquery.dart';
@@ -63,46 +63,27 @@ class _VerifyEmailState extends State<VerifyEmail> {
             // mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
-                height: Mymediaquery().mediaqueryheight(0.02, context),
+                height: Mymediaquery().mediaqueryheight(0.05, context),
               ),
               const Icon(
                 Icons.email_outlined,
                 size: 150,
+                color: Colors.white,
               ),
               SizedBox(
                 height: Mymediaquery().mediaqueryheight(0.02, context),
               ),
               Text(
-                'Verify your email address',
+                'Verify your email address \n',
                 style: TextStyle(
                     color: Myappallcolor().colorwhite,
                     fontSize: Mymediaquery().mediaquerywidth(0.05, context)),
               ),
-              SizedBox(
-                height: Mymediaquery().mediaqueryheight(0.06, context),
-              ),
-              // Row(
-              //   children: [
-              //     SizedBox(
-              //       width: Mymediaquery().mediaquerywidth(0.04, context),
-              //     ),
-              //     Text(
-              //       'We have just send email verification link on \n your email. please check email and click on\n that link to verify your email address.',
-              //       style: TextStyle(
-              //           color: Myappallcolor().colorwhite,
-              //           fontSize:
-              //               Mymediaquery().mediaquerywidth(0.03, context)),
-              //     ),
-              //   ],
-              // ),
-              SizedBox(
-                height: Mymediaquery().mediaqueryheight(0.03, context),
-              ),
               Text(
-                'A verification message has been sent to your email',
+                'After opening email you can click continue',
                 style: TextStyle(
                     color: Myappallcolor().colorwhite,
-                    fontSize: Mymediaquery().mediaquerywidth(0.03, context)),
+                    fontSize: Mymediaquery().mediaquerywidth(0.04, context)),
               ),
               SizedBox(
                 height: Mymediaquery().mediaqueryheight(0.04, context),
@@ -111,27 +92,31 @@ class _VerifyEmailState extends State<VerifyEmail> {
                 padding: const EdgeInsets.only(left: 20, right: 20, bottom: 34),
                 child: SizedBox(
                   width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: () {
+                  child: CustomButton(
+                    bordercolor: Colors.transparent,
+                    buttontextcolor: Colors.black,
+                    color: Myappallcolor().textcolor,
+                    fontSize: 0.04,
+                    text: 'Resent Email',
+                    function: () {
                       sendVerificationEmail();
                     },
-                    child: const Text(
-                      'Resent Email',
-                    ),
                   ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 32, right: 30),
+                padding: const EdgeInsets.only(left: 20, right: 20, bottom: 34),
                 child: SizedBox(
                   width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: () {
+                  child: CustomButton(
+                    bordercolor: Colors.transparent,
+                    buttontextcolor: Colors.black,
+                    color: Myappallcolor().buttonforgroundcolor,
+                    fontSize: 0.04,
+                    text: 'Continue',
+                    function: () {
                       checkEmailVerified();
                     },
-                    child: const Text(
-                      'continue',
-                    ),
                   ),
                 ),
               ),

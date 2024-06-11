@@ -34,8 +34,9 @@ class LoginBloc extends Bloc<LoginBlocEvent, LoginBlocState> {
   loginScreenButtonPressed(
       LoginScreenButtonPressed event, Emitter<LoginBlocState> emit) async {
     try {
-      emit(LoginLoading());
       if (event.formkey.currentState!.validate()) {
+        emit(LoginLoading());
+
         User? user = await auth.sighInWIthEmailAndPassword(
             event.email.text, event.password.text);
         log('this user $user');
@@ -63,6 +64,22 @@ class LoginBloc extends Bloc<LoginBlocEvent, LoginBlocState> {
         }
       }
     } catch (e) {
+      final snackBar = SnackBar(
+        padding: const EdgeInsets.all(26),
+        elevation: 0,
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: Colors.transparent,
+        content: AwesomeSnackbarContent(
+          title: 'Oops!',
+          message: 'something went wrong',
+          contentType: ContentType.failure,
+        ),
+      );
+      ScaffoldMessenger.of(event.context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(snackBar);
+      emit(LoginErrorHappened(error: 'some thing went wrong'));
+      log('something went wrong');
       emit(LoginErrorHappened(error: e.toString()));
     }
   }
