@@ -22,6 +22,10 @@ class BookingBloc extends Bloc<BookingEvent, BookingState> {
   }
   bookingbuttonpressed(
       BookingbuttonPressed event, Emitter<BookingState> emit) async {
+    emit(BookingLoading(
+        isStarted: state.isStarted,
+        isPending: state.isPending,
+        isCompleted: state.isCompleted));
     final userid = await UserDocId().getUserId();
     final userEmail = await UserDocId().getUserEmail();
     List<dynamic> carrying = [];

@@ -42,8 +42,8 @@ class LoginBloc extends Bloc<LoginBlocEvent, LoginBlocState> {
         log('this user $user');
         if (user != null) {
           log('user login successful');
-          emit(NavigateToHome());
           UserRepository().saveUserEmailToSharedPreferences(event.email.text);
+          emit(NavigateToHome());
         } else {
           final snackBar = SnackBar(
             padding: const EdgeInsets.all(26),

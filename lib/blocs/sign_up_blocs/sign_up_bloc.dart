@@ -18,7 +18,7 @@ class SignUpBLoc extends Bloc<SignUpEvent, SignUpState> {
       final userCredential =
           await FirebaseAuthService().sighUpWIthEmailAndPassword(
         event.user.email,
-        event.user.password,
+        event.user.password!,
       );
       final user = UserModel(
           userName: event.user.userName,

@@ -31,8 +31,8 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
   @override
   void initState() {
     super.initState();
-    context.read<UserDetailsBloc>().add(UserDetailsFetching());
-    context.read<ImageBloc>().add(ProfileImageFetching());
+    context.read<UserDetailsBloc>().add(UserDetailsFetching(false));
+    context.read<ImageBloc>().add(ProfileImageFetching(isGoogleSignIn: false));
   }
 
   @override
@@ -75,7 +75,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                     fit: BoxFit.cover,
                                   ))),
                     const CustomSizedBoxHeight(0.02),
-                    AppText(text: state.userName, size: 0.05),
+                    AppText(text: state.userName!, size: 0.05),
                     const Divider(
                       color: Colors.transparent,
                     ),
@@ -107,7 +107,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                     const CustomSizedBoxHeight(0.02),
                                     ProfilePageRow(
                                       mainText: 'Email',
-                                      valueText: state.email,
+                                      valueText: state.email!,
                                     ),
                                     const CustomSizedBoxHeight(0.003),
                                     const Divider(indent: 20, endIndent: 20),

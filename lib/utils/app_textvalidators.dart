@@ -38,8 +38,8 @@ class Validators {
       return 'Vehicle Number cannot be empty';
     }
 
-    // Regular expression pattern for vehicle number format "XX 00 0000"
-    RegExp regExp = RegExp(r'^[A-Z]{2}\s\d{2}\s\d{4}$');
+    // Regular expression pattern for vehicle number format "XX NN XXXX" or "XX NN XXX"
+    RegExp regExp = RegExp(r'^[A-Z]{2}\s\d{2}\s[A-Z]{0,2}\s?\d{1,4}$');
 
     if (!regExp.hasMatch(value)) {
       return 'Enter a valid vehicle number';

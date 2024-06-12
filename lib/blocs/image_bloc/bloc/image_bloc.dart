@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:vehicanich/data/data_provider/keys.dart';
 import 'package:vehicanich/data/data_provider/user_data.dart';
@@ -56,11 +57,19 @@ class ImageBloc extends Bloc<ImageEvent, ImageState> {
   profileImagefetchng(
       ProfileImageFetching event, Emitter<ImageState> emit) async {
     try {
-      final storedImagePath = await UserRepository().userProfileFetching();
-      emit(ImageInitial(
-          imagePath: state.imagePath,
-          profileImageUnit: state.profileImageUnit,
-          storedImagePath: storedImagePath));
+      if (event.isGoogleSignIn) {
+        final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+        emit(ImageInitial(
+            imagePath: googleUser!.photoUrl!,
+            profileImageUnit: state.profileImageUnit,
+            storedImagePath: state.storedImagePath));
+      } else {
+        final storedImagePath = await UserRepository().userProfileFetching();
+        emit(ImageInitial(
+            imagePath: state.imagePath,
+            profileImageUnit: state.profileImageUnit,
+            storedImagePath: storedImagePath));
+      }
     } catch (e) {
       log('there is a problem in profile fetching area $e');
     }

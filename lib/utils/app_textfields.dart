@@ -9,6 +9,7 @@ class Inputfield extends StatelessWidget {
   final TextInputType? keyboardType;
   final String? Function(String?)? validator;
   final Icon? icon;
+  final int? length;
   const Inputfield({
     this.controller,
     super.key,
@@ -16,7 +17,8 @@ class Inputfield extends StatelessWidget {
     required this.hinttext,
     this.keyboardType,
     this.validator,
-    this.icon, // Use the constructor parameter directly
+    this.icon,
+    this.length, // Use the constructor parameter directly
   });
 
   @override
@@ -26,6 +28,7 @@ class Inputfield extends StatelessWidget {
           left: Mymediaquery().mediaquerywidth(0.05, context),
           right: Mymediaquery().mediaquerywidth(0.05, context)),
       child: TextFormField(
+        maxLength: length,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         controller: controller,
         validator: validator,

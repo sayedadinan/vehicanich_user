@@ -1,8 +1,8 @@
 part of 'user_detail_bloc.dart';
 
 sealed class UserDetailsState {
-  final String userName;
-  final String email;
+  final String? userName;
+  final String? email;
   final String? profileImagePath;
   UserDetailsState(
       {required this.userName,

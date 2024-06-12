@@ -10,4 +10,8 @@ class ProfileImageSaving extends ImageEvent {
   ProfileImageSaving({required this.context});
 }
 
-class ProfileImageFetching extends ImageEvent {}
+class ProfileImageFetching extends ImageEvent {
+  final bool isGoogleSignIn;
+
+  ProfileImageFetching({required this.isGoogleSignIn});
+}

@@ -30,3 +30,10 @@ class BookingSuccess extends BookingState {
       required super.isPending,
       required super.isCompleted});
 }
+
+class BookingLoading extends BookingState {
+  BookingLoading(
+      {required super.isStarted,
+      required super.isPending,
+      required super.isCompleted});
+}

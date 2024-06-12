@@ -5,6 +5,7 @@ import 'package:vehicanich/data/services/firebase_auth_implementation/firebase_a
 import 'package:vehicanich/utils/app_colors.dart';
 import 'package:vehicanich/utils/app_custom_button.dart';
 import 'package:vehicanich/utils/app_snackbar.dart';
+import 'package:vehicanich/utils/app_snackbar_.dart';
 import 'package:vehicanich/utils/bottom_navigation/bottom_navigation.dart';
 import 'package:vehicanich/utils/mediaquery.dart';
 
@@ -45,6 +46,7 @@ class _VerifyEmailState extends State<VerifyEmail> {
       final user = FirebaseAuth.instance.currentUser!;
       await user.sendEmailVerification();
     } catch (e) {
+      showErrorSnackBar(context, e.toString());
       CustomSnackBar(
           message: e.toString(),
           backgroundColor: Myappallcolor().emergencybuttoncolor);

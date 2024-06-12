@@ -134,4 +134,25 @@ class UserRepository {
       log('there is a error in profile image fetching area');
     }
   }
+
+  Future<void> checkAndCreateUser(String email, String displayName) async {
+    final userCollection = FirebaseFirestore.instance.collection('users');
+    try {
+      final snapshot = await userCollection
+          .where(ReferenceKeys.email, isEqualTo: email)
+          .get();
+      if (snapshot.docs.isEmpty) {
+        await userCollection.add({
+          ReferenceKeys.userName: displayName,
+          'Password': '',
+          ReferenceKeys.email: email,
+        });
+        log('New user created.');
+      } else {
+        log('User already exists.');
+      }
+    } catch (e) {
+      log('Error checking or creating user: $e');
+    }
+  }
 }

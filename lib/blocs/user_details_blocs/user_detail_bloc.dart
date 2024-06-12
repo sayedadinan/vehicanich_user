@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:vehicanich/data/models/user_model.dart';
 import 'package:vehicanich/data/repositories/user_repositery.dart';
 part 'user_details_event.dart';
@@ -13,12 +14,21 @@ class UserDetailsBloc extends Bloc<UserDetailsEvent, UserDetailsState> {
     on<UserDetailsEditingButtonClicked>(userdetaileditingPage);
   }
   userdetailsFetching(
-      UserDetailsFetching event, Emitter<UserDetailsState> emit) async {
+    UserDetailsFetching event,
+    Emitter<UserDetailsState> emit,
+  ) async {
     emit(UserDetailsLoading(
         email: state.email,
         userName: state.userName,
         profileImagePath: state.profileImagePath));
     try {
+      if (event.isGoogleSignIn) {
+        final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+        emit(InitialUserDetailsState(
+            userName: googleUser!.displayName,
+            email: googleUser.email,
+            profileImagePath: googleUser.photoUrl));
+      }
       final user = await UserRepository().getuserDetails();
       emit(InitialUserDetailsState(
         profileImagePath: user.profileImagePath,
@@ -26,7 +36,7 @@ class UserDetailsBloc extends Bloc<UserDetailsEvent, UserDetailsState> {
         email: user.email,
       ));
     } catch (e) {
-      log('there is a error in user details fetching area $e');
+      log('there is a error in user details fetching aree $e');
     }
   }
 

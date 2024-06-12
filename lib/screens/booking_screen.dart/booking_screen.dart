@@ -6,6 +6,7 @@ import 'package:vehicanich/blocs/offDay_bloc/bloc/offday_bloc.dart';
 import 'package:vehicanich/utils/app_colors.dart';
 import 'package:vehicanich/utils/app_custom_appbar.dart';
 import 'package:vehicanich/utils/app_custom_button.dart';
+import 'package:vehicanich/utils/app_custom_loader.dart';
 import 'package:vehicanich/utils/app_sizedbox.dart';
 import 'package:vehicanich/utils/app_textfields.dart';
 import 'package:vehicanich/utils/app_textvalidators.dart';
@@ -66,6 +67,11 @@ class _BookingScreenState extends State<BookingScreen> {
         },
         child: BlocBuilder<BookingBloc, BookingState>(
           builder: (context, state) {
+            if (state is BookingLoading) {
+              return Center(
+                child: loader,
+              );
+            }
             return SingleChildScrollView(
               child: Form(
                 key: bookingKey,
@@ -90,9 +96,9 @@ class _BookingScreenState extends State<BookingScreen> {
                                 dayNumStyle:
                                     const TextStyle(color: Colors.red))),
                         headerProps: EasyHeaderProps(
+                            showMonthPicker: false,
                             monthStyle:
                                 TextStyle(color: Myappallcolor().colorwhite),
-                            showSelectedDate: true,
                             selectedDateStyle:
                                 TextStyle(color: Myappallcolor().colorwhite)),
                         disabledDates:
@@ -111,6 +117,7 @@ class _BookingScreenState extends State<BookingScreen> {
                             Validators().validateVehicleNumber(value)),
                     const CustomSizedBoxHeight(0.02),
                     Inputfield(
+                        length: 10,
                         keyboardType: TextInputType.phone,
                         hinttext: 'your phone number',
                         controller: userbookingphoneController,

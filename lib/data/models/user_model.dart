@@ -4,7 +4,7 @@ class UserModel {
   final String? id;
   final String userName;
   final String email;
-  final String password;
+  final String? password;
   final String? profileImagePath;
   UserModel({
     this.profileImagePath,

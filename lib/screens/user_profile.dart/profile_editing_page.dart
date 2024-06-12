@@ -49,7 +49,7 @@ class _ProfileEditingPageState extends State<ProfileEditingPage> {
           final user = state.user;
           nameController.text = user.userName;
           emailController.text = user.email;
-          passwordController.text = user.password;
+          passwordController.text = '';
           return Scaffold(
             backgroundColor: Myappallcolor().appbackgroundcolor,
             appBar: PreferredSize(
@@ -114,11 +114,6 @@ class _ProfileEditingPageState extends State<ProfileEditingPage> {
                     ),
                     SizedBox(
                         height: Mymediaquery().mediaqueryheight(0.03, context)),
-                    Inputfield(
-                      icon: const Icon(Icons.edit),
-                      hinttext: '',
-                      controller: passwordController,
-                    ),
                     SizedBox(
                         height: Mymediaquery().mediaqueryheight(0.03, context)),
                     SizedBox(

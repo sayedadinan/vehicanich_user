@@ -34,10 +34,11 @@ class SigninScreen extends StatelessWidget {
             ).show(context);
           }
           if (state is SignUpSuccess) {
-            Navigator.of(context).push(
+            Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(
                 builder: (context) => const VerifyEmail(),
               ),
+              (route) => false,
             );
           }
         },
