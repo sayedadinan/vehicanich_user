@@ -65,6 +65,8 @@ Future<void> signInWithGoogle(BuildContext context) async {
   final GoogleSignInAuthentication? googleAuth =
       await googleUser?.authentication;
   await UserRepository().saveUserEmailToSharedPreferences(googleUser!.email);
+  await UserRepository()
+      .saveUserNameToSharedPreferences(googleUser.displayName!);
   final credential = GoogleAuthProvider.credential(
     accessToken: googleAuth?.accessToken,
     idToken: googleAuth?.idToken,

@@ -70,6 +70,11 @@ class UserRepository {
     await prefs.setString('user_email', email);
   }
 
+  Future<void> saveUserNameToSharedPreferences(String email) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('user_name', email);
+  }
+
   /// Removes user email from SharedPreferences.
   Future<void> removeUserEmailFromSharedPreferences() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();

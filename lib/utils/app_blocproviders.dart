@@ -14,6 +14,7 @@ import 'package:vehicanich/blocs/search_bloc/bloc/search_bloc.dart';
 import 'package:vehicanich/blocs/sign_up_blocs/sign_up_bloc.dart';
 import 'package:vehicanich/blocs/total_bill/bloc/total_bill_bloc.dart';
 import 'package:vehicanich/blocs/user_details_blocs/user_detail_bloc.dart';
+import 'package:vehicanich/blocs/user_location/bloc/location_bloc.dart';
 import 'package:vehicanich/blocs/user_updation_blocs/user_updation_bloc.dart';
 
 List<BlocProvider> buildBlocProviders() {
@@ -36,5 +37,6 @@ List<BlocProvider> buildBlocProviders() {
     BlocProvider<ImageBloc>(create: (context) => ImageBloc()),
     BlocProvider<SearchBloc>(create: (context) => SearchBloc()),
     BlocProvider<OffdayBloc>(create: (context) => OffdayBloc()),
+    BlocProvider<LocationBloc>(create: (context) => LocationBloc()),
   ];
 }

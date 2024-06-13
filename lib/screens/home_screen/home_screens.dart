@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:vehicanich/blocs/user_location/bloc/location_bloc.dart';
 import 'package:vehicanich/data/repositories/shop_details/shop_repositery.dart';
 import 'package:vehicanich/data/services/connectivity/internet_connection.dart';
 import 'package:vehicanich/utils/app_colors.dart';
@@ -23,6 +25,9 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     ratingCountsFuture = ShopRepository().getAverageRatings();
+    if (BlocProvider.of<LocationBloc>(context).state.currentLocation.isEmpty) {
+      context.read<LocationBloc>().add(GetLocationPermission());
+    }
   }
 
   @override
@@ -65,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   CustomSizedBoxWidth(0.06),
                   AppSemiText(
-                    text: 'best workshops for you',
+                    text: 'Nearest workshops',
                     size: 0.05,
                   )
                 ],

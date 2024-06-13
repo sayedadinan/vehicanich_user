@@ -27,4 +27,5 @@ class ReferenceKeys {
   static String offDate = 'offDate';
   static String initialEntry = 'initialEntry';
   static String isloggedIn = 'is_logged_in';
+  static String userNameInshared = 'user_name';
 }
