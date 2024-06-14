@@ -99,7 +99,7 @@ class RatingDialog extends StatelessWidget {
                     Navigator.of(context).pop();
                     log('worked');
                   },
-                  text: 'Submits',
+                  text: 'Submit',
                   fontSize: 0.03,
                   buttontextcolor: Myappallcolor().colorwhite,
                   bordercolor: Colors.transparent),

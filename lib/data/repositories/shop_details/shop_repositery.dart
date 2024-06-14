@@ -80,20 +80,65 @@ class ShopRepository {
     }
   }
 
-  Future<Map<dynamic, dynamic>> getAverageRatings() async {
+  // Future<Map<dynamic, dynamic>> getAverageRatings() async {
+  //   try {
+  //     final shopCollection =
+  //         FirebaseFirestore.instance.collection(ReferenceKeys.shopdetails);
+  //     QuerySnapshot shopSnapshot = await shopCollection.get();
+  //     Map<dynamic, dynamic> averageRatings = {};
+  //     for (QueryDocumentSnapshot shopDoc in shopSnapshot.docs) {
+  //       dynamic totalRatingSum = 0;
+  //       dynamic ratingCount = 0;
+  //       try {
+  //         CollectionReference rateAndReviewCollection =
+  //             shopDoc.reference.collection(ReferenceKeys.rateAndReview);
+  //         QuerySnapshot rateAndReviewSnapshot =
+  //             await rateAndReviewCollection.get();
+  //         for (QueryDocumentSnapshot rateAndReviewDoc
+  //             in rateAndReviewSnapshot.docs) {
+  //           var rating = rateAndReviewDoc[ReferenceKeys.ratingCount];
+  //           if (rating is String) {
+  //             rating = num.tryParse(rating) ?? 0;
+  //           }
+  //           totalRatingSum += rating ?? 0;
+  //           if (rating != null) {
+  //             ratingCount++;
+  //           }
+  //         }
+  //         dynamic averageRating =
+  //             (ratingCount > 0) ? (totalRatingSum / ratingCount) : 0.0;
+  //         averageRatings[shopDoc.id] = averageRating;
+  //       } catch (e) {
+  //         log('Error fetching rateAndReview data for shop ${shopDoc.id}: $e');
+  //       }
+  //     }
+  //     log('Successfully fetched average ratings: $averageRatings');
+  //     return averageRatings;
+  //   } catch (e) {
+  //     log('Error fetching shop data: $e');
+  //     throw Exception('Error fetching shop data: $e');
+  //   }
+  // }
+  Future<Map<String, dynamic>> getAverageRatings(
+      List<Map<String, dynamic>> shops) async {
     try {
-      final shopCollection =
-          FirebaseFirestore.instance.collection(ReferenceKeys.shopdetails);
-      QuerySnapshot shopSnapshot = await shopCollection.get();
-      Map<dynamic, dynamic> averageRatings = {};
-      for (QueryDocumentSnapshot shopDoc in shopSnapshot.docs) {
+      Map<String, dynamic> averageRatings = {};
+
+      for (Map<String, dynamic> shopDetails in shops) {
         dynamic totalRatingSum = 0;
         dynamic ratingCount = 0;
+
         try {
-          CollectionReference rateAndReviewCollection =
-              shopDoc.reference.collection(ReferenceKeys.rateAndReview);
+          String shopId = shopDetails['id'];
+          CollectionReference rateAndReviewCollection = FirebaseFirestore
+              .instance
+              .collection(ReferenceKeys.shopdetails)
+              .doc(shopId)
+              .collection(ReferenceKeys.rateAndReview);
+
           QuerySnapshot rateAndReviewSnapshot =
               await rateAndReviewCollection.get();
+
           for (QueryDocumentSnapshot rateAndReviewDoc
               in rateAndReviewSnapshot.docs) {
             var rating = rateAndReviewDoc[ReferenceKeys.ratingCount];
@@ -105,13 +150,16 @@ class ShopRepository {
               ratingCount++;
             }
           }
+
           dynamic averageRating =
               (ratingCount > 0) ? (totalRatingSum / ratingCount) : 0.0;
-          averageRatings[shopDoc.id] = averageRating;
+          averageRatings[shopId] = averageRating;
         } catch (e) {
-          log('Error fetching rateAndReview data for shop ${shopDoc.id}: $e');
+          print(
+              'Error fetching rateAndReview data for shop ${shopDetails['id']}: $e');
         }
       }
+
       log('Successfully fetched average ratings: $averageRatings');
       return averageRatings;
     } catch (e) {

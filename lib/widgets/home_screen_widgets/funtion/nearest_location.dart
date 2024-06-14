@@ -22,7 +22,34 @@ double calculateDistance(double lat1, double lon1, double lat2, double lon2) {
   return distance;
 }
 
-Future<List<QueryDocumentSnapshot<Object?>>> fetchNearestShops(
+// Future<List<QueryDocumentSnapshot<Object?>>> fetchNearestShops(
+//     BuildContext context) async {
+//   Position? userCurrentLocation =
+//       BlocProvider.of<LocationBloc>(context).state.currentPosition;
+//   if (userCurrentLocation != null) {
+//     final userLatitude = userCurrentLocation.latitude;
+//     final userLongitude = userCurrentLocation.longitude;
+//     final shops = await ShopReference()
+//         .shopCollectionReference()
+//         .where(Shopkeys.isApproved, isEqualTo: true)
+//         .where(Shopkeys.isRejected, isEqualTo: false)
+//         .get();
+//     final List<QueryDocumentSnapshot<Object?>> nearestShops = [];
+//     for (var shop in shops.docs) {
+//       final GeoPoint shopLatAndLang = shop[Shopkeys.shoplocation];
+//       final shopLat = shopLatAndLang.latitude;
+//       final shopLong = shopLatAndLang.longitude;
+//       final distance =
+//           calculateDistance(userLatitude, userLongitude, shopLat, shopLong);
+//       if (distance <= 5) {
+//         nearestShops.add(shop);
+//       }
+//     }
+//     return nearestShops;
+//   }
+//   return [];
+// }
+Future<List<Map<String, dynamic>>> fetchNearestShops(
     BuildContext context) async {
   Position? userCurrentLocation =
       BlocProvider.of<LocationBloc>(context).state.currentPosition;
@@ -34,18 +61,25 @@ Future<List<QueryDocumentSnapshot<Object?>>> fetchNearestShops(
         .where(Shopkeys.isApproved, isEqualTo: true)
         .where(Shopkeys.isRejected, isEqualTo: false)
         .get();
-    final List<QueryDocumentSnapshot<Object?>> nearestShops = [];
+
+    List<Map<String, dynamic>> nearestShops = [];
+
     for (var shop in shops.docs) {
       final GeoPoint shopLatAndLang = shop[Shopkeys.shoplocation];
       final shopLat = shopLatAndLang.latitude;
       final shopLong = shopLatAndLang.longitude;
       final distance =
           calculateDistance(userLatitude, userLongitude, shopLat, shopLong);
+
       if (distance <= 5) {
-        nearestShops.add(shop);
+        Map<String, dynamic> shopDetails = shop.data() as Map<String, dynamic>;
+        shopDetails['id'] = shop.id;
+        nearestShops.add(shopDetails);
       }
     }
+
     return nearestShops;
   }
+
   return [];
 }
