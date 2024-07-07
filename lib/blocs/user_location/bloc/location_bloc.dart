@@ -1,55 +1,90 @@
-import 'dart:math';
-
+import 'dart:developer';
 import 'package:bloc/bloc.dart';
-import 'package:flutter/foundation.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
+
 part 'location_event.dart';
 part 'location_state.dart';
 
 class LocationBloc extends Bloc<LocationEvent, LocationState> {
   LocationBloc()
       : super(LocationInitial(currentLocation: '', currentPosition: null)) {
-    on<GetLocationPermission>(getlocationPermission);
-    on<FetchUserLocation>(fetchUserLocation);
+    on<GetLocationPermission>(_getlocationPermission);
+    on<FetchUserLocation>(_fetchUserLocation);
+    log('LocationBloc initialized');
   }
-  getlocationPermission(
+
+  Future<void> _getlocationPermission(
       GetLocationPermission event, Emitter<LocationState> emit) async {
-    bool locationEnabled;
-    LocationPermission permission;
-    locationEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!locationEnabled) {
-      emit(LocationServiceNotEnabled(
-          currentLocation: '', currentPosition: null));
-      return;
-    }
-    permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
+    try {
+      bool locationEnabled = await Geolocator.isLocationServiceEnabled();
+      log('Location service enabled: $locationEnabled');
+      if (!locationEnabled) {
         emit(LocationServiceNotEnabled(
             currentLocation: '', currentPosition: null));
         return;
       }
+
+      LocationPermission permission = await Geolocator.checkPermission();
+      log('Location permission: $permission');
+      if (permission == LocationPermission.denied) {
+        permission = await Geolocator.requestPermission();
+        log('Requested permission: $permission');
+        if (permission == LocationPermission.denied) {
+          emit(LocationPermissionDenied(
+              currentLocation: '', currentPosition: null));
+          return;
+        }
+      }
+
+      if (permission == LocationPermission.deniedForever) {
+        emit(LocationPermissionDeniedForever(
+            currentLocation: '', currentPosition: null));
+        return;
+      }
+      if (permission == LocationPermission.whileInUse ||
+          permission == LocationPermission.always) {
+        emit(LocationPermissionGranted(
+            currentLocation: '', currentPosition: null));
+        add(FetchUserLocation());
+      }
+    } catch (e) {
+      log('Error requesting location permission: $e');
+      emit(LocationPermissionRequestFailed(
+        error: e.toString(),
+        currentLocation: '',
+        currentPosition: null,
+      ));
     }
-    add(FetchUserLocation());
   }
 
-  fetchUserLocation(
+  Future<void> _fetchUserLocation(
       FetchUserLocation event, Emitter<LocationState> emit) async {
     emit(FetchingUserLocation(currentLocation: '', currentPosition: null));
-    await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-    await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
-        .then((Position position) async {
-      await placemarkFromCoordinates(position.latitude, position.longitude)
-          .then((List<Placemark> placemarks) {
+    try {
+      Position position = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.high);
+      log('Fetched user position: $position');
+
+      List<Placemark> placemarks =
+          await placemarkFromCoordinates(position.latitude, position.longitude);
+      log('Fetched placemarks: $placemarks');
+      if (placemarks.isNotEmpty) {
         Placemark place = placemarks[0];
         final locality = place.locality;
-        emit(LocationState(
-            currentLocation: locality!, currentPosition: position));
-      }).catchError((e) {
-        log(e);
-      });
-    });
+        emit(LocationFetched(
+            currentLocation: locality ?? 'Unknown location',
+            currentPosition: position));
+      } else {
+        emit(LocationFetchFailed(
+            currentLocation: '',
+            currentPosition: null,
+            error: 'No placemarks found'));
+      }
+    } catch (e) {
+      log('Error fetching user location: $e');
+      emit(LocationFetchFailed(
+          currentLocation: '', currentPosition: null, error: e.toString()));
+    }
   }
 }
